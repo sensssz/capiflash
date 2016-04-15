@@ -1102,7 +1102,6 @@ vbuflen %"PRIu64", vbuf %p, rval %p",
   }
   else
   {
-    lru_get(_arkp->lru, key, klen, &val_buf, &vlen);
     if (val_buf != NULL) {
       if ((voff + vbuflen) <= vlen)
       {
@@ -1128,6 +1127,12 @@ vbuflen %"PRIu64", vbuf %p, rval %p",
           if (errcode != 0) {
             KV_TRC_FFDC(pAT, "ark_wait_tag failed rc = %d", errcode);
             rc = errcode;
+            if (rc == ENOENT) {
+              lru_get(_arkp->lru, key, klen, &val_buf, &vlen);
+              if (vlen > 0) {
+                printf("Key not exists in the db, but appears in the cache with vlen %" PRIu64 "\n", vlen);
+              }
+            }
           }
 
           *rval = res;
