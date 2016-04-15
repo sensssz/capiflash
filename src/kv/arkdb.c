@@ -1111,16 +1111,19 @@ vbuflen %"PRIu64", vbuf %p, rval %p",
       {
         memcpy(vbuf, val_buf + voff, vlen - voff);
       }
+      am_free(val_buf);
       *rval = vlen;
     }
-    else {
+    else
+    {
       *rval = -1;
       tag = ark_get_async_tag(_arkp, klen, key, vbuflen, vbuf, voff);
       if (tag < 0) {
         KV_TRC_FFDC(pAT, "ark_get_async_tag failed rc = %d", rc);
         rc = EAGAIN;
       }
-      else {
+      else
+      {
         // Will wait here for command to complete
         rc = ark_wait_tag(_arkp, tag, &errcode, &res);
         if (rc == 0) {
@@ -1131,6 +1134,7 @@ vbuflen %"PRIu64", vbuf %p, rval %p",
               lru_get(_arkp->lru, key, klen, &val_buf, &vlen);
               if (vlen > 0) {
                 printf("Key not exists in the db, but appears in the cache with vlen %" PRIu64 "\n", vlen);
+                am_free(val_buf);
               }
             }
           }
