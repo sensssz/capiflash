@@ -485,6 +485,8 @@ int ark_create_verbose(char *path, ARK **arkret,
     goto ark_create_ea_err;
   }
 
+  ark->lru = lru_new();
+
   // Now that the "connection" to the store has been established
   // we need to check to see if data was persisted from a previous
   // instantiation of the KV store.
@@ -523,9 +525,6 @@ int ark_create_verbose(char *path, ARK **arkret,
     // Create the requests and tag control blocks and queues.
     x = ark->hcount / ark->nthrds;
     ark->npart  = x + (ark->hcount % ark->nthrds ? 1 : 0);
-
-//    ark->hit_list = hit_list_new(ARK_NUM_HOT_ITEM);
-    ark->lru = lru_new();
 
     // Create the hash table
     ark->ht = hash_new(ark->hcount);
