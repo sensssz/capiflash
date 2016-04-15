@@ -112,9 +112,6 @@ bool map_put_pair(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_
   if (pair_out != NULL) {
     *pair_out = pair;
   }
-  if (vlen != 128) {
-    printf("vlen is %" PRId64 " \n", vlen);
-  }
   if (pair->key != NULL) {
     if (pair->vlen < vlen) {
       am_free(pair->val);
