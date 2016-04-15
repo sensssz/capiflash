@@ -20,6 +20,7 @@ typedef struct _second_l_node snode_t;
 static flist_t *flist_new();
 static void flist_free(flist_t *flist);
 static void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, uint64_t *vlen);
+static void flist_access(lru2l_t *lru, uint8_t *prev_key, uint64_t prev_klen, uint8_t *key, uint64_t klen);
 static void flist_put(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen);
 
 static slist_t *slist_new(uint64_t cap);
@@ -69,6 +70,10 @@ void lru_get(lru2l_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, uint64_t 
   flist_get(lru, key, klen, val, vlen);
 }
 
+void lru_access(lru2l_t *lru, uint8_t *prev_key, uint64_t prev_klen, uint8_t *key, uint64_t klen) {
+  flist_access(lru, prev_key, prev_klen, key, klen);
+}
+
 void lru_put(lru2l_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen) {
   flist_put(lru, key, klen, val, vlen);
 }
@@ -98,7 +103,7 @@ static void flist_free(flist_t *flist) {
   am_free(flist);
 }
 
-void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, uint64_t *vlen) {
+static void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, uint64_t *vlen) {
   pthread_mutex_lock(&lru->mutex);
   kv_t *pair = map_get_pair(lru->hot_cache, key, klen);
   if (pair->key == NULL) {
@@ -111,7 +116,15 @@ void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, uint64_
   pthread_mutex_unlock(&lru->mutex);
 }
 
-void flist_put(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen) {
+static void flist_access(lru2l_t *lru, uint8_t *prev_key, uint64_t prev_klen, uint8_t *key, uint64_t klen) {
+  kv_t *pair = map_get_pair(lru->hot_cache, prev_key, prev_klen);
+  if (pair->key != NULL) {
+    fnode_t *node = (fnode_t *) pair->ref;
+    slist_access(node->likely_keys, key, klen);
+  }
+}
+
+static void flist_put(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen) {
   pthread_mutex_lock(&lru->mutex);
   kv_t *pair = NULL;
   if (map_put_pair(lru->hot_cache, key, klen, val, vlen, &pair)) {

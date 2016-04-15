@@ -8,7 +8,6 @@
 #include "hash.h"
 #include "map.h"
 
-static inline void copy_value(uint8_t **val, uint64_t *vlen, const kv_t *pair);
 static inline void wipe_pair(map_t *map, uint64_t pos);
 static inline void delete_key(map_t *map, uint64_t pos);
 static inline uint64_t map_pos(map_t *map, uint8_t *key, uint64_t klen);
@@ -114,6 +113,14 @@ bool map_put_pair(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_
   }
 }
 
+inline void copy_value(uint8_t **val, uint64_t *vlen, const kv_t *pair) {
+  if (val != NULL) {
+    *vlen = pair->vlen;
+    *val = (uint8_t *) am_malloc(*vlen);
+    memcpy(*val, pair->val, *vlen);
+  }
+}
+
 static inline void wipe_pair(map_t *map, uint64_t pos) {
   map->kvs[pos].key = map->kvs[pos].val = NULL;
   map->kvs[pos].klen = map->kvs[pos].vlen = 0;
@@ -131,12 +138,4 @@ static inline uint64_t map_pos(map_t *map, uint8_t *key, uint64_t klen) {
   uint64_t hash = hash_hash(key, klen);
   uint64_t pos = hash % map->cap;
   return pos;
-}
-
-static inline void copy_value(uint8_t **val, uint64_t *vlen, const kv_t *pair) {
-  if (val != NULL) {
-    *vlen = pair->vlen;
-    *val = (uint8_t *) am_malloc(*vlen);
-    memcpy(*val, pair->val, *vlen);
-  }
 }
