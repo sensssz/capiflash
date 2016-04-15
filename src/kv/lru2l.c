@@ -22,6 +22,7 @@ static void flist_free(flist_t *flist);
 static void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, uint64_t *vlen);
 static void flist_access(lru2l_t *lru, uint8_t *prev_key, uint64_t prev_klen, uint8_t *key, uint64_t klen);
 static void flist_put(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen);
+static void flist_del(flist_t *lru, uint8_t *key, uint64_t klen);
 
 static slist_t *slist_new(uint64_t cap);
 static void slist_free(slist_t *slist);
@@ -76,6 +77,10 @@ void lru_access(lru2l_t *lru, uint8_t *prev_key, uint64_t prev_klen, uint8_t *ke
 
 void lru_put(lru2l_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen) {
   flist_put(lru, key, klen, val, vlen);
+}
+
+void lru_del(lru2l_t *lru, uint8_t *key, uint64_t klen) {
+  flist_del(lru, key, klen);
 }
 
 static flist_t *flist_new() {
@@ -164,6 +169,21 @@ static void flist_put(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, u
       DL_DELETE(lru->first, node);
       DL_PREPEND(lru->first, node);
     }
+  }
+  pthread_mutex_unlock(&lru->mutex);
+}
+
+static void flist_del(lru2l_t *lru, uint8_t *key, uint64_t klen) {
+  pthread_mutex_lock(&lru->mutex);
+  kv_t *pair = map_get_pair(lru->hot_cache, key, klen);
+  if (pair->klen > 0) {
+    fnode_t *node = (fnode_t *) pair->ref;
+    if (node == lru->last) {
+      lru->last = node->prev;
+    }
+    DL_DELETE(lru->first, node);
+    am_free(node);
+    map_del(lru->hot_cache, key, klen);
   }
   pthread_mutex_unlock(&lru->mutex);
 }

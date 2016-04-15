@@ -18,5 +18,6 @@ void lru_free(lru2l_t *lru);
 void lru_get(lru2l_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, uint64_t *vlen);
 void lru_access(lru2l_t *lru, uint8_t *prev_key, uint64_t prev_klen, uint8_t *key, uint64_t klen);
 void lru_put(lru2l_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen);
+void lru_del(lru2l_t *lru, uint8_t *key, uint64_t klen);
 
 #endif //CAPIFLASH_LRU2L_H
