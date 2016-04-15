@@ -8,6 +8,11 @@
 #include "hash.h"
 #include "map.h"
 
+static inline void copy_value(uint8_t **val, uint64_t *vlen, const kv_t *pair);
+static inline void wipe_pair(map_t *map, uint64_t pos);
+static inline void delete_key(map_t *map, uint64_t pos);
+static inline uint64_t map_pos(map_t *map, uint8_t *key, uint64_t klen);
+
 map_t *map_new(uint64_t len) {
   map_t *map = (map_t *) am_malloc(sizeof(map_t) + sizeof(kv_t) * len);
   if (map) {
