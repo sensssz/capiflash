@@ -107,6 +107,7 @@ static void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, 
   pthread_mutex_lock(&lru->mutex);
   kv_t *pair = map_get_pair(lru->hot_cache, key, klen);
   if (pair->key == NULL) {
+    pthread_mutex_unlock(&lru->mutex);
     return;
   }
   copy_value(val, vlen, pair);
@@ -129,6 +130,7 @@ static void flist_put(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, u
   kv_t *pair = NULL;
   if (lru->len == lru->cap &&
       map_get_pair(lru->hot_cache, key, klen)->key == NULL) {
+    pthread_mutex_unlock(&lru->mutex);
     return;
   }
   if (map_put_pair(lru->hot_cache, key, klen, val, vlen, &pair)) {
