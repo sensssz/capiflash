@@ -38,9 +38,5 @@ void map_clr(map_t *map);
 // Map internal functions
 kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen);
 bool map_put_pair(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen, kv_t **pair_out);
-static inline void copy_value(uint8_t **val, uint64_t *vlen, const kv_t *pair);
-static inline void wipe_pair(map_t *map, uint64_t pos);
-static inline void delete_key(map_t *map, uint64_t pos);
-static inline uint64_t map_pos(map_t *map, uint8_t *key, uint64_t klen);
 
 #endif //CAPIFLASH_MAP_H
