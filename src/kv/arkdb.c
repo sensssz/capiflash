@@ -1139,6 +1139,7 @@ vbuflen %"PRIu64", vbuf %p, rval %p",
     }
   }
 
+  puts("ark_get done");
   return rc;
 }
 
