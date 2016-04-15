@@ -70,7 +70,7 @@ ifdef MODULE
 OBJDIR  = ${ROOTPATH}/obj/modules/${MODULE}
 BEAMDIR = ${ROOTPATH}/obj/beam/${MODULE}
 
-EXTRACOMMONFLAGS += -fPIC -std=c99
+EXTRACOMMONFLAGS += -fPIC
 ifdef STRICT
         EXTRACOMMONFLAGS += -Weffc++
 endif
