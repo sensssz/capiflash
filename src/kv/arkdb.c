@@ -1090,6 +1090,7 @@ int ark_get(ARK *ark, uint64_t klen, void *key,
   int64_t res = 0;
   _ARK *_arkp = (_ARK *)ark;
 
+  puts("ark_get");
   if ((_arkp == NULL) ||
       ((klen > 0) && (key == NULL)) ||
       ((vbuflen > 0) && (vbuf == NULL)) ||
@@ -1104,7 +1105,7 @@ vbuflen %"PRIu64", vbuf %p, rval %p",
   {
     lru_get(_arkp->lru, key, klen, &val_buf, &vlen);
     if (val_buf != NULL) {
-      puts("Retrieved directly from memory");
+      puts("Cache hits");
       if ((voff + vbuflen) <= vlen)
       {
         memcpy(vbuf, val_buf + voff, vbuflen);
@@ -1116,6 +1117,7 @@ vbuflen %"PRIu64", vbuf %p, rval %p",
       *rval = vlen;
     }
     else {
+      puts("Cache misses");
       *rval = -1;
       tag = ark_get_async_tag(_arkp, klen, key, vbuflen, vbuf, voff);
       if (tag < 0) {
