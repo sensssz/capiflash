@@ -134,7 +134,7 @@ static void flist_put(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, u
   pthread_mutex_lock(&lru->mutex);
   kv_t *pair = NULL;
   if (lru->len == lru->cap &&
-      map_get_pair(lru->hot_cache, key, klen)->key == NULL) {
+      map_get_pair(lru->hot_cache, key, klen)->klen == 0) {
     pthread_mutex_unlock(&lru->mutex);
     return;
   }
@@ -184,6 +184,7 @@ static void flist_del(lru2l_t *lru, uint8_t *key, uint64_t klen) {
     DL_DELETE(lru->first, node);
     am_free(node);
     map_del(lru->hot_cache, key, klen);
+    --(lru->len);
   }
   pthread_mutex_unlock(&lru->mutex);
 }
