@@ -58,7 +58,7 @@ void map_del(map_t *map, uint8_t *key, uint64_t klen) {
     pos = (pos + 1) % map->cap;
   }
   delete_key(map, pos);
-  uint64_t index = pos + 1;
+  uint64_t index = (pos + 1) % map->cap;
   while (map->kvs[index].klen > 0) {
     uint64_t k_pos = map_pos(map, map->kvs[index].key, map->kvs[index].klen);
     if (k_pos <= pos) {
