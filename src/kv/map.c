@@ -56,6 +56,13 @@ bool map_put(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vle
 void map_del(map_t *map, uint8_t *key, uint64_t klen) {
   uint64_t pos = map_pos(map, key, klen);
   puts("Deleting key");
+  if (map->kvs[pos].key == NULL) {
+    for (uint64_t index = 0; index < map->cap; ++index) {
+      if (memcmp(map->kvs[pos].key, key, klen) == 0) {
+        printf("Key found at position " PRId64 " while hashed to position" PRId64 "\n", index, pos);
+      }
+    }
+  }
   assert(map->kvs[pos].key != NULL);
   while (memcmp(key, map->kvs[pos].key, klen) != 0) {
     pos = INC_CAP(pos);
