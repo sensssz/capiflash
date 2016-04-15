@@ -4,6 +4,7 @@
 
 #include <strings.h>
 #include <arkdb_trace.h>
+#include <assert.h>
 #include "am.h"
 #include "hash.h"
 #include "map.h"
@@ -52,6 +53,7 @@ bool map_put(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vle
 
 void map_del(map_t *map, uint8_t *key, uint64_t klen) {
   uint64_t pos = map_pos(map, key, klen);
+  assert(map->kvs[pos].key != NULL);
   while (memcmp(key, map->kvs[pos].key, klen) != 0) {
     pos = (pos + 1) % map->cap;
   }
