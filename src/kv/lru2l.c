@@ -127,6 +127,10 @@ static void flist_access(lru2l_t *lru, uint8_t *prev_key, uint64_t prev_klen, ui
 static void flist_put(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen) {
   pthread_mutex_lock(&lru->mutex);
   kv_t *pair = NULL;
+  if (lru->len == lru->cap &&
+      map_get_pair(lru->hot_cache, key, klen)->key == NULL) {
+    return;
+  }
   if (map_put_pair(lru->hot_cache, key, klen, val, vlen, &pair)) {
     // It's an insert. Need to check if we need to evict an item
     fnode_t *node = (fnode_t *) am_malloc(sizeof (fnode_t));
