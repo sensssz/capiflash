@@ -270,6 +270,7 @@ int ark_enq_cmd(int cmd, _ARK *_arkp, uint64_t klen, void *key,
       am_free(val_buf);
       tc = tag_unbury(_arkp->ttags, &ttag);
       if (tc == 0) {
+        queue_lock(_arkp->poolthreads[pt].rqueue);
         tcbp = &(_arkp->tcbs[ttag]);
         tcbp->rtag = rtag;
         rcbp->ttag = ttag;
@@ -283,6 +284,7 @@ int ark_enq_cmd(int cmd, _ARK *_arkp, uint64_t klen, void *key,
         (void)queue_enq_unsafe(_arkp->poolthreads[pt].tqueue, ttag);
         KV_TRC_DBG(pAT, "IO:     TQ_ENQ START tid:%d rtag:%d ttag:%d",
                    pt, rtag, ttag);
+        queue_unlock(_arkp->poolthreads[pt].rqueue);
       }
     }
     else
