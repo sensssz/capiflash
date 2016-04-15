@@ -113,7 +113,7 @@ bool map_put_pair(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_
     *pair_out = pair;
   }
   if (vlen != 128) {
-    printf("vlen is " PRId64 " \n", vlen);
+    printf("vlen is %" PRId64 " \n", vlen);
   }
   if (pair->key != NULL) {
     if (pair->vlen < vlen) {
