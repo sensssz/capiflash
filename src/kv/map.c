@@ -9,6 +9,8 @@
 #include "hash.h"
 #include "map.h"
 
+#define INC_CAP(val) (((val) + 1) % (map->cap))
+
 static inline void wipe_pair(map_t *map, uint64_t pos);
 static inline void delete_key(map_t *map, uint64_t pos);
 static inline uint64_t map_pos(map_t *map, uint8_t *key, uint64_t klen);
@@ -53,12 +55,13 @@ bool map_put(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vle
 
 void map_del(map_t *map, uint8_t *key, uint64_t klen) {
   uint64_t pos = map_pos(map, key, klen);
+  puts("Deleting key");
   assert(map->kvs[pos].key != NULL);
   while (memcmp(key, map->kvs[pos].key, klen) != 0) {
-    pos = (pos + 1) % map->cap;
+    pos = INC_CAP(pos);
   }
   delete_key(map, pos);
-  uint64_t index = (pos + 1) % map->cap;
+  uint64_t index = INC_CAP(pos);
   while (map->kvs[index].klen > 0) {
     uint64_t k_pos = map_pos(map, map->kvs[index].key, map->kvs[index].klen);
     if (k_pos <= pos) {
@@ -66,7 +69,7 @@ void map_del(map_t *map, uint8_t *key, uint64_t klen) {
       wipe_pair(map, index);
     }
     pos = index;
-    index = (index + 1) % map->cap;
+    index = INC_CAP(index);
   }
   --(map->size);
 }
@@ -85,7 +88,7 @@ kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen) {
     if (memcmp(key, map->kvs[pos].key, klen) == 0) {
       break;
     }
-    pos = (pos + 1) % map->cap;
+    pos = INC_CAP(pos);
   }
   return map->kvs + pos;
 }
