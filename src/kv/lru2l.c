@@ -206,7 +206,12 @@ static void slist_access(slist_t *slist, uint8_t *key, uint64_t klen) {
       }
     }
   } else {
-    DL_DELETE(slist->first, node);
-    DL_PREPEND(slist->first, node);
+    if (slist->len > 1) {
+      if (slist->last == node) {
+        slist->last = node->prev;
+      }
+      DL_DELETE(slist->first, node);
+      DL_PREPEND(slist->first, node);
+    }
   }
 }
