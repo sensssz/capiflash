@@ -1086,6 +1086,7 @@ int ark_get(ARK *ark, uint64_t klen, void *key,
   int errcode = 0;
   int tag = 0;
   uint8_t *val_buf = NULL;
+  uint64_t vlen = 0;
   int64_t res = 0;
   _ARK *_arkp = (_ARK *)ark;
 
@@ -1101,18 +1102,18 @@ vbuflen %"PRIu64", vbuf %p, rval %p",
   }
   else
   {
-    lru_get(_arkp->lru, key, klen, &val_buf, &res);
+    lru_get(_arkp->lru, key, klen, &val_buf, &vlen);
     if (val_buf != NULL) {
       puts("Retrieved directly from memory");
-      if ((voff + vbuflen) <= res)
+      if ((voff + vbuflen) <= vlen)
       {
         memcpy(vbuf, val_buf + voff, vbuflen);
       }
       else
       {
-        memcpy(vbuf, val_buf + voff, res - voff);
+        memcpy(vbuf, val_buf + voff, vlen - voff);
       }
-      *rval = res;
+      *rval = vlen;
     }
     else {
       *rval = -1;
