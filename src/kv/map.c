@@ -60,7 +60,7 @@ void map_del(map_t *map, uint8_t *key, uint64_t klen) {
     uint64_t index = 0;
     for (; index < map->cap; ++index) {
       if (map->kvs[index].key != NULL &&
-          memcmp(map->kvs[pos].key, key, klen) == 0) {
+          memcmp(map->kvs[index].key, key, klen) == 0) {
         printf("Key found at position %" PRId64 " while hashed to position %" PRId64 "\n", index, pos);
       }
     }
