@@ -73,26 +73,7 @@ void map_clr(map_t *map) {
   map->size = 0;
 }
 
-static inline void wipe_pair(map_t *map, uint64_t pos) {
-  map->kvs[pos].key = map->kvs[pos].val = NULL;
-  map->kvs[pos].klen = map->kvs[pos].vlen = 0;
-}
-
-static inline void delete_key(map_t *map, uint64_t pos) {
-  if (map->kvs[pos].klen > 0) {
-    am_free(map->kvs[pos].key);
-    am_free(map->kvs[pos].val);
-    wipe_pair(map, pos);
-  }
-}
-
-static inline uint64_t map_pos(map_t *map, uint8_t *key, uint64_t klen) {
-  uint64_t hash = hash_hash(key, klen);
-  uint64_t pos = hash % map->cap;
-  return pos;
-}
-
-static kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen) {
+kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen) {
   uint64_t pos = map_pos(map, key, klen);
   while (map->kvs[pos].klen > 0) {
     if (memcmp(key, map->kvs[pos].key, klen) == 0) {
@@ -103,7 +84,7 @@ static kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen) {
   return map->kvs + pos;
 }
 
-static bool map_put_pair(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen, kv_t **pair_out) {
+bool map_put_pair(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen, kv_t **pair_out) {
   kv_t *pair = map_get_pair(map, key, klen);
   if (pair_out != NULL) {
     *pair_out = pair;
@@ -126,6 +107,25 @@ static bool map_put_pair(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, 
     ++(map->size);
     return true;
   }
+}
+
+static inline void wipe_pair(map_t *map, uint64_t pos) {
+  map->kvs[pos].key = map->kvs[pos].val = NULL;
+  map->kvs[pos].klen = map->kvs[pos].vlen = 0;
+}
+
+static inline void delete_key(map_t *map, uint64_t pos) {
+  if (map->kvs[pos].klen > 0) {
+    am_free(map->kvs[pos].key);
+    am_free(map->kvs[pos].val);
+    wipe_pair(map, pos);
+  }
+}
+
+static inline uint64_t map_pos(map_t *map, uint8_t *key, uint64_t klen) {
+  uint64_t hash = hash_hash(key, klen);
+  uint64_t pos = hash % map->cap;
+  return pos;
 }
 
 static inline void copy_value(uint8_t **val, uint64_t *vlen, const kv_t *pair) {

@@ -28,16 +28,16 @@ struct _map_t {
 };
 
 // Map interface
-static map_t *map_new(uint64_t len);
-static void map_free(map_t *map);
-static void map_get(map_t *map, uint8_t *key, uint64_t klen, uint8_t **val, uint64_t *vlen);
+map_t *map_new(uint64_t len);
+void map_free(map_t *map);
+void map_get(map_t *map, uint8_t *key, uint64_t klen, uint8_t **val, uint64_t *vlen);
 // Return true when it's an insert, and false when it's an update
-static bool map_put(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen);
-static void map_del(map_t *map, uint8_t *key, uint64_t klen);
-static void map_clr(map_t *map);
+bool map_put(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen);
+void map_del(map_t *map, uint8_t *key, uint64_t klen);
+void map_clr(map_t *map);
 // Map internal functions
-static kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen);
-static bool map_put_pair(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen, kv_t **pair_out);
+kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen);
+bool map_put_pair(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen, kv_t **pair_out);
 static inline void copy_value(uint8_t **val, uint64_t *vlen, const kv_t *pair);
 static inline void wipe_pair(map_t *map, uint64_t pos);
 static inline void delete_key(map_t *map, uint64_t pos);
