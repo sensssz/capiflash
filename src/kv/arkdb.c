@@ -1085,6 +1085,7 @@ int ark_get(ARK *ark, uint64_t klen, void *key,
   int rc = 0;
   int errcode = 0;
   int tag = 0;
+  uint8_t *val_buf = NULL;
   int64_t res = 0;
   _ARK *_arkp = (_ARK *)ark;
 
@@ -1100,26 +1101,37 @@ vbuflen %"PRIu64", vbuf %p, rval %p",
   }
   else
   {
-    *rval = -1;
-    tag = ark_get_async_tag(_arkp, klen, key, vbuflen, vbuf, voff);
-    if (tag < 0)
-    {
-      KV_TRC_FFDC(pAT, "ark_get_async_tag failed rc = %d", rc);
-      rc = EAGAIN;
-    }
-    else
-    {
-      // Will wait here for command to complete
-      rc = ark_wait_tag(_arkp, tag, &errcode, &res);
-      if (rc == 0)
+    lru_get(_arkp->lru, key, klen, &val_buf, &res);
+    if (val_buf != NULL) {
+      puts("Retrieved directly from memory");
+      if ((voff + vbuflen) <= res)
       {
-        if (errcode != 0)
-        {
-          KV_TRC_FFDC(pAT, "ark_wait_tag failed rc = %d", errcode);
-          rc = errcode;
-        }
+        memcpy(vbuf, val_buf + voff, vbuflen);
+      }
+      else
+      {
+        memcpy(vbuf, val_buf + voff, res - voff);
+      }
+      *rval = res;
+    }
+    else {
+      *rval = -1;
+      tag = ark_get_async_tag(_arkp, klen, key, vbuflen, vbuf, voff);
+      if (tag < 0) {
+        KV_TRC_FFDC(pAT, "ark_get_async_tag failed rc = %d", rc);
+        rc = EAGAIN;
+      }
+      else {
+        // Will wait here for command to complete
+        rc = ark_wait_tag(_arkp, tag, &errcode, &res);
+        if (rc == 0) {
+          if (errcode != 0) {
+            KV_TRC_FFDC(pAT, "ark_wait_tag failed rc = %d", errcode);
+            rc = errcode;
+          }
 
-        *rval = res;
+          *rval = res;
+        }
       }
     }
   }
