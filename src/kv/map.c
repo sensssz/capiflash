@@ -62,14 +62,22 @@ void map_del(map_t *map, uint8_t *key, uint64_t klen) {
   }
   delete_key(map, pos);
   uint64_t index = INC_CAP(pos);
+  uint64_t off = 1;
   while (map->kvs[index].klen > 0) {
-    uint64_t k_pos = map_pos(map, map->kvs[index].key, map->kvs[index].klen);
-    if (k_pos <= pos) {
+    if (map->kvs[index].off > off) {
       map->kvs[pos] = map->kvs[index];
-      wipe_pair(map, index);
+      map->kvs[index].off = 0;
+      off = 0;
+      pos = index;
     }
-    pos = index;
+//    uint64_t k_pos = map_pos(map, map->kvs[index].key, map->kvs[index].klen);
+//    if (k_pos <= pos) {
+//      map->kvs[pos] = map->kvs[index];
+//      wipe_pair(map, index);
+//    }
+//    pos = index;
     index = INC_CAP(index);
+    ++off;
   }
   --(map->size);
 }
@@ -84,12 +92,15 @@ void map_clr(map_t *map) {
 
 kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen) {
   uint64_t pos = map_pos(map, key, klen);
+  uint64_t off = 0;
   while (map->kvs[pos].klen > 0) {
     if (memcmp(key, map->kvs[pos].key, klen) == 0) {
       break;
     }
     pos = INC_CAP(pos);
+    ++off;
   }
+  map->kvs[pos].off = off;
   return map->kvs + pos;
 }
 

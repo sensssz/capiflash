@@ -18,6 +18,7 @@ struct _kv_t {
   uint8_t  *val;
   uint64_t  klen;
   uint8_t  *key;
+  uint64_t  off;
   void     *ref;
 };
 
