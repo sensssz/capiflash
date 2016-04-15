@@ -1,0 +1,738 @@
+diff --git a/src/block/cflash_block_kern_mc.c b/src/block/cflash_block_kern_mc.c
+index 4b6c4eb..be8eea3 100644
+--- a/src/block/cflash_block_kern_mc.c
++++ b/src/block/cflash_block_kern_mc.c
+@@ -2771,7 +2771,8 @@ int  cblk_mc_clone(cflsh_chunk_t *chunk,int mode, int flags)
+ #ifdef DK_CXLFLASH_CLONE
+    disk_clone.hdr.flags = mode & O_ACCMODE;
+ #else
+-   disk_clone.flags = mode & O_ACCMODE;
++   disk_clone.hdr.flags = mode & O_ACCMODE;
++   //disk_clone.flags = mode & O_ACCMODE;
+ #endif 
+    disk_clone.context_id_src = old_contxt_id;
+    disk_clone.context_id_dst = chunk->path[chunk->cur_path]->afu->contxt_id;
+diff --git a/src/block/test/blockio.c b/src/block/test/blockio.c
+index d0c4f19..2711d73 100644
+--- a/src/block/test/blockio.c
++++ b/src/block/test/blockio.c
+@@ -51,6 +51,7 @@
+ #include <malloc.h>
+ #include <capiblock.h>
+ #include <inttypes.h>
++//#include <asm/cachectl.h>
+ 
+ #define _8K   8*1024
+ #define _4K   4*1024
+@@ -60,9 +61,10 @@
+ #define SET_NBLKS     TIME_INTERVAL*4
+ 
+ #ifdef _AIX
+-#define USLEEP 200
++#define USLEEP 0
++//#define USLEEP 200
+ #else
+-#define USLEEP 100
++#define USLEEP 0
+ #endif
+ 
+ /**
+@@ -76,7 +78,21 @@
+ **   -s secs       *the number of seconds to run the I/O                      \n
+ **   -p            *run in physical lun mode                                  \n
+ **   -i            *run using interrupts, not polling
++**   -t            *determine type of benchmark
++**
+ *******************************************************************************/
++
++/**
++*******************************************************************************
++** type of benchmark
++t=0, random write with flushing cache blocks
++t=1, random write with out flushing cache blocks
++t=2, random read with flushing cache blocks
++t=3, random read with out flushign cache blocks
++
++*******************************************************************************/
++
++
+ void usage(void)
+ {
+     printf("Usage:\n");
+@@ -110,6 +126,11 @@ void io_error(int id, int err)
+ **   print IO stats                                                           \n
+ **   cleanup
+ *******************************************************************************/
++
++
++
++
++
+ int main(int argc, char **argv)
+ {
+     struct timeval  start, delta;
+@@ -126,6 +147,7 @@ int main(int argc, char **argv)
+     int             rc         = 0;
+     int             id         = 0;
+     char           *_secs      = NULL;
++    char           *_type      = NULL;
+     char           *_QD        = NULL;
+     char           *_RD        = NULL;
+     char           *_nblocks   = NULL;
+@@ -148,6 +170,7 @@ int main(int argc, char **argv)
+     uint32_t        N          = 0;
+     uint32_t        TIME       = 1;
+     uint32_t        COMP       = 0;
++		uint32_t        type       =0;
+ 
+     /*--------------------------------------------------------------------------
+      * process and verify input parms
+@@ -161,6 +184,7 @@ int main(int argc, char **argv)
+             case 'q': _QD        = optarg; break;
+             case 'n': _nblocks   = optarg; break;
+             case 's': _secs      = optarg; break;
++            case 't': _type =      optarg;       break;
+             case 'p': plun       = 1;      break;
+             case 'i': intrp_thds = 1;      break;
+             case 'h':
+@@ -168,6 +192,7 @@ int main(int argc, char **argv)
+         }
+     }
+     if (_secs)      nsecs   = atoi(_secs);
++    if (type)      type   = atoi(_type);
+     if (_QD)        QD      = atoi(_QD);
+     if (_nblocks)   nblocks = atoi(_nblocks);
+     if (_RD)        nRD     = atoi(_RD);
+@@ -178,6 +203,7 @@ int main(int argc, char **argv)
+     if (dev == NULL) usage();
+ 
+     srand48(time(0));
++			
+ 
+     N = QD;
+     COMP  = QD < 5 ? 1 : QD/5;
+@@ -195,6 +221,7 @@ int main(int argc, char **argv)
+     if (!plun)       flags  = CBLK_OPN_VIRT_LUN;
+     if (!intrp_thds) flags |= CBLK_OPN_NO_INTRP_THREADS;
+     id = cblk_open(dev, QD, O_RDWR, ext, flags);
++    printf("Success in opening device\n");
+     if (id == NULL_CHUNK_ID)
+     {
+         if      (ENOSPC == errno) fprintf(stderr,"cblk_open: ENOSPC\n");
+@@ -254,37 +281,241 @@ int main(int argc, char **argv)
+      * loop running IO until secs expire
+      *------------------------------------------------------------------------*/
+     gettimeofday(&start, NULL);
++    
++		if (type == 0)
++		{
++			printf("Testing random write with no hardware cache coherence\n");	
++		do
++    {
++				if (!WR) { WR=100-RD;}
++        
++				while (TIME && WR && N)
++        {
++            tag = tags[--N];
++           
++					 //////////////////////////////////////////////////////////
++					 ///////////////write buffer flush////////////////////////
++					
++						int wr_ii=0;
++						int wr_start_addr=0;
++						while(wr_ii < _8K*nblocks)
++						{
++							__asm__ __volatile ("dcbf %0,%1 \n"
++								:
++								:"b"(wr_start_addr), "r"(wbuf[tag]+wr_ii));
++			
++							__asm__ __volatile ("sync\n"
++								:
++								:);
++
++									wr_ii += 128;//to be changed
++
++					}
++															
++					 ////////////////////////////////////////////
++					 ///////////////flush////////////////////////
++						
++						rc = cblk_awrite(id, wbuf[tag], lba, nblocks, &tag, NULL,
++                             CBLK_ARW_WAIT_CMD_FLAGS | CBLK_ARW_USER_TAG_FLAG);
++            if      (0 == rc) {--WR; lba+=2; if (lba >= nblks) lba=cnt%2;}
++            else if (EBUSY == errno) {++N; usleep(USLEEP); continue;}
++            else                     {io_error(id,errno);}
++        }
++				
++        /* if the queuedepth is 1, don't immediately pound aresult */
++        if (QD==1) usleep(USLEEP);
++
++        /*----------------------------------------------------------------------
++         * complete cmds until queue depth is QD-COMP
++         *--------------------------------------------------------------------*/
++        while (N < COMP)
++        {
++            rtag=0;
++            rc = cblk_aresult(id, &rtag, &status, CBLK_ARESULT_BLOCKING|
++                                                  CBLK_ARESULT_NEXT_TAG);
++            if      (rc == 0) {++pollN; usleep(USLEEP); continue;}
++            else if (rc < 0)  {io_error(id,errno);}
++            ++cnt; tags[N++] = rtag;
++        
++		}	
++        /*----------------------------------------------------------------------
++         * at an interval which does not impact performance, check if secs
++         * have expired, and randomize lba
++         *--------------------------------------------------------------------*/
++        if (cnt > TI)
++        {
++            TI += TIME_INTERVAL;
++            gettimeofday(&delta, NULL);
++            if (delta.tv_sec - start.tv_sec >= nsecs) {TIME=0; COMP = QD;}
++            lba = lrand48() % TIME_INTERVAL;
++        }
++    }
++    while (TIME || QD-N);
++	}
+ 
+-    do
++else if (type ==1)
++{
++			printf("Testing random write with hardware cache coherence\n");	
++		do
+     {
+-        /* setup #read ops and #write ops to send before completing ops */
+-        if (!RD && !WR) {RD=nRD; WR=100-RD;}
++				if (!WR) { WR=100-RD;}
++        
++				while (TIME && WR && N)
++        {
++            tag = tags[--N];
++           
++						rc = cblk_awrite(id, wbuf[tag], lba, nblocks, &tag, NULL,
++                             CBLK_ARW_WAIT_CMD_FLAGS | CBLK_ARW_USER_TAG_FLAG);
++            if      (0 == rc) {--WR; lba+=2; if (lba >= nblks) lba=cnt%2;}
++            else if (EBUSY == errno) {++N; usleep(USLEEP); continue;}
++            else                     {io_error(id,errno);}
++        }
++				
++        /* if the queuedepth is 1, don't immediately pound aresult */
++        if (QD==1) usleep(USLEEP);
++
++        /*----------------------------------------------------------------------
++         * complete cmds until queue depth is QD-COMP
++         *--------------------------------------------------------------------*/
++        while (N < COMP)
++        {
++            rtag=0;
++            rc = cblk_aresult(id, &rtag, &status, CBLK_ARESULT_BLOCKING|
++                                                  CBLK_ARESULT_NEXT_TAG);
++            if      (rc == 0) {++pollN; usleep(USLEEP); continue;}
++            else if (rc < 0)  {io_error(id,errno);}
++            ++cnt; tags[N++] = rtag;
++        
++		}	
++        /*----------------------------------------------------------------------
++         * at an interval which does not impact performance, check if secs
++         * have expired, and randomize lba
++         *--------------------------------------------------------------------*/
++        if (cnt > TI)
++        {
++            TI += TIME_INTERVAL;
++            gettimeofday(&delta, NULL);
++            if (delta.tv_sec - start.tv_sec >= nsecs) {TIME=0; COMP = QD;}
++            lba = lrand48() % TIME_INTERVAL;
++        }
++    }
++    while (TIME || QD-N);
++	}
++
++	else if (type==2)
++
++		{	
++			printf("Testing random read with no hardware cache coherence\n");	
++		
++			do
++    		{
++        
++				if (!RD) {RD=nRD;}
++        
+ 
+         /*----------------------------------------------------------------------
+          * send up to RD reads, as long as the queuedepth N is not max
+          *--------------------------------------------------------------------*/
+-        while (TIME && RD && N)
++        
++				
++				while (TIME && RD && N)
+         {
+             tag = tags[--N];
++
++
++						//flushing the cache
++						//////////////////////////////////////////////////////////
++					 ///////////////read buffer flush//////////////////////////
++					//////////////////////////////////////////////////////////
++							
++						int rd_ii=0;
++						int rd_start_addr=0;
++						while(rd_ii < _4K*nblocks)
++						{
++							__asm__ __volatile ("dcbf %0,%1 \n"
++								:
++								:"b"(rd_start_addr), "r"(rbuf[tag]+rd_ii));
++						 __asm__ __volatile ("sync\n"
++								:
++								:);
++		
++					
++									rd_ii += 128;//to be changed
++						}
++					
++						//////////////////////////////////////////////////////////
++				 /////////////////red buffer flush////////////////////////
++	
++
+             rc = cblk_aread(id, rbuf[tag], lba, nblocks, &tag, NULL,
+                             CBLK_ARW_WAIT_CMD_FLAGS | CBLK_ARW_USER_TAG_FLAG);
+             if      (0 == rc) {--RD; lba+=2; if (lba >= nblks) lba=cnt%2;}
+             else if (EBUSY == errno) {++N; usleep(USLEEP); continue;}
+             else                     {io_error(id,errno);}
+         }
++				
++     
++			
++        /* if the queuedepth is 1, don't immediately pound aresult */
++        if (QD==1) usleep(USLEEP);
++
+         /*----------------------------------------------------------------------
+-         * send up to WR writes, as long as the queuedepth N is not max
++         * complete cmds until queue depth is QD-COMP
+          *--------------------------------------------------------------------*/
+-        while (TIME && WR && N)
++        while (N < COMP)
++        {
++            rtag=0;
++            rc = cblk_aresult(id, &rtag, &status, CBLK_ARESULT_BLOCKING|
++                                                  CBLK_ARESULT_NEXT_TAG);
++            if      (rc == 0) {++pollN; usleep(USLEEP); continue;}
++            else if (rc < 0)  {io_error(id,errno);}
++            ++cnt; tags[N++] = rtag;
++        
++		}	
++        /*----------------------------------------------------------------------
++         * at an interval which does not impact performance, check if secs
++         * have expired, and randomize lba
++         *--------------------------------------------------------------------*/
++        if (cnt > TI)
++        {
++            TI += TIME_INTERVAL;
++            gettimeofday(&delta, NULL);
++            if (delta.tv_sec - start.tv_sec >= nsecs) {TIME=0; COMP = QD;}
++            lba = lrand48() % TIME_INTERVAL;
++        }
++    }
++    while (TIME || QD-N);
++
++}
++	else 
++
++		{	
++			printf("Testing random read with no hardware cache coherence\n");	
++		
++			do
++    		{
++        
++				if (!RD) {RD=nRD;}
++        
++
++        /*----------------------------------------------------------------------
++         * send up to RD reads, as long as the queuedepth N is not max
++         *--------------------------------------------------------------------*/
++        
++				
++				while (TIME && RD && N)
+         {
+             tag = tags[--N];
+-            rc = cblk_awrite(id, wbuf[tag], lba, nblocks, &tag, NULL,
+-                             CBLK_ARW_WAIT_CMD_FLAGS | CBLK_ARW_USER_TAG_FLAG);
+-            if      (0 == rc) {--WR; lba+=2; if (lba >= nblks) lba=cnt%2;}
++
++            rc = cblk_aread(id, rbuf[tag], lba, nblocks, &tag, NULL,
++                            CBLK_ARW_WAIT_CMD_FLAGS | CBLK_ARW_USER_TAG_FLAG);
++            if      (0 == rc) {--RD; lba+=2; if (lba >= nblks) lba=cnt%2;}
+             else if (EBUSY == errno) {++N; usleep(USLEEP); continue;}
+             else                     {io_error(id,errno);}
+         }
+-
++				
++     
++			
+         /* if the queuedepth is 1, don't immediately pound aresult */
+         if (QD==1) usleep(USLEEP);
+ 
+@@ -299,8 +530,8 @@ int main(int argc, char **argv)
+             if      (rc == 0) {++pollN; usleep(USLEEP); continue;}
+             else if (rc < 0)  {io_error(id,errno);}
+             ++cnt; tags[N++] = rtag;
+-        }
+-
++        
++		}	
+         /*----------------------------------------------------------------------
+          * at an interval which does not impact performance, check if secs
+          * have expired, and randomize lba
+@@ -314,6 +545,7 @@ int main(int argc, char **argv)
+         }
+     }
+     while (TIME || QD-N);
++}
+ 
+     /*--------------------------------------------------------------------------
+      * print IO stats
+@@ -329,6 +561,21 @@ int main(int argc, char **argv)
+         printf(" 4k-iops:%d", (uint32_t)((float)(cnt*nblocks)/esecs));
+     printf("\n");
+ 
++
++		chunk_stats_t stats;
++		int rc_stat =  0;
++		rc_stat=cblk_get_stats(id,&stats,0);
++		if (rc_stat==0)
++    	{
++		 		printf(" Total number of blocks written: %ld\n",stats.num_blocks_written);
++		 		printf(" Total number of blocks read: %ld\n",stats.num_blocks_read);
++		 		printf(" Total number of cache hits: %ld\n",stats.num_cache_hits);
++		 		printf(" Additional parameter: %ld\n",stats.max_num_act_awrites);
++    		printf("\n");
++			}
++		else
++    		printf("Error getting stats \n");
++			
+     /*--------------------------------------------------------------------------
+      * cleanup
+      *------------------------------------------------------------------------*/
+diff --git a/src/block/test/makefile b/src/block/test/makefile
+index ee14850..4f2cb55 100644
+--- a/src/block/test/makefile
++++ b/src/block/test/makefile
+@@ -38,7 +38,8 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${ROOTPATH}/img
+ LIBPATHS = -L${ROOTPATH}/img
+ LINKLIBS = -lcflsh_block 
+ 
+-BTESTS=blockio blocklistio blockplistio
++#BTESTS=blockio blocklistio blockplistio
++BTESTS=capi_hardware_cache blocklistio blockplistio
+ BIN_TESTS=$(addprefix ${TESTDIR}/, ${BTESTS})
+ 
+ # AIX only
+diff --git a/src/build/install/resources/corsa_surelock.150930D1.bin b/src/build/install/resources/corsa_surelock.150930D1.bin
+deleted file mode 120000
+index 12028af..0000000
+--- a/src/build/install/resources/corsa_surelock.150930D1.bin
++++ /dev/null
+@@ -1 +0,0 @@
+-/gsa/ausgsa/projects/s/surelock/images/corsa_surelock.150930D1.bin
+\ No newline at end of file
+diff --git a/src/kv/test/run_kv_async.c b/src/kv/test/run_kv_async.c
+index b3cbc71..8b44fc0 100644
+--- a/src/kv/test/run_kv_async.c
++++ b/src/kv/test/run_kv_async.c
+@@ -57,9 +57,11 @@
+ 
+ #define KV_ASYNC_MIN_SECS      15
+ 
+-#define KV_ASYNC_KLEN          16
+-#define KV_ASYNC_VLEN          64*1024
+-#define KV_ASYNC_NUM_KV        100
++#define KV_ASYNC_KLEN          8
++#define KV_ASYNC_VLEN        	8192
++//#define KV_ASYNC_VLEN          64*1024
++#define KV_ASYNC_NUM_KV        10000
++//#define KV_ASYNC_NUM_KV        100
+ 
+ #define KV_ASYNC_RUNNING       0x08000000
+ #define KV_ASYNC_SHUTDOWN      0x04000000
+@@ -280,11 +282,13 @@ void kv_get_cb(void *p)
+ 
+     if (0        != pCB->errcode)  KV_ERR_STOP(pCB, "getcb1", pCB->errcode);
+     if (pCB->res != KV_ASYNC_VLEN) KV_ERR_STOP(pCB, "getcb2", 0);
+-
++		
++		/*
+     if (memcmp(p_kv->value, pCB->gvalue, KV_ASYNC_VLEN))
+     {
+         KV_ERR_STOP(pCB,"get miscompare", 0);
+     }
++		*/
+     /* end of db len sequence, move to exists */
+     if (pCB->len_i == pCB->len)
+     {
+diff --git a/src/kv/test/run_kv_sync.c b/src/kv/test/run_kv_sync.c
+index cce0b76..ae54af5 100644
+--- a/src/kv/test/run_kv_sync.c
++++ b/src/kv/test/run_kv_sync.c
+@@ -49,15 +49,27 @@
+ #include <sys/time.h>
+ #include <inttypes.h>
+ #include <assert.h>
++#include <sys/stat.h>
++#include <sys/stat.h>
++#include <fcntl.h>
+ 
+-#define KV_CONTEXTS         4
+-#define KV_WORKERS_PER_CTXT 100
++
++//#define KV_CONTEXTS         4
++#define KV_CONTEXTS         1
++//#define KV_WORKERS_PER_CTXT 100
++#define KV_WORKERS_PER_CTXT 1
+ #define KV_WORKERS_PTH      (KV_CONTEXTS*KV_WORKERS_PER_CTXT)
+ #define KV_WORKER_MIN_SECS  15
+ 
+-#define KLEN                16
+-#define VLEN                64*1024
+-#define LEN                 100
++#define KLEN_4K  4*1024
++#define KLEN                8
++//#define VLEN                64*1024
++#define VLEN                8
++//#define LEN                 1
++#define LEN                 10000
++
++#define IMG_DATA_OFFSET_POS 10
++#define BITS_PER_PIXEL_POS 28
+ 
+ /**
+ ********************************************************************************
+@@ -130,6 +142,12 @@ void init_kv_db(void)
+     {
+         for (j=0; j<LEN; j++)
+         {
++					p=(uint64_t*)(dbs[i].db[j].key);
++					*p=10;
++					p=(uint64_t*)(dbs[i].db[j].value);
++					*p=20;
++					
++					/*
+             for (p=(uint64_t*)(dbs[i].db[j].key);
+                  p<(uint64_t*)(dbs[i].db[j].key+KLEN);
+                  p++)
+@@ -143,7 +161,8 @@ void init_kv_db(void)
+             {
+                 tag = (i << 16) | j;
+                 *p=tag;
+-            }
++            }*/
++
+         }
+     }
+ }
+@@ -152,28 +171,152 @@ void init_kv_db(void)
+ ********************************************************************************
+ ** issue a set for every key/value in the database to the ARK
+ *******************************************************************************/
++
++int total_size=0;
++
+ uint32_t kv_load(ARK *ark, kv_t *db)
+ {
+-    uint32_t i   = 0;
+-    uint32_t rc  = 0;
++    uint64_t i   = 0;
++    uint64_t j   = 0;
++    uint64_t rc  = 0;
+     int64_t  res = 0;
+-
+-    for (i=0; i<LEN; i++)
+-    {
+-        while (EAGAIN == (rc=ark_set(ark,
++ 		
++		int fd; 
++   	char *fdata; 
++   	struct stat finfo; 
++   	char * fname;
++
++ 		fname = "/root/staging/capi/data_sets/histogram_datafiles/small.bmp";
++   
++   // Read in the file
++   fd = open(fname, O_RDONLY);
++   // Get the file info (for file length)
++   fstat(fd, &finfo);
++  int ret;
++  fdata = (char *)malloc (finfo.st_size);
++  ret = read (fd, fdata, finfo.st_size);
++  
++  if ((fdata[0] != 'B') || (fdata[1] != 'M')) {
++      printf("File is not a valid bitmap file. Exiting\n");
++      exit(1);
++   }
++ 
++
++   unsigned short *bitsperpixel = (unsigned short *)(&(fdata[BITS_PER_PIXEL_POS]));
++   if (*bitsperpixel != 24) {    // ensure its 3 bytes per pixel
++      printf("Error: Invalid bitmap format - ");
++      printf("This application only accepts 24-bit pictures. Exiting\n");
++      exit(1);
++   }
++
++   unsigned short *data_pos = (unsigned short *)(&(fdata[IMG_DATA_OFFSET_POS]));
++	unsigned char *val = (unsigned char *)&(fdata[*data_pos]);	
++
++	printf("Start writing to key-value database");
++	int k=0;
++	for (i=*data_pos; i < finfo.st_size; i+=3) {      
++		for (j=0;j<3;j++)
++			{
++				val = ((unsigned char *)&(fdata[i+j])) ;
++
++				uint64_t key=*val + j*256;
++				uint64_t value=1;
++        
++				while (EAGAIN == (rc=ark_set(ark,
+                                      KLEN,
+-                                     db[i].key,
++                                     &key,
+                                      VLEN,
+-                                     db[i].value,
++                                     &value,
+                                      &res))) usleep(10000);
+         if (rc)          KV_ERR("set1",rc);
+         if (VLEN != res) KV_ERR("set2",0);
++		
++		
++			total_size++;
++		/*	
++				printf("no. %d key: ", k);
++					printf("%d",key);
++	
++					printf("\n");
++			k++;*/
+     }
++	}
+     return 0;
+ }
+ 
+ /**
+ ********************************************************************************
++** Scan the k/v in the database to the ARK
++*******************************************************************************/
++uint32_t kv_scan(ARK *ark, kv_t *db)
++{
++    uint32_t i   = 0;
++    uint32_t rc  = 0;
++    int64_t  res = 0;
++    uint8_t  gvalue[8] = {0};
++    uint8_t  kbuf[8] = {0};
++    uint64_t klen=0;
++    uint64_t key=0;
++		ARI *ari; 
++		ARI *ari2; 
++		
++		printf("Start reading to key-value database");
++        
++		ari=ark_first(ark,
++                                     8,
++                                     &klen,
++                                     kbuf);
++			assert(ari !=NULL);
++				uint32_t j=0;
++				printf("no. %d", i);
++				printf("\n");
++
++		for (i =0; i<total_size;i++){
++				rc=ark_next(ari,
++                                     8,
++                                     &klen,
++                                     kbuf);
++		    
++				assert(rc == 0  || rc == ENOENT);
++		
++				memcpy(&key, kbuf, 8);//check for optimization	
++				/*
++				j=0;
++				printf("no. %d key: " , i);
++//				for (j=0;j<8;j++)	
++					printf("%d", key);
++	
++				printf("\n");
++	*/	
++ }
++
++
++/*
++		while (NULL != (ari=ark_next(ari,
++                                     KLEN_4K,
++                                     &klen,
++                                     kbuf))) 
++			{
++					uint32_t j=0;
++					for (j=0;j<KLEN;j++)	
++						printf("%d", kbuf[j]);
++	
++					printf("\n");
++				}
++				
++        while (EAGAIN == (rc=ark_exists(ark,
++                                        KLEN,
++                                        db[i].key,
++                                        &res))) usleep(10000);
++        if (rc)          KV_ERR("exists1",rc);
++        if (VLEN != res) KV_ERR("exists2",0);
++    		*/
++		return 0;
++}
++
++
++/**
++********************************************************************************
+ ** issue a get and exists for each k/v in the database to the ARK
+ *******************************************************************************/
+ uint32_t kv_query(ARK *ark, kv_t *db)
+@@ -183,6 +326,7 @@ uint32_t kv_query(ARK *ark, kv_t *db)
+     int64_t  res = 0;
+     uint8_t  gvalue[VLEN];
+ 
++		printf("Value read: ");
+     for (i=0; i<LEN; i++)
+     {
+         while (EAGAIN == (rc=ark_get(ark,
+@@ -195,7 +339,11 @@ uint32_t kv_query(ARK *ark, kv_t *db)
+         if (rc)                                     KV_ERR("get1", rc);
+         if (VLEN != res)                            KV_ERR("get2",0);
+         if (0 != memcmp(db[i].value, gvalue, VLEN)) KV_ERR("miscompare",0);
++				uint32_t j=0;
++				for (j=0;j<KLEN;j++)	
++					printf("%d", gvalue[j]);
+ 
++				printf("\n");
+         while (EAGAIN == (rc=ark_exists(ark,
+                                         KLEN,
+                                         db[i].key,
+@@ -240,7 +388,7 @@ void SGD(worker_t *w)
+     do
+     {
+         if ((rc=kv_load (w->ark, w->db))) break;
+-        if ((rc=kv_query(w->ark, w->db))) break;
++        if ((rc=kv_scan(w->ark, w->db))) break;
+         if ((rc=kv_del  (w->ark, w->db))) break;
+ 
+         cur = time(0);
+@@ -261,7 +409,8 @@ void SGD(worker_t *w)
+ *******************************************************************************/
+ int main(int argc, char **argv)
+ {
+-    void*  (*fp)(void*) = (void*(*)(void*))SGD;
++
++		void*  (*fp)(void*) = (void*(*)(void*))SGD;
+     ARK     *ark;
+     worker_t w[KV_WORKERS_PTH];
+     uint64_t ops    = 0;
+@@ -284,6 +433,7 @@ int main(int argc, char **argv)
+     printf("SYNC: ctxt:%d threads:%d k/v:%dx%dx%d: ",
+             KV_CONTEXTS, KV_WORKERS_PER_CTXT, KLEN, VLEN, LEN); fflush(stdout);
+ 
++		printf("was here");
+     start = time(0);
+ 
+     /* create an ark and threads for each context */

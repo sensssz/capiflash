@@ -1,0 +1,20 @@
+remote:
+  host: "129.40.12.98"
+  user: "root"
+  path: "/root/capiflash"
+  port: "22"
+behaviour:
+  uploadOnSave: true
+  syncDownOnOpen: true
+  forgetConsole: false
+  autoHideConsole: true
+  alwaysSyncAll: false
+option:
+  deleteFiles: false
+  exclude: [
+    ".sync-config.cson"
+    ".git"
+    "node_modules"
+    "tmp"
+    "vendor"
+  ]

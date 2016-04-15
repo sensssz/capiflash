@@ -1,0 +1,2720 @@
+oprofile: available events for CPU type "ppc64 POWER8"
+
+This processor type is fully supported with operf; opcontrol timer mode may be available.
+See Power ISA 2.07 at https://www.power.org/
+
+For architectures using unit masks, you may be able to specify
+unit masks by name.  See 'opcontrol' or 'operf' man page for more details.
+
+CYCLES: (counter: 0)
+	Cycles (min count: 100000)
+PM_1PLUS_PPC_CMPL: (counter: 0)
+	1 or more ppc insts finished (completed). (min count: 100000)
+PM_1PLUS_PPC_DISP: (counter: 3)
+	Cycles at least one Instr Dispatched. Could be a group with only microcode. Issue HW016521 
+        (min count: 100000)
+PM_ANY_THRD_RUN_CYC: (counter: 0)
+	Any thread in run_cycles (was one thread in run_cycles). (min count: 100000)
+PM_BR_MPRED_CMPL: (counter: 3)
+	Number of Branch Mispredicts. (min count: 10000)
+PM_BR_TAKEN_CMPL: (counter: 1)
+	Branch Taken. (min count: 10000)
+PM_CYC: (counter: 0, 1, 2, 3)
+	Cycles . (min count: 100000)
+PM_DATA_FROM_L2MISS: (counter: 1)
+	Demand LD - L2 Miss (not L2 hit). (min count: 10000)
+PM_DATA_FROM_L3MISS: (counter: 2)
+	Demand LD - L3 Miss (not L2 hit and not L3 hit). (min count: 10000)
+PM_DATA_FROM_MEM: (counter: 3)
+	Data cache reload from memory (including L4). (min count: 10000)
+PM_DTLB_MISS: (counter: 2)
+	Data PTEG Reloaded (DTLB Miss). (min count: 10000)
+PM_EXT_INT: (counter: 1)
+	external interrupt. (min count: 10000)
+PM_FLOP: (counter: 0)
+	Floating Point Operations Finished. (min count: 10000)
+PM_FLUSH: (counter: 3)
+	Flush (any type). (min count: 10000)
+PM_GCT_NOSLOT_CYC: (counter: 0)
+	Pipeline empty (No itags assigned , no GCT slots used). (min count: 10000)
+PM_IERAT_RELOAD: (counter: 0)
+	IERAT Reloaded (Miss). (min count: 10000)
+PM_INST_DISP: (counter: 1)
+	PPC Dispatched. (min count: 100000)
+PM_INST_FROM_L3MISS: (counter: 2)
+	Inst from L3 miss. (min count: 10000)
+PM_ITLB_MISS: (counter: 3)
+	ITLB Reloaded. (min count: 10000)
+PM_L1_DCACHE_RELOAD_VALID: (counter: 2)
+	DL1 reloaded due to Demand Load . (min count: 10000)
+PM_L1_ICACHE_MISS: (counter: 1)
+	Demand iCache Miss. (min count: 10000)
+PM_LD_MISS_L1: (counter: 2)
+	Load Missed L1. (min count: 10000)
+PM_LSU_DERAT_MISS: (counter: 1)
+	DERAT Reloaded (Miss). (min count: 10000)
+PM_MRK_BR_MPRED_CMPL: (counter: 2)
+	Marked Branch Mispredicted. (min count: 1000)
+PM_MRK_BR_TAKEN_CMPL: (counter: 0)
+	Marked Branch Taken. (min count: 1000)
+PM_MRK_DATA_FROM_L2MISS: (counter: 3)
+	Data cache reload L2 miss. (min count: 1000)
+PM_MRK_DATA_FROM_L3MISS: (counter: 1)
+	The processor's data cache was reloaded from a localtion other than the local core's L3 due 
+        to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_MEM: (counter: 1)
+	The processor's data cache was reloaded from a memory location including L4 from local 
+        remote or distant due to a marked load. (min count: 1000)
+PM_MRK_DERAT_MISS: (counter: 2)
+	Erat Miss (TLB Access) All page sizes. (min count: 1000)
+PM_MRK_DTLB_MISS: (counter: 3)
+	Marked dtlb miss. (min count: 1000)
+PM_MRK_INST_CMPL: (counter: 3)
+	marked instruction completed. (min count: 1000)
+PM_MRK_INST_DISP: (counter: 0)
+	Marked Instruction dispatched. (min count: 1000)
+PM_MRK_INST_FROM_L3MISS: (counter: 3)
+	n/a (min count: 1000)
+PM_MRK_L1_ICACHE_MISS: (counter: 0)
+	Marked L1 Icache Miss. (min count: 1000)
+PM_MRK_L1_RELOAD_VALID: (counter: 0)
+	Marked demand reload. (min count: 1000)
+PM_MRK_LD_MISS_L1: (counter: 1)
+	Marked DL1 Demand Miss counted at exec time. (min count: 1000)
+PM_MRK_ST_CMPL: (counter: 0)
+	Marked store completed. (min count: 1000)
+PM_RUN_CYC: (counter: 5)
+	Run_cycles. (min count: 100000)
+PM_RUN_INST_CMPL: (counter: 4)
+	Run_Instructions. (min count: 100000)
+PM_RUN_PURR: (counter: 3)
+	Run_PURR. (min count: 10000)
+PM_ST_FIN: (counter: 1)
+	Store Instructions Finished (store sent to nest). (min count: 10000)
+PM_ST_MISS_L1: (counter: 2)
+	Store Missed L1. (min count: 10000)
+PM_TB_BIT_TRANS: (counter: 2)
+	timebase event. (min count: 10000)
+PM_THRD_CONC_RUN_INST: (counter: 2)
+	Concurrent Run Instructions. (min count: 100000)
+PM_THRESH_EXC_1024: (counter: 2)
+	Threshold counter exceeded a value of 1024. (min count: 1000)
+PM_THRESH_EXC_128: (counter: 3)
+	Threshold counter exceeded a value of 128. (min count: 1000)
+PM_THRESH_EXC_2048: (counter: 3)
+	Threshold counter exceeded a value of 2048. (min count: 1000)
+PM_THRESH_EXC_256: (counter: 0)
+	Threshold counter exceed a count of 256. (min count: 1000)
+PM_THRESH_EXC_32: (counter: 1)
+	Threshold counter exceeded a value of 32. (min count: 1000)
+PM_THRESH_EXC_4096: (counter: 0)
+	Threshold counter exceed a count of 4096. (min count: 1000)
+PM_THRESH_EXC_512: (counter: 1)
+	Threshold counter exceeded a value of 512. (min count: 1000)
+PM_THRESH_EXC_64: (counter: 2)
+	Threshold counter exceeded a value of 64. (min count: 1000)
+PM_THRESH_MET: (counter: 0)
+	threshold exceeded. (min count: 10000)
+PM_1LPAR_CYC: (counter: 0)
+	Number of cycles in single lpar mode. (min count: 100000)
+PM_2LPAR_CYC: (counter: 1)
+	Number of cycles in 2 lpar mode. (min count: 10000)
+PM_4LPAR_CYC: (counter: 3)
+	Number of cycles in 4 LPAR mode. (min count: 100000)
+PM_ALL_CHIP_PUMP_CPRED: (counter: 0)
+	Initial and Final Pump Scope and data sourced across this scope was chip pump 
+        (prediction=correct) for all data types ( demand load,data,inst prefetch,inst fetch,xlate 
+        (I or d) (min count: 10000)
+PM_ALL_GRP_PUMP_CPRED: (counter: 1)
+	Initial and Final Pump Scope and data sourced across this scope was group pump for all data 
+        types excluding data prefetch (demand load,inst prefetch,inst fetch,xlate) (min count: 
+        10000)
+PM_ALL_GRP_PUMP_MPRED: (counter: 1)
+	Final Pump Scope(Group) to get data sourced, ended up larger than Initial Pump Scope OR 
+        Final Pump Scope(Group) got data from source that was at smaller scope(Chip) Final pump was 
+        group pump and initial pump was chip or final and initial pump was gro (min count: 10000)
+PM_ALL_GRP_PUMP_MPRED_RTY: (counter: 0)
+	Final Pump Scope(Group) to get data sourced, ended up larger than Initial Pump Scope (Chip) 
+        Final pump was group pump and initial pump was chip pumpfor all data types excluding data 
+        prefetch (demand load,inst prefetch,inst fetch,xlate) (min count: 10000)
+PM_ALL_PUMP_CPRED: (counter: 0)
+	Pump prediction correct. Counts across all types of pumpsfor all data types excluding data 
+        prefetch (demand load,inst prefetch,inst fetch,xlate) (min count: 10000)
+PM_ALL_PUMP_MPRED: (counter: 3)
+	Pump Mis prediction Counts across all types of pumpsfor all data types excluding data 
+        prefetch (demand load,inst prefetch,inst fetch,xlate) (min count: 10000)
+PM_ALL_SYS_PUMP_CPRED: (counter: 2)
+	Initial and Final Pump Scope and data sourced across this scope was system pump for all 
+        data types excluding data prefetch (demand load,inst prefetch,inst fetch,xlate) (min 
+        count: 10000)
+PM_ALL_SYS_PUMP_MPRED: (counter: 2)
+	Final Pump Scope(system) to get data sourced, ended up larger than Initial Pump 
+        Scope(Chip/Group) OR Final Pump Scope(system) got data from source that was at smaller 
+        scope(Chip/group) Final pump was system pump and initial pump was chip or group or (min 
+        count: 10000)
+PM_ALL_SYS_PUMP_MPRED_RTY: (counter: 3)
+	Final Pump Scope(system) to get data sourced, ended up larger than Initial Pump Scope (Chip 
+        or Group) for all data types excluding data prefetch (demand load,inst prefetch,inst 
+        fetch,xlate) (min count: 10000)
+PM_BACK_BR_CMPL: (counter: 1)
+	Branch instruction completed with a target address less than current instruction address. 
+        (min count: 10000)
+PM_BANK_CONFLICT: (counter: 0, 1, 2, 3)
+	Read blocked due to interleave conflict. The ifar logic will detect an interleave conflict 
+        and kill the data that was read that cycle. (min count: 10000)
+PM_BRU_FIN: (counter: 0)
+	Branch Instruction Finished . (min count: 10000)
+PM_BR_2PATH: (counter: 1)
+	two path branch. (min count: 10000)
+PM_BR_BC_8: (counter: 0, 1, 2, 3)
+	Pairable BC+8 branch that has not been converted to a Resolve Finished in the BRU pipeline 
+        (min count: 10000)
+PM_BR_BC_8_CONV: (counter: 0, 1, 2, 3)
+	Pairable BC+8 branch that was converted to a Resolve Finished in the BRU pipeline. (min 
+        count: 10000)
+PM_BR_CMPL: (counter: 3)
+	Branch Instruction completed. (min count: 10000)
+PM_BR_MPRED_CCACHE: (counter: 0, 1, 2, 3)
+	Conditional Branch Completed that was Mispredicted due to the Count Cache Target Prediction
+         (min count: 10000)
+PM_BR_MPRED_CR: (counter: 0, 1, 2, 3)
+	Conditional Branch Completed that was Mispredicted due to the BHT Direction Prediction 
+        (taken/not taken). (min count: 10000)
+PM_BR_MPRED_LSTACK: (counter: 0, 1, 2, 3)
+	Conditional Branch Completed that was Mispredicted due to the Link Stack Target Prediction 
+        (min count: 10000)
+PM_BR_MPRED_TA: (counter: 0, 1, 2, 3)
+	Conditional Branch Completed that was Mispredicted due to the Target Address Prediction 
+        from the Count Cache or Link Stack. Only XL-form branches that resolved Taken set this 
+        event. (min count: 10000)
+PM_BR_MRK_2PATH: (counter: 0)
+	marked two path branch. (min count: 10000)
+PM_BR_PRED_BR0: (counter: 0, 1, 2, 3)
+	Conditional Branch Completed on BR0 (1st branch in group) in which the HW predicted the 
+        Direction or Target (min count: 10000)
+PM_BR_PRED_BR1: (counter: 0, 1, 2, 3)
+	Conditional Branch Completed on BR1 (2nd branch in group) in which the HW predicted the 
+        Direction or Target. Note: BR1 can only be used in Single Thread Mode. In all of the SMT 
+        modes, only one branch can complete, thus BR1 is unused. (min count: 10000)
+PM_BR_PRED_BR_CMPL: (counter: 0, 1, 2, 3)
+	IFU (min count: 10000)
+PM_BR_PRED_CCACHE_BR0: (counter: 0, 1, 2, 3)
+	Conditional Branch Completed on BR0 that used the Count Cache for Target Prediction (min 
+        count: 10000)
+PM_BR_PRED_CCACHE_BR1: (counter: 0, 1, 2, 3)
+	Conditional Branch Completed on BR1 that used the Count Cache for Target Prediction (min 
+        count: 10000)
+PM_BR_PRED_CCACHE_CMPL: (counter: 0, 1, 2, 3)
+	IFU (min count: 10000)
+PM_BR_PRED_CR_BR0: (counter: 0, 1, 2, 3)
+	Conditional Branch Completed on BR0 that had its direction predicted. I-form branches do 
+        not set this event. In addition, B-form branches which do not use the BHT do not set this 
+        event - these are branches with BO-field set to 'always taken' and bra (min count: 10000)
+PM_BR_PRED_CR_BR1: (counter: 0, 1, 2, 3)
+	Conditional Branch Completed on BR1 that had its direction predicted. I-form branches do 
+        not set this event. In addition, B-form branches which do not use the BHT do not set this 
+        event - these are branches with BO-field set to 'always taken' and bra (min count: 10000)
+PM_BR_PRED_CR_CMPL: (counter: 0, 1, 2, 3)
+	IFU (min count: 10000)
+PM_BR_PRED_LSTACK_BR0: (counter: 0, 1, 2, 3)
+	Conditional Branch Completed on BR0 that used the Link Stack for Target Prediction (min 
+        count: 10000)
+PM_BR_PRED_LSTACK_BR1: (counter: 0, 1, 2, 3)
+	Conditional Branch Completed on BR1 that used the Link Stack for Target Prediction (min 
+        count: 10000)
+PM_BR_PRED_LSTACK_CMPL: (counter: 0, 1, 2, 3)
+	IFU (min count: 10000)
+PM_BR_PRED_TA_BR0: (counter: 0, 1, 2, 3)
+	Conditional Branch Completed on BR0 that had its target address predicted. Only XL-form 
+        branches set this event. (min count: 10000)
+PM_BR_PRED_TA_BR1: (counter: 0, 1, 2, 3)
+	Conditional Branch Completed on BR1 that had its target address predicted. Only XL-form 
+        branches set this event. (min count: 10000)
+PM_BR_PRED_TA_CMPL: (counter: 0, 1, 2, 3)
+	IFU (min count: 10000)
+PM_BR_UNCOND_BR0: (counter: 0, 1, 2, 3)
+	Unconditional Branch Completed on BR0. HW branch prediction was not used for this branch. 
+        This can be an I-form branch, a B-form branch with BO-field set to branch always, or a 
+        B-form branch which was coverted to a Resolve. (min count: 10000)
+PM_BR_UNCOND_BR1: (counter: 0, 1, 2, 3)
+	Unconditional Branch Completed on BR1. HW branch prediction was not used for this branch. 
+        This can be an I-form branch, a B-form branch with BO-field set to branch always, or a 
+        B-form branch which was coverted to a Resolve. (min count: 10000)
+PM_BR_UNCOND_CMPL: (counter: 0, 1, 2, 3)
+	IFU (min count: 10000)
+PM_CASTOUT_ISSUED: (counter: 0, 1, 2, 3)
+	Castouts issued (min count: 10000)
+PM_CASTOUT_ISSUED_GPR: (counter: 0, 1, 2, 3)
+	Castouts issued GPR (min count: 10000)
+PM_CHIP_PUMP_CPRED: (counter: 0)
+	Initial and Final Pump Scope and data sourced across this scope was chip pump 
+        (prediction=correct) for all data types ( demand load,data,inst prefetch,inst fetch,xlate 
+        (I or d). (min count: 10000)
+PM_CLB_HELD: (counter: 0, 1, 2, 3)
+	CLB Hold: Any Reason (min count: 10000)
+PM_CMPLU_STALL: (counter: 3)
+	Completion stall. (min count: 10000)
+PM_CMPLU_STALL_BRU: (counter: 3)
+	Completion stall due to a Branch Unit. (min count: 10000)
+PM_CMPLU_STALL_BRU_CRU: (counter: 1)
+	Completion stall due to IFU. (min count: 10000)
+PM_CMPLU_STALL_COQ_FULL: (counter: 2)
+	Completion stall due to CO q full. (min count: 10000)
+PM_CMPLU_STALL_DCACHE_MISS: (counter: 1)
+	Completion stall by Dcache miss. (min count: 10000)
+PM_CMPLU_STALL_DMISS_L21_L31: (counter: 1)
+	Completion stall by Dcache miss which resolved on chip ( excluding local L2/L3). (min 
+        count: 10000)
+PM_CMPLU_STALL_DMISS_L2L3: (counter: 1)
+	Completion stall by Dcache miss which resolved in L2/L3. (min count: 10000)
+PM_CMPLU_STALL_DMISS_L2L3_CONFLICT: (counter: 3)
+	Completion stall due to cache miss resolving in core's L2/L3 with a conflict. (min count: 
+        10000)
+PM_CMPLU_STALL_DMISS_L3MISS: (counter: 3)
+	Completion stall due to cache miss resolving missed the L3. (min count: 10000)
+PM_CMPLU_STALL_DMISS_LMEM: (counter: 3)
+	Completion stall due to cache miss resolving in core's Local Memory. (min count: 10000)
+PM_CMPLU_STALL_DMISS_REMOTE: (counter: 1)
+	Completion stall by Dcache miss which resolved on chip ( excluding local L2/L3). (min 
+        count: 10000)
+PM_CMPLU_STALL_ERAT_MISS: (counter: 3)
+	Completion stall due to LSU reject ERAT miss. (min count: 10000)
+PM_CMPLU_STALL_FLUSH: (counter: 2)
+	completion stall due to flush by own thread. (min count: 10000)
+PM_CMPLU_STALL_FXLONG: (counter: 3)
+	Completion stall due to a long latency fixed point instruction. (min count: 10000)
+PM_CMPLU_STALL_FXU: (counter: 1)
+	Completion stall due to FXU. (min count: 10000)
+PM_CMPLU_STALL_HWSYNC: (counter: 2)
+	completion stall due to hwsync. (min count: 10000)
+PM_CMPLU_STALL_LOAD_FINISH: (counter: 3)
+	Completion stall due to a Load finish. (min count: 10000)
+PM_CMPLU_STALL_LSU: (counter: 1)
+	Completion stall by LSU instruction. (min count: 10000)
+PM_CMPLU_STALL_LWSYNC: (counter: 0)
+	completion stall due to isync/lwsync. (min count: 10000)
+PM_CMPLU_STALL_MEM_ECC_DELAY: (counter: 2)
+	Completion stall due to mem ECC delay. (min count: 10000)
+PM_CMPLU_STALL_NO_NTF: (counter: 1)
+	Completion stall due to nop. (min count: 10000)
+PM_CMPLU_STALL_NTCG_FLUSH: (counter: 1)
+	Completion stall due to reject (load hit store). (min count: 10000)
+PM_CMPLU_STALL_OTHER_CMPL: (counter: 2)
+	Instructions core completed while this thread was stalled. (min count: 10000)
+PM_CMPLU_STALL_REJECT: (counter: 3)
+	Completion stall due to LSU reject. (min count: 10000)
+PM_CMPLU_STALL_REJECT_LHS: (counter: 1)
+	Completion stall due to reject (load hit store). (min count: 10000)
+PM_CMPLU_STALL_REJ_LMQ_FULL: (counter: 3)
+	Completion stall due to LSU reject LMQ full. (min count: 10000)
+PM_CMPLU_STALL_SCALAR: (counter: 3)
+	Completion stall due to VSU scalar instruction. (min count: 10000)
+PM_CMPLU_STALL_SCALAR_LONG: (counter: 1)
+	Completion stall due to VSU scalar long latency instruction. (min count: 10000)
+PM_CMPLU_STALL_STORE: (counter: 1)
+	Completion stall by stores. (min count: 10000)
+PM_CMPLU_STALL_ST_FWD: (counter: 3)
+	Completion stall due to store forward. (min count: 10000)
+PM_CMPLU_STALL_THRD: (counter: 0)
+	Completion stall due to thread conflict. (min count: 10000)
+PM_CMPLU_STALL_VECTOR: (counter: 1)
+	Completion stall due to VSU vector instruction. (min count: 10000)
+PM_CMPLU_STALL_VECTOR_LONG: (counter: 3)
+	Completion stall due to VSU vector long instruction. (min count: 10000)
+PM_CMPLU_STALL_VSU: (counter: 1)
+	Completion stall due to VSU instruction. (min count: 10000)
+PM_CO0_ALLOC: (counter: 0)
+	0.0 (min count: 10000)
+PM_CO0_BUSY: (counter: 0)
+	CO mach 0 Busy. Used by PMU to sample ave RC livetime(mach0 used as sample point) (min 
+        count: 10000)
+PM_CO_DISP_FAIL: (counter: 0)
+	CO dispatch failed due to all CO machines being busy (min count: 10000)
+PM_CO_TM_SC_FOOTPRINT: (counter: 1)
+	L2 did a cleanifdirty CO to the L3 (ie created an SC line in the L3) (min count: 10000)
+PM_CO_USAGE: (counter: 2)
+	Continuous 16 cycle(2to1) window where this signals rotates thru sampling each L2 CO 
+        machine busy. PMU uses this wave to then do 16 cyc count to sample total number of machs 
+        running (min count: 10000)
+PM_CRU_FIN: (counter: 3)
+	IFU Finished a (non-branch) instruction. (min count: 10000)
+PM_DATA_ALL_CHIP_PUMP_CPRED: (counter: 0)
+	Initial and Final Pump Scope and data sourced across this scope was chip pump 
+        (prediction=correct) for a demand load (min count: 10000)
+PM_DATA_ALL_FROM_DL2L3_MOD: (counter: 3)
+	The processor's data cache was reloaded with Modified (M) data from another chip's L2 or L3 
+        on a different Node or Group (Distant), as this chip due to either only demand loads or 
+        demand loads plus prefetches if MMCR1[16] is 1 (min count: 10000)
+PM_DATA_ALL_FROM_DL2L3_SHR: (counter: 2)
+	The processor's data cache was reloaded with Shared (S) data from another chip's L2 or L3 
+        on a different Node or Group (Distant), as this chip due to either only demand loads or 
+        demand loads plus prefetches if MMCR1[16] is 1 (min count: 10000)
+PM_DATA_ALL_FROM_DL4: (counter: 2)
+	The processor's data cache was reloaded from another chip's L4 on a different Node or Group 
+        (Distant) due to either only demand loads or demand loads plus prefetches if MMCR1[16] is 1
+         (min count: 10000)
+PM_DATA_ALL_FROM_DMEM: (counter: 3)
+	The processor's data cache was reloaded from another chip's memory on the same Node or 
+        Group (Distant) due to either only demand loads or demand loads plus prefetches if 
+        MMCR1[16] is 1 (min count: 10000)
+PM_DATA_ALL_FROM_L2: (counter: 0)
+	The processor's data cache was reloaded from local core's L2 due to either only demand 
+        loads or demand loads plus prefetches if MMCR1[16] is 1 (min count: 10000)
+PM_DATA_ALL_FROM_L21_MOD: (counter: 3)
+	The processor's data cache was reloaded with Modified (M) data from another core's L2 on 
+        the same chip due to either only demand loads or demand loads plus prefetches if MMCR1[16] 
+        is 1 (min count: 10000)
+PM_DATA_ALL_FROM_L21_SHR: (counter: 2)
+	The processor's data cache was reloaded with Shared (S) data from another core's L2 on the 
+        same chip due to either only demand loads or demand loads plus prefetches if MMCR1[16] is 1
+         (min count: 10000)
+PM_DATA_ALL_FROM_L2MISS_MOD: (counter: 0)
+	The processor's data cache was reloaded from a localtion other than the local core's L2 due 
+        to either only demand loads or demand loads plus prefetches if MMCR1[16] is 1 (min count: 
+        10000)
+PM_DATA_ALL_FROM_L2_DISP_CONFLICT_LDHITST: (counter: 2)
+	The processor's data cache was reloaded from local core's L2 with load hit store conflict 
+        due to either only demand loads or demand loads plus prefetches if MMCR1[16] is 1 (min 
+        count: 10000)
+PM_DATA_ALL_FROM_L2_DISP_CONFLICT_OTHER: (counter: 3)
+	The processor's data cache was reloaded from local core's L2 with dispatch conflict due to 
+        either only demand loads or demand loads plus prefetches if MMCR1[16] is 1 (min count: 
+        10000)
+PM_DATA_ALL_FROM_L2_MEPF: (counter: 1)
+	The processor's data cache was reloaded from local core's L2 hit without dispatch conflicts 
+        on Mepf state due to either only demand loads or demand loads plus prefetches if MMCR1[16] 
+        is 1 (min count: 10000)
+PM_DATA_ALL_FROM_L2_NO_CONFLICT: (counter: 0)
+	The processor's data cache was reloaded from local core's L2 without conflict due to either 
+        only demand loads or demand loads plus prefetches if MMCR1[16] is 1 (min count: 10000)
+PM_DATA_ALL_FROM_L3: (counter: 3)
+	The processor's data cache was reloaded from local core's L3 due to either only demand 
+        loads or demand loads plus prefetches if MMCR1[16] is 1 (min count: 10000)
+PM_DATA_ALL_FROM_L31_ECO_MOD: (counter: 3)
+	The processor's data cache was reloaded with Modified (M) data from another core's ECO L3 
+        on the same chip due to either only demand loads or demand loads plus prefetches if 
+        MMCR1[16] is 1 (min count: 10000)
+PM_DATA_ALL_FROM_L31_ECO_SHR: (counter: 2)
+	The processor's data cache was reloaded with Shared (S) data from another core's ECO L3 on 
+        the same chip due to either only demand loads or demand loads plus prefetches if MMCR1[16] 
+        is 1 (min count: 10000)
+PM_DATA_ALL_FROM_L31_MOD: (counter: 1)
+	The processor's data cache was reloaded with Modified (M) data from another core's L3 on 
+        the same chip due to either only demand loads or demand loads plus prefetches if MMCR1[16] 
+        is 1 (min count: 10000)
+PM_DATA_ALL_FROM_L31_SHR: (counter: 0)
+	The processor's data cache was reloaded with Shared (S) data from another core's L3 on the 
+        same chip due to either only demand loads or demand loads plus prefetches if MMCR1[16] is 1
+         (min count: 10000)
+PM_DATA_ALL_FROM_L3MISS_MOD: (counter: 3)
+	The processor's data cache was reloaded from a localtion other than the local core's L3 due 
+        to either only demand loads or demand loads plus prefetches if MMCR1[16] is 1 (min count: 
+        10000)
+PM_DATA_ALL_FROM_L3_DISP_CONFLICT: (counter: 2)
+	The processor's data cache was reloaded from local core's L3 with dispatch conflict due to 
+        either only demand loads or demand loads plus prefetches if MMCR1[16] is 1 (min count: 
+        10000)
+PM_DATA_ALL_FROM_L3_MEPF: (counter: 1)
+	The processor's data cache was reloaded from local core's L3 without dispatch conflicts hit 
+        on Mepf state due to either only demand loads or demand loads plus prefetches if MMCR1[16] 
+        is 1 (min count: 10000)
+PM_DATA_ALL_FROM_L3_NO_CONFLICT: (counter: 0)
+	The processor's data cache was reloaded from local core's L3 without conflict due to either 
+        only demand loads or demand loads plus prefetches if MMCR1[16] is 1 (min count: 10000)
+PM_DATA_ALL_FROM_LL4: (counter: 0)
+	The processor's data cache was reloaded from the local chip's L4 cache due to either only 
+        demand loads or demand loads plus prefetches if MMCR1[16] is 1 (min count: 10000)
+PM_DATA_ALL_FROM_LMEM: (counter: 1)
+	The processor's data cache was reloaded from the local chip's Memory due to either only 
+        demand loads or demand loads plus prefetches if MMCR1[16] is 1 (min count: 10000)
+PM_DATA_ALL_FROM_MEMORY: (counter: 1)
+	The processor's data cache was reloaded from a memory location including L4 from local 
+        remote or distant due to either only demand loads or demand loads plus prefetches if 
+        MMCR1[16] is 1 (min count: 10000)
+PM_DATA_ALL_FROM_OFF_CHIP_CACHE: (counter: 3)
+	The processor's data cache was reloaded either shared or modified data from another core's 
+        L2/L3 on a different chip (remote or distant) due to either only demand loads or demand 
+        loads plus prefetches if MMCR1[16] is 1 (min count: 10000)
+PM_DATA_ALL_FROM_ON_CHIP_CACHE: (counter: 0)
+	The processor's data cache was reloaded either shared or modified data from another core's 
+        L2/L3 on the same chip due to either only demand loads or demand loads plus prefetches if 
+        MMCR1[16] is 1 (min count: 10000)
+PM_DATA_ALL_FROM_RL2L3_MOD: (counter: 1)
+	The processor's data cache was reloaded with Modified (M) data from another chip's L2 or L3 
+        on the same Node or Group (Remote), as this chip due to either only demand loads or demand 
+        loads plus prefetches if MMCR1[16] is 1 (min count: 10000)
+PM_DATA_ALL_FROM_RL2L3_SHR: (counter: 0)
+	The processor's data cache was reloaded with Shared (S) data from another chip's L2 or L3 
+        on the same Node or Group (Remote), as this chip due to either only demand loads or demand 
+        loads plus prefetches if MMCR1[16] is 1 (min count: 10000)
+PM_DATA_ALL_FROM_RL4: (counter: 1)
+	The processor's data cache was reloaded from another chip's L4 on the same Node or Group ( 
+        Remote) due to either only demand loads or demand loads plus prefetches if MMCR1[16] is 1 
+        (min count: 10000)
+PM_DATA_ALL_FROM_RMEM: (counter: 2)
+	The processor's data cache was reloaded from another chip's memory on the same Node or 
+        Group ( Remote) due to either only demand loads or demand loads plus prefetches if 
+        MMCR1[16] is 1 (min count: 10000)
+PM_DATA_ALL_GRP_PUMP_CPRED: (counter: 1)
+	Initial and Final Pump Scope and data sourced across this scope was group pump for a demand 
+        load (min count: 10000)
+PM_DATA_ALL_GRP_PUMP_MPRED: (counter: 1)
+	Final Pump Scope(Group) to get data sourced, ended up larger than Initial Pump Scope OR 
+        Final Pump Scope(Group) got data from source that was at smaller scope(Chip) Final pump was 
+        group pump and initial pump was chip or final and initial pump was gro (min count: 10000)
+PM_DATA_ALL_GRP_PUMP_MPRED_RTY: (counter: 0)
+	Final Pump Scope(Group) to get data sourced, ended up larger than Initial Pump Scope (Chip) 
+        Final pump was group pump and initial pump was chip pumpfor a demand load (min count: 
+        10000)
+PM_DATA_ALL_PUMP_CPRED: (counter: 0)
+	Pump prediction correct. Counts across all types of pumps for a demand load (min count: 
+        10000)
+PM_DATA_ALL_PUMP_MPRED: (counter: 3)
+	Pump Mis prediction Counts across all types of pumpsfor a demand load (min count: 10000)
+PM_DATA_ALL_SYS_PUMP_CPRED: (counter: 2)
+	Initial and Final Pump Scope and data sourced across this scope was system pump for a 
+        demand load (min count: 10000)
+PM_DATA_ALL_SYS_PUMP_MPRED: (counter: 2)
+	Final Pump Scope(system) to get data sourced, ended up larger than Initial Pump 
+        Scope(Chip/Group) OR Final Pump Scope(system) got data from source that was at smaller 
+        scope(Chip/group) Final pump was system pump and initial pump was chip or group or (min 
+        count: 10000)
+PM_DATA_ALL_SYS_PUMP_MPRED_RTY: (counter: 3)
+	Final Pump Scope(system) to get data sourced, ended up larger than Initial Pump Scope (Chip 
+        or Group) for a demand load (min count: 10000)
+PM_DATA_CHIP_PUMP_CPRED: (counter: 0)
+	Initial and Final Pump Scope and data sourced across this scope was chip pump 
+        (prediction=correct) for a demand load. (min count: 10000)
+PM_DATA_FROM_DL2L3_MOD: (counter: 3)
+	The processor's data cache was reloaded with Modified (M) data from another chip's L2 or L3 
+        on a different Node or Group (Distant), as this chip due to either only demand loads or 
+        demand loads plus prefetches if MMCR1[16] is 1. (min count: 10000)
+PM_DATA_FROM_DL2L3_SHR: (counter: 2)
+	The processor's data cache was reloaded with Shared (S) data from another chip's L2 or L3 
+        on a different Node or Group (Distant), as this chip due to either only demand loads or 
+        demand loads plus prefetches if MMCR1[16] is 1. (min count: 10000)
+PM_DATA_FROM_DL4: (counter: 2)
+	The processor's data cache was reloaded from another chip's L4 on a different Node or Group 
+        (Distant) due to either only demand loads or demand loads plus prefetches if MMCR1[16] is 
+        1. (min count: 10000)
+PM_DATA_FROM_DMEM: (counter: 3)
+	The processor's data cache was reloaded from another chip's memory on the same Node or 
+        Group (Distant) due to either only demand loads or demand loads plus prefetches if 
+        MMCR1[16] is 1. (min count: 10000)
+PM_DATA_FROM_L2: (counter: 0)
+	The processor's data cache was reloaded from local core's L2 due to either only demand 
+        loads or demand loads plus prefetches if MMCR1[16] is 1. (min count: 10000)
+PM_DATA_FROM_L21_MOD: (counter: 3)
+	The processor's data cache was reloaded with Modified (M) data from another core's L2 on 
+        the same chip due to either only demand loads or demand loads plus prefetches if MMCR1[16] 
+        is 1. (min count: 10000)
+PM_DATA_FROM_L21_SHR: (counter: 2)
+	The processor's data cache was reloaded with Shared (S) data from another core's L2 on the 
+        same chip due to either only demand loads or demand loads plus prefetches if MMCR1[16] is 
+        1. (min count: 10000)
+PM_DATA_FROM_L2MISS_MOD: (counter: 0)
+	The processor's data cache was reloaded from a localtion other than the local core's L2 due 
+        to either only demand loads or demand loads plus prefetches if MMCR1[16] is 1. (min count: 
+        10000)
+PM_DATA_FROM_L2_DISP_CONFLICT_LDHITST: (counter: 2)
+	The processor's data cache was reloaded from local core's L2 with load hit store conflict 
+        due to either only demand loads or demand loads plus prefetches if MMCR1[16] is 1. (min 
+        count: 10000)
+PM_DATA_FROM_L2_DISP_CONFLICT_OTHER: (counter: 3)
+	The processor's data cache was reloaded from local core's L2 with dispatch conflict due to 
+        either only demand loads or demand loads plus prefetches if MMCR1[16] is 1. (min count: 
+        10000)
+PM_DATA_FROM_L2_MEPF: (counter: 1)
+	The processor's data cache was reloaded from local core's L2 hit without dispatch conflicts 
+        on Mepf state due to either only demand loads or demand loads plus prefetches if MMCR1[16] 
+        is 1. (min count: 10000)
+PM_DATA_FROM_L2_NO_CONFLICT: (counter: 0)
+	The processor's data cache was reloaded from local core's L2 without conflict due to either 
+        only demand loads or demand loads plus prefetches if MMCR1[16] is 1 . (min count: 10000)
+PM_DATA_FROM_L3: (counter: 3)
+	The processor's data cache was reloaded from local core's L3 due to either only demand 
+        loads or demand loads plus prefetches if MMCR1[16] is 1. (min count: 10000)
+PM_DATA_FROM_L31_ECO_MOD: (counter: 3)
+	The processor's data cache was reloaded with Modified (M) data from another core's ECO L3 
+        on the same chip due to either only demand loads or demand loads plus prefetches if 
+        MMCR1[16] is 1. (min count: 10000)
+PM_DATA_FROM_L31_ECO_SHR: (counter: 2)
+	The processor's data cache was reloaded with Shared (S) data from another core's ECO L3 on 
+        the same chip due to either only demand loads or demand loads plus prefetches if MMCR1[16] 
+        is 1. (min count: 10000)
+PM_DATA_FROM_L31_MOD: (counter: 1)
+	The processor's data cache was reloaded with Modified (M) data from another core's L3 on 
+        the same chip due to either only demand loads or demand loads plus prefetches if MMCR1[16] 
+        is 1. (min count: 10000)
+PM_DATA_FROM_L31_SHR: (counter: 0)
+	The processor's data cache was reloaded with Shared (S) data from another core's L3 on the 
+        same chip due to either only demand loads or demand loads plus prefetches if MMCR1[16] is 
+        1. (min count: 10000)
+PM_DATA_FROM_L3MISS_MOD: (counter: 3)
+	The processor's data cache was reloaded from a localtion other than the local core's L3 due 
+        to either only demand loads or demand loads plus prefetches if MMCR1[16] is 1. (min count: 
+        10000)
+PM_DATA_FROM_L3_DISP_CONFLICT: (counter: 2)
+	The processor's data cache was reloaded from local core's L3 with dispatch conflict due to 
+        either only demand loads or demand loads plus prefetches if MMCR1[16] is 1. (min count: 
+        10000)
+PM_DATA_FROM_L3_MEPF: (counter: 1)
+	The processor's data cache was reloaded from local core's L3 without dispatch conflicts hit 
+        on Mepf state due to either only demand loads or demand loads plus prefetches if MMCR1[16] 
+        is 1. (min count: 10000)
+PM_DATA_FROM_L3_NO_CONFLICT: (counter: 0)
+	The processor's data cache was reloaded from local core's L3 without conflict due to either 
+        only demand loads or demand loads plus prefetches if MMCR1[16] is 1. (min count: 10000)
+PM_DATA_FROM_LL4: (counter: 0)
+	The processor's data cache was reloaded from the local chip's L4 cache due to either only 
+        demand loads or demand loads plus prefetches if MMCR1[16] is 1. (min count: 10000)
+PM_DATA_FROM_LMEM: (counter: 1)
+	The processor's data cache was reloaded from the local chip's Memory due to either only 
+        demand loads or demand loads plus prefetches if MMCR1[16] is 1. (min count: 10000)
+PM_DATA_FROM_MEMORY: (counter: 1)
+	The processor's data cache was reloaded from a memory location including L4 from local 
+        remote or distant due to either only demand loads or demand loads plus prefetches if 
+        MMCR1[16] is 1. (min count: 10000)
+PM_DATA_FROM_OFF_CHIP_CACHE: (counter: 3)
+	The processor's data cache was reloaded either shared or modified data from another core's 
+        L2/L3 on a different chip (remote or distant) due to either only demand loads or demand 
+        loads plus prefetches if MMCR1[16] is 1. (min count: 10000)
+PM_DATA_FROM_ON_CHIP_CACHE: (counter: 0)
+	The processor's data cache was reloaded either shared or modified data from another core's 
+        L2/L3 on the same chip due to either only demand loads or demand loads plus prefetches if 
+        MMCR1[16] is 1. (min count: 10000)
+PM_DATA_FROM_RL2L3_MOD: (counter: 1)
+	The processor's data cache was reloaded with Modified (M) data from another chip's L2 or L3 
+        on the same Node or Group (Remote), as this chip due to either only demand loads or demand 
+        loads plus prefetches if MMCR1[16] is 1. (min count: 10000)
+PM_DATA_FROM_RL2L3_SHR: (counter: 0)
+	The processor's data cache was reloaded with Shared (S) data from another chip's L2 or L3 
+        on the same Node or Group (Remote), as this chip due to either only demand loads or demand 
+        loads plus prefetches if MMCR1[16] is 1. (min count: 10000)
+PM_DATA_FROM_RL4: (counter: 1)
+	The processor's data cache was reloaded from another chip's L4 on the same Node or Group ( 
+        Remote) due to either only demand loads or demand loads plus prefetches if MMCR1[16] is 1. 
+        (min count: 10000)
+PM_DATA_FROM_RMEM: (counter: 2)
+	The processor's data cache was reloaded from another chip's memory on the same Node or 
+        Group ( Remote) due to either only demand loads or demand loads plus prefetches if 
+        MMCR1[16] is 1. (min count: 10000)
+PM_DATA_GRP_PUMP_CPRED: (counter: 1)
+	Initial and Final Pump Scope and data sourced across this scope was group pump for a demand 
+        load. (min count: 10000)
+PM_DATA_GRP_PUMP_MPRED: (counter: 1)
+	Final Pump Scope(Group) to get data sourced, ended up larger than Initial Pump Scope OR 
+        Final Pump Scope(Group) got data from source that was at smaller scope(Chip) Final pump was 
+        group pump and initial pump was chip or final and initial pump was gro (min count: 10000)
+PM_DATA_GRP_PUMP_MPRED_RTY: (counter: 0)
+	Final Pump Scope(Group) to get data sourced, ended up larger than Initial Pump Scope (Chip) 
+        Final pump was group pump and initial pump was chip pumpfor a demand load. (min count: 
+        10000)
+PM_DATA_PUMP_CPRED: (counter: 0)
+	Pump prediction correct. Counts across all types of pumps for a demand load. (min count: 
+        10000)
+PM_DATA_PUMP_MPRED: (counter: 3)
+	Pump Mis prediction Counts across all types of pumpsfor a demand load. (min count: 10000)
+PM_DATA_SYS_PUMP_CPRED: (counter: 2)
+	Initial and Final Pump Scope and data sourced across this scope was system pump for a 
+        demand load. (min count: 10000)
+PM_DATA_SYS_PUMP_MPRED: (counter: 2)
+	Final Pump Scope(system) to get data sourced, ended up larger than Initial Pump 
+        Scope(Chip/Group) OR Final Pump Scope(system) got data from source that was at smaller 
+        scope(Chip/group) Final pump was system pump and initial pump was chip or group or (min 
+        count: 10000)
+PM_DATA_SYS_PUMP_MPRED_RTY: (counter: 3)
+	Final Pump Scope(system) to get data sourced, ended up larger than Initial Pump Scope (Chip 
+        or Group) for a demand load. (min count: 10000)
+PM_DATA_TABLEWALK_CYC: (counter: 2)
+	Data Tablewalk Active. (min count: 10000)
+PM_DC_COLLISIONS: (counter: 0, 1, 2, 3)
+	DATA Cache collisions42 (min count: 10000)
+PM_DC_PREF_STREAM_ALLOC: (counter: 0)
+	Stream marked valid. The stream could have been allocated through the hardware prefetch 
+        mechanism or through software. This is combined ls0 and ls1. (min count: 10000)
+PM_DC_PREF_STREAM_CONF: (counter: 1)
+	A demand load referenced a line in an active prefetch stream. The stream could have been 
+        allocated through the hardware prefetch mechanism or through software. Combine up + down. 
+        (min count: 10000)
+PM_DC_PREF_STREAM_FUZZY_CONF: (counter: 3)
+	A demand load referenced a line in an active fuzzy prefetch stream. The stream could have 
+        been allocated through the hardware prefetch mechanism or through software.Fuzzy stream 
+        confirm (out of order effects, or pf cant keep up). (min count: 10000)
+PM_DC_PREF_STREAM_STRIDED_CONF: (counter: 2)
+	A demand load referenced a line in an active strided prefetch stream. The stream could have 
+        been allocated through the hardware prefetch mechanism or through software.. (min count: 
+        10000)
+PM_DERAT_MISS_16G: (counter: 3)
+	Data ERAT Miss (Data TLB Access) page size 16G. (min count: 10000)
+PM_DERAT_MISS_16M: (counter: 2)
+	Data ERAT Miss (Data TLB Access) page size 16M. (min count: 10000)
+PM_DERAT_MISS_4K: (counter: 0)
+	Data ERAT Miss (Data TLB Access) page size 4K. (min count: 10000)
+PM_DERAT_MISS_64K: (counter: 1)
+	Data ERAT Miss (Data TLB Access) page size 64K. (min count: 10000)
+PM_DFU: (counter: 0, 1, 2, 3)
+	Finish DFU (all finish) (min count: 10000)
+PM_DFU_DCFFIX: (counter: 0, 1, 2, 3)
+	Convert from fixed opcode finish (dcffix,dcffixq) (min count: 10000)
+PM_DFU_DENBCD: (counter: 0, 1, 2, 3)
+	BCD->DPD opcode finish (denbcd, denbcdq) (min count: 10000)
+PM_DFU_MC: (counter: 0, 1, 2, 3)
+	Finish DFU multicycle (min count: 10000)
+PM_DISP_CLB_HELD_BAL: (counter: 0, 1, 2, 3)
+	Dispatch/CLB Hold: Balance (min count: 10000)
+PM_DISP_CLB_HELD_RES: (counter: 0, 1, 2, 3)
+	Dispatch/CLB Hold: Resource (min count: 10000)
+PM_DISP_CLB_HELD_SB: (counter: 0, 1, 2, 3)
+	Dispatch/CLB Hold: Scoreboard (min count: 10000)
+PM_DISP_CLB_HELD_SYNC: (counter: 0, 1, 2, 3)
+	Dispatch/CLB Hold: Sync type instruction (min count: 10000)
+PM_DISP_CLB_HELD_TLBIE: (counter: 0, 1, 2, 3)
+	Dispatch Hold: Due to TLBIE (min count: 10000)
+PM_DISP_HELD: (counter: 0)
+	Dispatch Held. (min count: 10000)
+PM_DISP_HELD_IQ_FULL: (counter: 1)
+	Dispatch held due to Issue q full. (min count: 10000)
+PM_DISP_HELD_MAP_FULL: (counter: 0)
+	Dispatch held due to Mapper full. (min count: 10000)
+PM_DISP_HELD_SRQ_FULL: (counter: 2)
+	Dispatch held due SRQ no room. (min count: 10000)
+PM_DISP_HELD_SYNC_HOLD: (counter: 3)
+	Dispatch held due to SYNC hold. (min count: 10000)
+PM_DISP_HOLD_GCT_FULL: (counter: 0, 1, 2, 3)
+	Dispatch Hold Due to no space in the GCT (min count: 10000)
+PM_DISP_WT: (counter: 2)
+	Dispatched Starved (not held, nothing to dispatch). (min count: 10000)
+PM_DPTEG_FROM_DL2L3_MOD: (counter: 3)
+	A Page Table Entry was loaded into the TLB with Modified (M) data from another chip's L2 or 
+        L3 on a different Node or Group (Distant), as this chip due to a data side request. (min 
+        count: 10000)
+PM_DPTEG_FROM_DL2L3_SHR: (counter: 2)
+	A Page Table Entry was loaded into the TLB with Shared (S) data from another chip's L2 or 
+        L3 on a different Node or Group (Distant), as this chip due to a data side request. (min 
+        count: 10000)
+PM_DPTEG_FROM_DL4: (counter: 2)
+	A Page Table Entry was loaded into the TLB from another chip's L4 on a different Node or 
+        Group (Distant) due to a data side request. (min count: 10000)
+PM_DPTEG_FROM_DMEM: (counter: 3)
+	A Page Table Entry was loaded into the TLB from another chip's memory on the same Node or 
+        Group (Distant) due to a data side request. (min count: 10000)
+PM_DPTEG_FROM_L2: (counter: 0)
+	A Page Table Entry was loaded into the TLB from local core's L2 due to a data side request.
+         (min count: 10000)
+PM_DPTEG_FROM_L21_MOD: (counter: 3)
+	A Page Table Entry was loaded into the TLB with Modified (M) data from another core's L2 on 
+        the same chip due to a data side request. (min count: 10000)
+PM_DPTEG_FROM_L21_SHR: (counter: 2)
+	A Page Table Entry was loaded into the TLB with Shared (S) data from another core's L2 on 
+        the same chip due to a data side request. (min count: 10000)
+PM_DPTEG_FROM_L2MISS: (counter: 0)
+	A Page Table Entry was loaded into the TLB from a localtion other than the local core's L2 
+        due to a data side request. (min count: 10000)
+PM_DPTEG_FROM_L2_DISP_CONFLICT_LDHITST: (counter: 2)
+	A Page Table Entry was loaded into the TLB from local core's L2 with load hit store 
+        conflict due to a data side request. (min count: 10000)
+PM_DPTEG_FROM_L2_DISP_CONFLICT_OTHER: (counter: 3)
+	A Page Table Entry was loaded into the TLB from local core's L2 with dispatch conflict due 
+        to a data side request. (min count: 10000)
+PM_DPTEG_FROM_L2_MEPF: (counter: 1)
+	A Page Table Entry was loaded into the TLB from local core's L2 hit without dispatch 
+        conflicts on Mepf state. due to a data side request. (min count: 10000)
+PM_DPTEG_FROM_L2_NO_CONFLICT: (counter: 0)
+	A Page Table Entry was loaded into the TLB from local core's L2 without conflict due to a 
+        data side request. (min count: 10000)
+PM_DPTEG_FROM_L3: (counter: 3)
+	A Page Table Entry was loaded into the TLB from local core's L3 due to a data side request.
+         (min count: 10000)
+PM_DPTEG_FROM_L31_ECO_MOD: (counter: 3)
+	A Page Table Entry was loaded into the TLB with Modified (M) data from another core's ECO 
+        L3 on the same chip due to a data side request. (min count: 10000)
+PM_DPTEG_FROM_L31_ECO_SHR: (counter: 2)
+	A Page Table Entry was loaded into the TLB with Shared (S) data from another core's ECO L3 
+        on the same chip due to a data side request. (min count: 10000)
+PM_DPTEG_FROM_L31_MOD: (counter: 1)
+	A Page Table Entry was loaded into the TLB with Modified (M) data from another core's L3 on 
+        the same chip due to a data side request. (min count: 10000)
+PM_DPTEG_FROM_L31_SHR: (counter: 0)
+	A Page Table Entry was loaded into the TLB with Shared (S) data from another core's L3 on 
+        the same chip due to a data side request. (min count: 10000)
+PM_DPTEG_FROM_L3MISS: (counter: 3)
+	A Page Table Entry was loaded into the TLB from a localtion other than the local core's L3 
+        due to a data side request. (min count: 10000)
+PM_DPTEG_FROM_L3_DISP_CONFLICT: (counter: 2)
+	A Page Table Entry was loaded into the TLB from local core's L3 with dispatch conflict due 
+        to a data side request. (min count: 10000)
+PM_DPTEG_FROM_L3_MEPF: (counter: 1)
+	A Page Table Entry was loaded into the TLB from local core's L3 without dispatch conflicts 
+        hit on Mepf state. due to a data side request. (min count: 10000)
+PM_DPTEG_FROM_L3_NO_CONFLICT: (counter: 0)
+	A Page Table Entry was loaded into the TLB from local core's L3 without conflict due to a 
+        data side request. (min count: 10000)
+PM_DPTEG_FROM_LL4: (counter: 0)
+	A Page Table Entry was loaded into the TLB from the local chip's L4 cache due to a data 
+        side request. (min count: 10000)
+PM_DPTEG_FROM_LMEM: (counter: 1)
+	A Page Table Entry was loaded into the TLB from the local chip's Memory due to a data side 
+        request. (min count: 10000)
+PM_DPTEG_FROM_MEMORY: (counter: 1)
+	A Page Table Entry was loaded into the TLB from a memory location including L4 from local 
+        remote or distant due to a data side request. (min count: 10000)
+PM_DPTEG_FROM_OFF_CHIP_CACHE: (counter: 3)
+	A Page Table Entry was loaded into the TLB either shared or modified data from another 
+        core's L2/L3 on a different chip (remote or distant) due to a data side request. (min 
+        count: 10000)
+PM_DPTEG_FROM_ON_CHIP_CACHE: (counter: 0)
+	A Page Table Entry was loaded into the TLB either shared or modified data from another 
+        core's L2/L3 on the same chip due to a data side request. (min count: 10000)
+PM_DPTEG_FROM_RL2L3_MOD: (counter: 1)
+	A Page Table Entry was loaded into the TLB with Modified (M) data from another chip's L2 or 
+        L3 on the same Node or Group (Remote), as this chip due to a data side request. (min 
+        count: 10000)
+PM_DPTEG_FROM_RL2L3_SHR: (counter: 0)
+	A Page Table Entry was loaded into the TLB with Shared (S) data from another chip's L2 or 
+        L3 on the same Node or Group (Remote), as this chip due to a data side request. (min 
+        count: 10000)
+PM_DPTEG_FROM_RL4: (counter: 1)
+	A Page Table Entry was loaded into the TLB from another chip's L4 on the same Node or Group 
+        ( Remote) due to a data side request. (min count: 10000)
+PM_DPTEG_FROM_RMEM: (counter: 2)
+	A Page Table Entry was loaded into the TLB from another chip's memory on the same Node or 
+        Group ( Remote) due to a data side request. (min count: 10000)
+PM_DSLB_MISS: (counter: 0, 1, 2, 3)
+	Data SLB Miss - Total of all segment sizesData SLB misses (min count: 10000)
+PM_DTLB_MISS_16G: (counter: 0)
+	Data TLB Miss page size 16G. (min count: 10000)
+PM_DTLB_MISS_16M: (counter: 3)
+	Data TLB Miss page size 16M. (min count: 10000)
+PM_DTLB_MISS_4K: (counter: 1)
+	Data TLB Miss page size 4k. (min count: 10000)
+PM_DTLB_MISS_64K: (counter: 2)
+	Data TLB Miss page size 64K. (min count: 10000)
+PM_EAT_FORCE_MISPRED: (counter: 0, 1, 2, 3)
+	XL-form branch was mispredicted due to the predicted target address missing from EAT. The 
+        EAT forces a mispredict in this case since there is no predicated target to validate. This 
+        is a rare case that may occur when the EAT is full and a branch is (min count: 10000)
+PM_EAT_FULL_CYC: (counter: 0, 1, 2, 3)
+	Cycles No room in EATSet on bank conflict and case where no ibuffers available. (min 
+        count: 10000)
+PM_EE_OFF_EXT_INT: (counter: 0, 1, 2, 3)
+	Ee off and external interrupt (min count: 10000)
+PM_FAV_TBEGIN: (counter: 0, 1, 2, 3)
+	Dispatch time Favored tbegin (min count: 10000)
+PM_FLOP_SUM_SCALAR: (counter: 0, 1, 2, 3)
+	flops summary scalar instructions (min count: 10000)
+PM_FLOP_SUM_VEC: (counter: 0, 1, 2, 3)
+	flops summary vector instructions (min count: 10000)
+PM_FLUSH_BR_MPRED: (counter: 0, 1, 2, 3)
+	Flush caused by branch mispredict (min count: 10000)
+PM_FLUSH_COMPLETION: (counter: 2)
+	Completion Flush. (min count: 10000)
+PM_FLUSH_DISP: (counter: 0, 1, 2, 3)
+	Dispatch flush (min count: 10000)
+PM_FLUSH_DISP_SB: (counter: 0, 1, 2, 3)
+	Dispatch Flush: Scoreboard (min count: 10000)
+PM_FLUSH_DISP_SYNC: (counter: 0, 1, 2, 3)
+	Dispatch Flush: Sync (min count: 10000)
+PM_FLUSH_DISP_TLBIE: (counter: 0, 1, 2, 3)
+	Dispatch Flush: TLBIE (min count: 10000)
+PM_FLUSH_LSU: (counter: 0, 1, 2, 3)
+	Flush initiated by LSU (min count: 10000)
+PM_FLUSH_PARTIAL: (counter: 0, 1, 2, 3)
+	Partial flush (min count: 10000)
+PM_FPU0_FCONV: (counter: 0, 1, 2, 3)
+	Convert instruction executed (min count: 10000)
+PM_FPU0_FEST: (counter: 0, 1, 2, 3)
+	Estimate instruction executed (min count: 10000)
+PM_FPU0_FRSP: (counter: 0, 1, 2, 3)
+	Round to single precision instruction executed (min count: 10000)
+PM_FPU1_FCONV: (counter: 0, 1, 2, 3)
+	Convert instruction executed (min count: 10000)
+PM_FPU1_FEST: (counter: 0, 1, 2, 3)
+	Estimate instruction executed (min count: 10000)
+PM_FPU1_FRSP: (counter: 0, 1, 2, 3)
+	Round to single precision instruction executed (min count: 10000)
+PM_FREQ_DOWN: (counter: 2)
+	Frequency is being slewed down due to Power Management. (min count: 10000)
+PM_FREQ_UP: (counter: 3)
+	Frequency is being slewed up due to Power Management. (min count: 10000)
+PM_FUSION_TOC_GRP0_1: (counter: 0, 1, 2, 3)
+	One pair of instructions fused with TOC in Group0 (min count: 10000)
+PM_FUSION_TOC_GRP0_2: (counter: 0, 1, 2, 3)
+	Two pairs of instructions fused with TOCin Group0 (min count: 10000)
+PM_FUSION_TOC_GRP0_3: (counter: 0, 1, 2, 3)
+	Three pairs of instructions fused with TOC in Group0 (min count: 10000)
+PM_FUSION_TOC_GRP1_1: (counter: 0, 1, 2, 3)
+	One pair of instructions fused with TOX in Group1 (min count: 10000)
+PM_FUSION_VSX_GRP0_1: (counter: 0, 1, 2, 3)
+	One pair of instructions fused with VSX in Group0 (min count: 10000)
+PM_FUSION_VSX_GRP0_2: (counter: 0, 1, 2, 3)
+	Two pairs of instructions fused with VSX in Group0 (min count: 10000)
+PM_FUSION_VSX_GRP0_3: (counter: 0, 1, 2, 3)
+	Three pairs of instructions fused with VSX in Group0 (min count: 10000)
+PM_FUSION_VSX_GRP1_1: (counter: 0, 1, 2, 3)
+	One pair of instructions fused with VSX in Group1 (min count: 10000)
+PM_FXU0_BUSY_FXU1_IDLE: (counter: 2)
+	fxu0 busy and fxu1 idle. (min count: 10000)
+PM_FXU0_FIN: (counter: 0)
+	FXU0 Finished. (min count: 10000)
+PM_FXU1_BUSY_FXU0_IDLE: (counter: 3)
+	fxu0 idle and fxu1 busy. . (min count: 10000)
+PM_FXU1_FIN: (counter: 3)
+	FXU1 Finished. (min count: 10000)
+PM_FXU_BUSY: (counter: 1)
+	fxu0 busy and fxu1 busy.. (min count: 10000)
+PM_FXU_IDLE: (counter: 0)
+	fxu0 idle and fxu1 idle. (min count: 10000)
+PM_GCT_EMPTY_CYC: (counter: 1)
+	No itags assigned either thread (GCT Empty). (min count: 10000)
+PM_GCT_MERGE: (counter: 0, 1, 2, 3)
+	Group dispatched on a merged GCT empty. GCT entries can be merged only within the same 
+        thread (min count: 10000)
+PM_GCT_NOSLOT_BR_MPRED: (counter: 3)
+	Gct empty for this thread due to branch mispred. (min count: 10000)
+PM_GCT_NOSLOT_BR_MPRED_ICMISS: (counter: 3)
+	Gct empty for this thread due to Icache Miss and branch mispred. (min count: 10000)
+PM_GCT_NOSLOT_DISP_HELD_ISSQ: (counter: 1)
+	Gct empty for this thread due to dispatch hold on this thread due to Issue q full. (min 
+        count: 10000)
+PM_GCT_NOSLOT_DISP_HELD_MAP: (counter: 3)
+	Gct empty for this thread due to dispatch hold on this thread due to Mapper full. (min 
+        count: 10000)
+PM_GCT_NOSLOT_DISP_HELD_OTHER: (counter: 1)
+	Gct empty for this thread due to dispatch hold on this thread due to sync. (min count: 
+        10000)
+PM_GCT_NOSLOT_DISP_HELD_SRQ: (counter: 1)
+	Gct empty for this thread due to dispatch hold on this thread due to SRQ full. (min count: 
+        10000)
+PM_GCT_NOSLOT_IC_L3MISS: (counter: 3)
+	Gct empty for this thread due to icach l3 miss. (min count: 10000)
+PM_GCT_NOSLOT_IC_MISS: (counter: 1)
+	Gct empty for this thread due to Icache Miss. (min count: 10000)
+PM_GCT_UTIL_11_14_ENTRIES: (counter: 0, 1, 2, 3)
+	GCT Utilization 11-14 entries (min count: 10000)
+PM_GCT_UTIL_15_17_ENTRIES: (counter: 0, 1, 2, 3)
+	GCT Utilization 15-17 entries (min count: 10000)
+PM_GCT_UTIL_18_ENTRIES: (counter: 0, 1, 2, 3)
+	GCT Utilization 18+ entries (min count: 10000)
+PM_GCT_UTIL_1_2_ENTRIES: (counter: 0, 1, 2, 3)
+	GCT Utilization 1-2 entries (min count: 10000)
+PM_GCT_UTIL_3_6_ENTRIES: (counter: 0, 1, 2, 3)
+	GCT Utilization 3-6 entries (min count: 10000)
+PM_GCT_UTIL_7_10_ENTRIES: (counter: 0, 1, 2, 3)
+	GCT Utilization 7-10 entries (min count: 10000)
+PM_GRP_BR_MPRED_NONSPEC: (counter: 0)
+	Group experienced Non-speculative br mispredicct. (min count: 10000)
+PM_GRP_CMPL: (counter: 2)
+	group completed. (min count: 100000)
+PM_GRP_DISP: (counter: 2)
+	dispatch_success (Group Dispatched). (min count: 100000)
+PM_GRP_IC_MISS_NONSPEC: (counter: 0)
+	Group experi enced Non-specu lative I cache miss. (min count: 10000)
+PM_GRP_MRK: (counter: 0)
+	Instruction marked in idu. (min count: 10000)
+PM_GRP_NON_FULL_GROUP: (counter: 0, 1, 2, 3)
+	GROUPs where we did not have 6 non branch instructions in the group(ST mode), in SMT mode 3 
+        non branches (min count: 10000)
+PM_GRP_PUMP_CPRED: (counter: 1)
+	Initial and Final Pump Scope and data sourced across this scope was group pump for all data 
+        types excluding data prefetch (demand load,inst prefetch,inst fetch,xlate). (min count: 
+        10000)
+PM_GRP_PUMP_MPRED: (counter: 1)
+	Final Pump Scope(Group) to get data sourced, ended up larger than Initial Pump Scope OR 
+        Final Pump Scope(Group) got data from source that was at smaller scope(Chip) Final pump was 
+        group pump and initial pump was chip or final and initial pump was gro (min count: 10000)
+PM_GRP_PUMP_MPRED_RTY: (counter: 0)
+	Final Pump Scope(Group) to get data sourced, ended up larger than Initial Pump Scope (Chip) 
+        Final pump was group pump and initial pump was chip pumpfor all data types excluding data 
+        prefetch (demand load,inst prefetch,inst fetch,xlate). (min count: 10000)
+PM_GRP_TERM_2ND_BRANCH: (counter: 0, 1, 2, 3)
+	There were enough instructions in the Ibuffer, but 2nd branch ends group (min count: 
+        10000)
+PM_GRP_TERM_FPU_AFTER_BR: (counter: 0, 1, 2, 3)
+	There were enough instructions in the Ibuffer, but FPU OP IN same group after a branch 
+        terminates a group, cant do partial flushes (min count: 10000)
+PM_GRP_TERM_NOINST: (counter: 0, 1, 2, 3)
+	Do not fill every slot in the group, Not enough instructions in the Ibuffer. This includes 
+        cases where the group started with enough instructions, but some got knocked out by a cache 
+        miss or branch redirect (which would also empty the Ibuffer). (min count: 10000)
+PM_GRP_TERM_OTHER: (counter: 0, 1, 2, 3)
+	There were enough instructions in the Ibuffer, but the group terminated early for some 
+        other reason, most likely due to a First or Last. (min count: 10000)
+PM_GRP_TERM_SLOT_LIMIT: (counter: 0, 1, 2, 3)
+	There were enough instructions in the Ibuffer, but 3 src RA/RB/RC , 2 way crack caused a 
+        group termination (min count: 10000)
+PM_HV_CYC: (counter: 1)
+	cycles in hypervisor mode . (min count: 10000)
+PM_IBUF_FULL_CYC: (counter: 0, 1, 2, 3)
+	Cycles No room in ibufffully qualified tranfer (if5 valid). (min count: 10000)
+PM_IC_DEMAND_CYC: (counter: 0)
+	Demand ifetch pending. (min count: 10000)
+PM_IC_DEMAND_L2_BHT_REDIRECT: (counter: 0, 1, 2, 3)
+	L2 I cache demand request due to BHT redirect, branch redirect ( 2 bubbles 3 cycles) (min 
+        count: 10000)
+PM_IC_DEMAND_L2_BR_REDIRECT: (counter: 0, 1, 2, 3)
+	L2 I cache demand request due to branch Mispredict ( 15 cycle path) (min count: 10000)
+PM_IC_DEMAND_REQ: (counter: 0, 1, 2, 3)
+	Demand Instruction fetch request (min count: 10000)
+PM_IC_INVALIDATE: (counter: 0, 1, 2, 3)
+	Ic line invalidated (min count: 10000)
+PM_IC_PREF_CANCEL_HIT: (counter: 0, 1, 2, 3)
+	Prefetch Canceled due to icache hit (min count: 10000)
+PM_IC_PREF_CANCEL_L2: (counter: 0, 1, 2, 3)
+	L2 Squashed request (min count: 10000)
+PM_IC_PREF_CANCEL_PAGE: (counter: 0, 1, 2, 3)
+	Prefetch Canceled due to page boundary (min count: 10000)
+PM_IC_PREF_REQ: (counter: 0, 1, 2, 3)
+	Instruction prefetch requests (min count: 10000)
+PM_IC_PREF_WRITE: (counter: 0, 1, 2, 3)
+	Instruction prefetch written into IL1 (min count: 10000)
+PM_IC_RELOAD_PRIVATE: (counter: 0, 1, 2, 3)
+	Reloading line was brought in private for a specific thread. Most lines are brought in 
+        shared for all eight thrreads. If RA does not match then invalidates and then brings it 
+        shared to other thread. In P7 line brought in private , then line was inv (min count: 
+        10000)
+PM_IERAT_RELOAD_16M: (counter: 3)
+	IERAT Reloaded (Miss) for a 16M page. (min count: 10000)
+PM_IERAT_RELOAD_4K: (counter: 1)
+	IERAT Reloaded (Miss) for a 4k page. (min count: 10000)
+PM_IERAT_RELOAD_64K: (counter: 2)
+	IERAT Reloaded (Miss) for a 64k page. (min count: 10000)
+PM_IFETCH_THROTTLE: (counter: 2)
+	Cycles instruction fecth was throttled in IFU. (min count: 10000)
+PM_IFU_L2_TOUCH: (counter: 0, 1, 2, 3)
+	L2 touch to update MRU on a line (min count: 10000)
+PM_INST_ALL_CHIP_PUMP_CPRED: (counter: 0)
+	Initial and Final Pump Scope and data sourced across this scope was chip pump 
+        (prediction=correct) for an instruction fetch (min count: 10000)
+PM_INST_ALL_FROM_DL2L3_MOD: (counter: 3)
+	The processor's Instruction cache was reloaded with Modified (M) data from another chip's 
+        L2 or L3 on a different Node or Group (Distant), as this chip due to either an instruction 
+        fetch or instruction fetch plus prefetch if MMCR1[17] is 1 (min count: 10000)
+PM_INST_ALL_FROM_DL2L3_SHR: (counter: 2)
+	The processor's Instruction cache was reloaded with Shared (S) data from another chip's L2 
+        or L3 on a different Node or Group (Distant), as this chip due to either an instruction 
+        fetch or instruction fetch plus prefetch if MMCR1[17] is 1 (min count: 10000)
+PM_INST_ALL_FROM_DL4: (counter: 2)
+	The processor's Instruction cache was reloaded from another chip's L4 on a different Node 
+        or Group (Distant) due to either an instruction fetch or instruction fetch plus prefetch if 
+        MMCR1[17] is 1 (min count: 10000)
+PM_INST_ALL_FROM_DMEM: (counter: 3)
+	The processor's Instruction cache was reloaded from another chip's memory on the same Node 
+        or Group (Distant) due to either an instruction fetch or instruction fetch plus prefetch if 
+        MMCR1[17] is 1 (min count: 10000)
+PM_INST_ALL_FROM_L2: (counter: 0)
+	The processor's Instruction cache was reloaded from local core's L2 due to either an 
+        instruction fetch or instruction fetch plus prefetch if MMCR1[17] is 1 (min count: 10000)
+PM_INST_ALL_FROM_L21_MOD: (counter: 3)
+	The processor's Instruction cache was reloaded with Modified (M) data from another core's 
+        L2 on the same chip due to either an instruction fetch or instruction fetch plus prefetch 
+        if MMCR1[17] is 1 (min count: 10000)
+PM_INST_ALL_FROM_L21_SHR: (counter: 2)
+	The processor's Instruction cache was reloaded with Shared (S) data from another core's L2 
+        on the same chip due to either an instruction fetch or instruction fetch plus prefetch if 
+        MMCR1[17] is 1 (min count: 10000)
+PM_INST_ALL_FROM_L2MISS: (counter: 0)
+	The processor's Instruction cache was reloaded from a localtion other than the local core's 
+        L2 due to either an instruction fetch or instruction fetch plus prefetch if MMCR1[17] is 1 
+        (min count: 10000)
+PM_INST_ALL_FROM_L2_DISP_CONFLICT_LDHITST: (counter: 2)
+	The processor's Instruction cache was reloaded from local core's L2 with load hit store 
+        conflict due to either an instruction fetch or instruction fetch plus prefetch if MMCR1[17] 
+        is 1 (min count: 10000)
+PM_INST_ALL_FROM_L2_DISP_CONFLICT_OTHER: (counter: 3)
+	The processor's Instruction cache was reloaded from local core's L2 with dispatch conflict 
+        due to either an instruction fetch or instruction fetch plus prefetch if MMCR1[17] is 1 
+        (min count: 10000)
+PM_INST_ALL_FROM_L2_MEPF: (counter: 1)
+	The processor's Instruction cache was reloaded from local core's L2 hit without dispatch 
+        conflicts on Mepf state. due to either an instruction fetch or instruction fetch plus 
+        prefetch if MMCR1[17] is 1 (min count: 10000)
+PM_INST_ALL_FROM_L2_NO_CONFLICT: (counter: 0)
+	The processor's Instruction cache was reloaded from local core's L2 without conflict due to 
+        either an instruction fetch or instruction fetch plus prefetch if MMCR1[17] is 1 (min 
+        count: 10000)
+PM_INST_ALL_FROM_L3: (counter: 3)
+	The processor's Instruction cache was reloaded from local core's L3 due to either an 
+        instruction fetch or instruction fetch plus prefetch if MMCR1[17] is 1 (min count: 10000)
+PM_INST_ALL_FROM_L31_ECO_MOD: (counter: 3)
+	The processor's Instruction cache was reloaded with Modified (M) data from another core's 
+        ECO L3 on the same chip due to either an instruction fetch or instruction fetch plus 
+        prefetch if MMCR1[17] is 1 (min count: 10000)
+PM_INST_ALL_FROM_L31_ECO_SHR: (counter: 2)
+	The processor's Instruction cache was reloaded with Shared (S) data from another core's ECO 
+        L3 on the same chip due to either an instruction fetch or instruction fetch plus prefetch 
+        if MMCR1[17] is 1 (min count: 10000)
+PM_INST_ALL_FROM_L31_MOD: (counter: 1)
+	The processor's Instruction cache was reloaded with Modified (M) data from another core's 
+        L3 on the same chip due to either an instruction fetch or instruction fetch plus prefetch 
+        if MMCR1[17] is 1 (min count: 10000)
+PM_INST_ALL_FROM_L31_SHR: (counter: 0)
+	The processor's Instruction cache was reloaded with Shared (S) data from another core's L3 
+        on the same chip due to either an instruction fetch or instruction fetch plus prefetch if 
+        MMCR1[17] is 1 (min count: 10000)
+PM_INST_ALL_FROM_L3MISS_MOD: (counter: 3)
+	The processor's Instruction cache was reloaded from a localtion other than the local core's 
+        L3 due to either an instruction fetch or instruction fetch plus prefetch if MMCR1[17] is 1 
+        (min count: 10000)
+PM_INST_ALL_FROM_L3_DISP_CONFLICT: (counter: 2)
+	The processor's Instruction cache was reloaded from local core's L3 with dispatch conflict 
+        due to either an instruction fetch or instruction fetch plus prefetch if MMCR1[17] is 1 
+        (min count: 10000)
+PM_INST_ALL_FROM_L3_MEPF: (counter: 1)
+	The processor's Instruction cache was reloaded from local core's L3 without dispatch 
+        conflicts hit on Mepf state. due to either an instruction fetch or instruction fetch plus 
+        prefetch if MMCR1[17] is 1 (min count: 10000)
+PM_INST_ALL_FROM_L3_NO_CONFLICT: (counter: 0)
+	The processor's Instruction cache was reloaded from local core's L3 without conflict due to 
+        either an instruction fetch or instruction fetch plus prefetch if MMCR1[17] is 1 (min 
+        count: 10000)
+PM_INST_ALL_FROM_LL4: (counter: 0)
+	The processor's Instruction cache was reloaded from the local chip's L4 cache due to either 
+        an instruction fetch or instruction fetch plus prefetch if MMCR1[17] is 1 (min count: 
+        10000)
+PM_INST_ALL_FROM_LMEM: (counter: 1)
+	The processor's Instruction cache was reloaded from the local chip's Memory due to either 
+        an instruction fetch or instruction fetch plus prefetch if MMCR1[17] is 1 (min count: 
+        10000)
+PM_INST_ALL_FROM_MEMORY: (counter: 1)
+	The processor's Instruction cache was reloaded from a memory location including L4 from 
+        local remote or distant due to either an instruction fetch or instruction fetch plus 
+        prefetch if MMCR1[17] is 1 (min count: 10000)
+PM_INST_ALL_FROM_OFF_CHIP_CACHE: (counter: 3)
+	The processor's Instruction cache was reloaded either shared or modified data from another 
+        core's L2/L3 on a different chip (remote or distant) due to either an instruction fetch or 
+        instruction fetch plus prefetch if MMCR1[17] is 1 (min count: 10000)
+PM_INST_ALL_FROM_ON_CHIP_CACHE: (counter: 0)
+	The processor's Instruction cache was reloaded either shared or modified data from another 
+        core's L2/L3 on the same chip due to either an instruction fetch or instruction fetch plus 
+        prefetch if MMCR1[17] is 1 (min count: 10000)
+PM_INST_ALL_FROM_RL2L3_MOD: (counter: 1)
+	The processor's Instruction cache was reloaded with Modified (M) data from another chip's 
+        L2 or L3 on the same Node or Group (Remote), as this chip due to either an instruction 
+        fetch or instruction fetch plus prefetch if MMCR1[17] is 1 (min count: 10000)
+PM_INST_ALL_FROM_RL2L3_SHR: (counter: 0)
+	The processor's Instruction cache was reloaded with Shared (S) data from another chip's L2 
+        or L3 on the same Node or Group (Remote), as this chip due to either an instruction fetch 
+        or instruction fetch plus prefetch if MMCR1[17] is 1 (min count: 10000)
+PM_INST_ALL_FROM_RL4: (counter: 1)
+	The processor's Instruction cache was reloaded from another chip's L4 on the same Node or 
+        Group ( Remote) due to either an instruction fetch or instruction fetch plus prefetch if 
+        MMCR1[17] is 1 (min count: 10000)
+PM_INST_ALL_FROM_RMEM: (counter: 2)
+	The processor's Instruction cache was reloaded from another chip's memory on the same Node 
+        or Group ( Remote) due to either an instruction fetch or instruction fetch plus prefetch if 
+        MMCR1[17] is 1 (min count: 10000)
+PM_INST_ALL_GRP_PUMP_CPRED: (counter: 1)
+	Initial and Final Pump Scope and data sourced across this scope was group pump for an 
+        instruction fetch (min count: 10000)
+PM_INST_ALL_GRP_PUMP_MPRED: (counter: 1)
+	Final Pump Scope(Group) to get data sourced, ended up larger than Initial Pump Scope OR 
+        Final Pump Scope(Group) got data from source that was at smaller scope(Chip) Final pump was 
+        group pump and initial pump was chip or final and initial pump was gro (min count: 10000)
+PM_INST_ALL_GRP_PUMP_MPRED_RTY: (counter: 0)
+	Final Pump Scope(Group) to get data sourced, ended up larger than Initial Pump Scope (Chip) 
+        Final pump was group pump and initial pump was chip pumpfor an instruction fetch (min 
+        count: 10000)
+PM_INST_ALL_PUMP_CPRED: (counter: 0)
+	Pump prediction correct. Counts across all types of pumpsfor an instruction fetch (min 
+        count: 10000)
+PM_INST_ALL_PUMP_MPRED: (counter: 3)
+	Pump Mis prediction Counts across all types of pumpsfor an instruction fetch (min count: 
+        10000)
+PM_INST_ALL_SYS_PUMP_CPRED: (counter: 2)
+	Initial and Final Pump Scope and data sourced across this scope was system pump for an 
+        instruction fetch (min count: 10000)
+PM_INST_ALL_SYS_PUMP_MPRED: (counter: 2)
+	Final Pump Scope(system) to get data sourced, ended up larger than Initial Pump 
+        Scope(Chip/Group) OR Final Pump Scope(system) got data from source that was at smaller 
+        scope(Chip/group) Final pump was system pump and initial pump was chip or group or (min 
+        count: 10000)
+PM_INST_ALL_SYS_PUMP_MPRED_RTY: (counter: 3)
+	Final Pump Scope(system) to get data sourced, ended up larger than Initial Pump Scope (Chip 
+        or Group) for an instruction fetch (min count: 10000)
+PM_INST_CHIP_PUMP_CPRED: (counter: 0)
+	Initial and Final Pump Scope and data sourced across this scope was chip pump 
+        (prediction=correct) for an instruction fetch. (min count: 10000)
+PM_INST_CMPL: (counter: 0, 1, 2, 3)
+	PPC Instructions Finished (completed). (min count: 100000)
+PM_INST_FROM_DL2L3_MOD: (counter: 3)
+	The processor's Instruction cache was reloaded with Modified (M) data from another chip's 
+        L2 or L3 on a different Node or Group (Distant), as this chip due to either an instruction 
+        fetch or instruction fetch plus prefetch if MMCR1[17] is 1 . (min count: 10000)
+PM_INST_FROM_DL2L3_SHR: (counter: 2)
+	The processor's Instruction cache was reloaded with Shared (S) data from another chip's L2 
+        or L3 on a different Node or Group (Distant), as this chip due to either an instruction 
+        fetch or instruction fetch plus prefetch if MMCR1[17] is 1 . (min count: 10000)
+PM_INST_FROM_DL4: (counter: 2)
+	The processor's Instruction cache was reloaded from another chip's L4 on a different Node 
+        or Group (Distant) due to either an instruction fetch or instruction fetch plus prefetch if 
+        MMCR1[17] is 1 . (min count: 10000)
+PM_INST_FROM_DMEM: (counter: 3)
+	The processor's Instruction cache was reloaded from another chip's memory on the same Node 
+        or Group (Distant) due to either an instruction fetch or instruction fetch plus prefetch if 
+        MMCR1[17] is 1 . (min count: 10000)
+PM_INST_FROM_L1: (counter: 0, 1, 2, 3)
+	Instruction fetches from L1 (min count: 10000)
+PM_INST_FROM_L2: (counter: 0)
+	The processor's Instruction cache was reloaded from local core's L2 due to either an 
+        instruction fetch or instruction fetch plus prefetch if MMCR1[17] is 1 . (min count: 
+        10000)
+PM_INST_FROM_L21_MOD: (counter: 3)
+	The processor's Instruction cache was reloaded with Modified (M) data from another core's 
+        L2 on the same chip due to either an instruction fetch or instruction fetch plus prefetch 
+        if MMCR1[17] is 1 . (min count: 10000)
+PM_INST_FROM_L21_SHR: (counter: 2)
+	The processor's Instruction cache was reloaded with Shared (S) data from another core's L2 
+        on the same chip due to either an instruction fetch or instruction fetch plus prefetch if 
+        MMCR1[17] is 1 . (min count: 10000)
+PM_INST_FROM_L2MISS: (counter: 0)
+	The processor's Instruction cache was reloaded from a localtion other than the local core's 
+        L2 due to either an instruction fetch or instruction fetch plus prefetch if MMCR1[17] is 1 
+        . (min count: 10000)
+PM_INST_FROM_L2_DISP_CONFLICT_LDHITST: (counter: 2)
+	The processor's Instruction cache was reloaded from local core's L2 with load hit store 
+        conflict due to either an instruction fetch or instruction fetch plus prefetch if MMCR1[17] 
+        is 1 . (min count: 10000)
+PM_INST_FROM_L2_DISP_CONFLICT_OTHER: (counter: 3)
+	The processor's Instruction cache was reloaded from local core's L2 with dispatch conflict 
+        due to either an instruction fetch or instruction fetch plus prefetch if MMCR1[17] is 1 . 
+        (min count: 10000)
+PM_INST_FROM_L2_MEPF: (counter: 1)
+	The processor's Instruction cache was reloaded from local core's L2 hit without dispatch 
+        conflicts on Mepf state. due to either an instruction fetch or instruction fetch plus 
+        prefetch if MMCR1[17] is 1 . (min count: 10000)
+PM_INST_FROM_L2_NO_CONFLICT: (counter: 0)
+	The processor's Instruction cache was reloaded from local core's L2 without conflict due to 
+        either an instruction fetch or instruction fetch plus prefetch if MMCR1[17] is 1 . (min 
+        count: 10000)
+PM_INST_FROM_L3: (counter: 3)
+	The processor's Instruction cache was reloaded from local core's L3 due to either an 
+        instruction fetch or instruction fetch plus prefetch if MMCR1[17] is 1 . (min count: 
+        10000)
+PM_INST_FROM_L31_ECO_MOD: (counter: 3)
+	The processor's Instruction cache was reloaded with Modified (M) data from another core's 
+        ECO L3 on the same chip due to either an instruction fetch or instruction fetch plus 
+        prefetch if MMCR1[17] is 1 . (min count: 10000)
+PM_INST_FROM_L31_ECO_SHR: (counter: 2)
+	The processor's Instruction cache was reloaded with Shared (S) data from another core's ECO 
+        L3 on the same chip due to either an instruction fetch or instruction fetch plus prefetch 
+        if MMCR1[17] is 1 . (min count: 10000)
+PM_INST_FROM_L31_MOD: (counter: 1)
+	The processor's Instruction cache was reloaded with Modified (M) data from another core's 
+        L3 on the same chip due to either an instruction fetch or instruction fetch plus prefetch 
+        if MMCR1[17] is 1 . (min count: 10000)
+PM_INST_FROM_L31_SHR: (counter: 0)
+	The processor's Instruction cache was reloaded with Shared (S) data from another core's L3 
+        on the same chip due to either an instruction fetch or instruction fetch plus prefetch if 
+        MMCR1[17] is 1 . (min count: 10000)
+PM_INST_FROM_L3MISS_MOD: (counter: 3)
+	The processor's Instruction cache was reloaded from a localtion other than the local core's 
+        L3 due to either an instruction fetch or instruction fetch plus prefetch if MMCR1[17] is 1 
+        . (min count: 10000)
+PM_INST_FROM_L3_DISP_CONFLICT: (counter: 2)
+	The processor's Instruction cache was reloaded from local core's L3 with dispatch conflict 
+        due to either an instruction fetch or instruction fetch plus prefetch if MMCR1[17] is 1 . 
+        (min count: 10000)
+PM_INST_FROM_L3_MEPF: (counter: 1)
+	The processor's Instruction cache was reloaded from local core's L3 without dispatch 
+        conflicts hit on Mepf state. due to either an instruction fetch or instruction fetch plus 
+        prefetch if MMCR1[17] is 1 . (min count: 10000)
+PM_INST_FROM_L3_NO_CONFLICT: (counter: 0)
+	The processor's Instruction cache was reloaded from local core's L3 without conflict due to 
+        either an instruction fetch or instruction fetch plus prefetch if MMCR1[17] is 1 . (min 
+        count: 10000)
+PM_INST_FROM_LL4: (counter: 0)
+	The processor's Instruction cache was reloaded from the local chip's L4 cache due to either 
+        an instruction fetch or instruction fetch plus prefetch if MMCR1[17] is 1 . (min count: 
+        10000)
+PM_INST_FROM_LMEM: (counter: 1)
+	The processor's Instruction cache was reloaded from the local chip's Memory due to either 
+        an instruction fetch or instruction fetch plus prefetch if MMCR1[17] is 1 . (min count: 
+        10000)
+PM_INST_FROM_MEMORY: (counter: 1)
+	The processor's Instruction cache was reloaded from a memory location including L4 from 
+        local remote or distant due to either an instruction fetch or instruction fetch plus 
+        prefetch if MMCR1[17] is 1 . (min count: 10000)
+PM_INST_FROM_OFF_CHIP_CACHE: (counter: 3)
+	The processor's Instruction cache was reloaded either shared or modified data from another 
+        core's L2/L3 on a different chip (remote or distant) due to either an instruction fetch or 
+        instruction fetch plus prefetch if MMCR1[17] is 1 . (min count: 10000)
+PM_INST_FROM_ON_CHIP_CACHE: (counter: 0)
+	The processor's Instruction cache was reloaded either shared or modified data from another 
+        core's L2/L3 on the same chip due to either an instruction fetch or instruction fetch plus 
+        prefetch if MMCR1[17] is 1 . (min count: 10000)
+PM_INST_FROM_RL2L3_MOD: (counter: 1)
+	The processor's Instruction cache was reloaded with Modified (M) data from another chip's 
+        L2 or L3 on the same Node or Group (Remote), as this chip due to either an instruction 
+        fetch or instruction fetch plus prefetch if MMCR1[17] is 1 . (min count: 10000)
+PM_INST_FROM_RL2L3_SHR: (counter: 0)
+	The processor's Instruction cache was reloaded with Shared (S) data from another chip's L2 
+        or L3 on the same Node or Group (Remote), as this chip due to either an instruction fetch 
+        or instruction fetch plus prefetch if MMCR1[17] is 1 . (min count: 10000)
+PM_INST_FROM_RL4: (counter: 1)
+	The processor's Instruction cache was reloaded from another chip's L4 on the same Node or 
+        Group ( Remote) due to either an instruction fetch or instruction fetch plus prefetch if 
+        MMCR1[17] is 1 . (min count: 10000)
+PM_INST_FROM_RMEM: (counter: 2)
+	The processor's Instruction cache was reloaded from another chip's memory on the same Node 
+        or Group ( Remote) due to either an instruction fetch or instruction fetch plus prefetch if 
+        MMCR1[17] is 1 . (min count: 10000)
+PM_INST_GRP_PUMP_CPRED: (counter: 1)
+	Initial and Final Pump Scope and data sourced across this scope was group pump for an 
+        instruction fetch. (min count: 10000)
+PM_INST_GRP_PUMP_MPRED: (counter: 1)
+	Final Pump Scope(Group) to get data sourced, ended up larger than Initial Pump Scope OR 
+        Final Pump Scope(Group) got data from source that was at smaller scope(Chip) Final pump was 
+        group pump and initial pump was chip or final and initial pump was gro (min count: 10000)
+PM_INST_GRP_PUMP_MPRED_RTY: (counter: 0)
+	Final Pump Scope(Group) to get data sourced, ended up larger than Initial Pump Scope (Chip) 
+        Final pump was group pump and initial pump was chip pumpfor an instruction fetch. (min 
+        count: 10000)
+PM_INST_IMC_MATCH_CMPL: (counter: 0)
+	IMC Match Count. (min count: 10000)
+PM_INST_IMC_MATCH_DISP: (counter: 2)
+	IMC Matches dispatched. (min count: 10000)
+PM_INST_PUMP_CPRED: (counter: 0)
+	Pump prediction correct. Counts across all types of pumpsfor an instruction fetch. (min 
+        count: 10000)
+PM_INST_PUMP_MPRED: (counter: 3)
+	Pump Mis prediction Counts across all types of pumpsfor an instruction fetch. (min count: 
+        10000)
+PM_INST_SYS_PUMP_CPRED: (counter: 2)
+	Initial and Final Pump Scope and data sourced across this scope was system pump for an 
+        instruction fetch. (min count: 10000)
+PM_INST_SYS_PUMP_MPRED: (counter: 2)
+	Final Pump Scope(system) to get data sourced, ended up larger than Initial Pump 
+        Scope(Chip/Group) OR Final Pump Scope(system) got data from source that was at smaller 
+        scope(Chip/group) Final pump was system pump and initial pump was chip or group or (min 
+        count: 10000)
+PM_INST_SYS_PUMP_MPRED_RTY: (counter: 3)
+	Final Pump Scope(system) to get data sourced, ended up larger than Initial Pump Scope (Chip 
+        or Group) for an instruction fetch. (min count: 10000)
+PM_IOPS_CMPL: (counter: 0)
+	IOPS Completed. (min count: 100000)
+PM_IOPS_DISP: (counter: 2)
+	IOPS dispatched. (min count: 100000)
+PM_IPTEG_FROM_DL2L3_MOD: (counter: 3)
+	A Page Table Entry was loaded into the TLB with Modified (M) data from another chip's L2 or 
+        L3 on a different Node or Group (Distant), as this chip due to a instruction side request. 
+        (min count: 10000)
+PM_IPTEG_FROM_DL2L3_SHR: (counter: 2)
+	A Page Table Entry was loaded into the TLB with Shared (S) data from another chip's L2 or 
+        L3 on a different Node or Group (Distant), as this chip due to a instruction side request. 
+        (min count: 10000)
+PM_IPTEG_FROM_DL4: (counter: 2)
+	A Page Table Entry was loaded into the TLB from another chip's L4 on a different Node or 
+        Group (Distant) due to a instruction side request. (min count: 10000)
+PM_IPTEG_FROM_DMEM: (counter: 3)
+	A Page Table Entry was loaded into the TLB from another chip's memory on the same Node or 
+        Group (Distant) due to a instruction side request. (min count: 10000)
+PM_IPTEG_FROM_L2: (counter: 0)
+	A Page Table Entry was loaded into the TLB from local core's L2 due to a instruction side 
+        request. (min count: 10000)
+PM_IPTEG_FROM_L21_MOD: (counter: 3)
+	A Page Table Entry was loaded into the TLB with Modified (M) data from another core's L2 on 
+        the same chip due to a instruction side request. (min count: 10000)
+PM_IPTEG_FROM_L21_SHR: (counter: 2)
+	A Page Table Entry was loaded into the TLB with Shared (S) data from another core's L2 on 
+        the same chip due to a instruction side request. (min count: 10000)
+PM_IPTEG_FROM_L2MISS: (counter: 0)
+	A Page Table Entry was loaded into the TLB from a localtion other than the local core's L2 
+        due to a instruction side request. (min count: 10000)
+PM_IPTEG_FROM_L2_DISP_CONFLICT_LDHITST: (counter: 2)
+	A Page Table Entry was loaded into the TLB from local core's L2 with load hit store 
+        conflict due to a instruction side request. (min count: 10000)
+PM_IPTEG_FROM_L2_DISP_CONFLICT_OTHER: (counter: 3)
+	A Page Table Entry was loaded into the TLB from local core's L2 with dispatch conflict due 
+        to a instruction side request. (min count: 10000)
+PM_IPTEG_FROM_L2_MEPF: (counter: 1)
+	A Page Table Entry was loaded into the TLB from local core's L2 hit without dispatch 
+        conflicts on Mepf state. due to a instruction side request. (min count: 10000)
+PM_IPTEG_FROM_L2_NO_CONFLICT: (counter: 0)
+	A Page Table Entry was loaded into the TLB from local core's L2 without conflict due to a 
+        instruction side request. (min count: 10000)
+PM_IPTEG_FROM_L3: (counter: 3)
+	A Page Table Entry was loaded into the TLB from local core's L3 due to a instruction side 
+        request. (min count: 10000)
+PM_IPTEG_FROM_L31_ECO_MOD: (counter: 3)
+	A Page Table Entry was loaded into the TLB with Modified (M) data from another core's ECO 
+        L3 on the same chip due to a instruction side request. (min count: 10000)
+PM_IPTEG_FROM_L31_ECO_SHR: (counter: 2)
+	A Page Table Entry was loaded into the TLB with Shared (S) data from another core's ECO L3 
+        on the same chip due to a instruction side request. (min count: 10000)
+PM_IPTEG_FROM_L31_MOD: (counter: 1)
+	A Page Table Entry was loaded into the TLB with Modified (M) data from another core's L3 on 
+        the same chip due to a instruction side request. (min count: 10000)
+PM_IPTEG_FROM_L31_SHR: (counter: 0)
+	A Page Table Entry was loaded into the TLB with Shared (S) data from another core's L3 on 
+        the same chip due to a instruction side request. (min count: 10000)
+PM_IPTEG_FROM_L3MISS: (counter: 3)
+	A Page Table Entry was loaded into the TLB from a localtion other than the local core's L3 
+        due to a instruction side request. (min count: 10000)
+PM_IPTEG_FROM_L3_DISP_CONFLICT: (counter: 2)
+	A Page Table Entry was loaded into the TLB from local core's L3 with dispatch conflict due 
+        to a instruction side request. (min count: 10000)
+PM_IPTEG_FROM_L3_MEPF: (counter: 1)
+	A Page Table Entry was loaded into the TLB from local core's L3 without dispatch conflicts 
+        hit on Mepf state. due to a instruction side request. (min count: 10000)
+PM_IPTEG_FROM_L3_NO_CONFLICT: (counter: 0)
+	A Page Table Entry was loaded into the TLB from local core's L3 without conflict due to a 
+        instruction side request. (min count: 10000)
+PM_IPTEG_FROM_LL4: (counter: 0)
+	A Page Table Entry was loaded into the TLB from the local chip's L4 cache due to a 
+        instruction side request. (min count: 10000)
+PM_IPTEG_FROM_LMEM: (counter: 1)
+	A Page Table Entry was loaded into the TLB from the local chip's Memory due to a 
+        instruction side request. (min count: 10000)
+PM_IPTEG_FROM_MEMORY: (counter: 1)
+	A Page Table Entry was loaded into the TLB from a memory location including L4 from local 
+        remote or distant due to a instruction side request. (min count: 10000)
+PM_IPTEG_FROM_OFF_CHIP_CACHE: (counter: 3)
+	A Page Table Entry was loaded into the TLB either shared or modified data from another 
+        core's L2/L3 on a different chip (remote or distant) due to a instruction side request. 
+        (min count: 10000)
+PM_IPTEG_FROM_ON_CHIP_CACHE: (counter: 0)
+	A Page Table Entry was loaded into the TLB either shared or modified data from another 
+        core's L2/L3 on the same chip due to a instruction side request. (min count: 10000)
+PM_IPTEG_FROM_RL2L3_MOD: (counter: 1)
+	A Page Table Entry was loaded into the TLB with Modified (M) data from another chip's L2 or 
+        L3 on the same Node or Group (Remote), as this chip due to a instruction side request. 
+        (min count: 10000)
+PM_IPTEG_FROM_RL2L3_SHR: (counter: 0)
+	A Page Table Entry was loaded into the TLB with Shared (S) data from another chip's L2 or 
+        L3 on the same Node or Group (Remote), as this chip due to a instruction side request. 
+        (min count: 10000)
+PM_IPTEG_FROM_RL4: (counter: 1)
+	A Page Table Entry was loaded into the TLB from another chip's L4 on the same Node or Group 
+        ( Remote) due to a instruction side request. (min count: 10000)
+PM_IPTEG_FROM_RMEM: (counter: 2)
+	A Page Table Entry was loaded into the TLB from another chip's memory on the same Node or 
+        Group ( Remote) due to a instruction side request. (min count: 10000)
+PM_ISIDE_DISP: (counter: 0)
+	All i-side dispatch attempts (min count: 10000)
+PM_ISIDE_DISP_FAIL: (counter: 1)
+	All i-side dispatch attempts that failed due to a addr collision with another machine (min 
+        count: 10000)
+PM_ISIDE_DISP_FAIL_OTHER: (counter: 1)
+	All i-side dispatch attempts that failed due to a reason other than addrs collision (min 
+        count: 10000)
+PM_ISIDE_L2MEMACC: (counter: 3)
+	valid when first beat of data comes in for an i-side fetch where data came from mem(or L4) 
+        (min count: 10000)
+PM_ISIDE_MRU_TOUCH: (counter: 3)
+	Iside L2 MRU touch (min count: 10000)
+PM_ISLB_MISS: (counter: 0, 1, 2, 3)
+	I SLB Miss. (min count: 10000)
+PM_ISU_REF_FX0: (counter: 0, 1, 2, 3)
+	FX0 ISU reject (min count: 10000)
+PM_ISU_REF_FX1: (counter: 0, 1, 2, 3)
+	FX1 ISU reject (min count: 10000)
+PM_ISU_REF_FXU: (counter: 0, 1, 2, 3)
+	ISU (min count: 10000)
+PM_ISU_REF_LS0: (counter: 0, 1, 2, 3)
+	LS0 ISU reject (min count: 10000)
+PM_ISU_REF_LS1: (counter: 0, 1, 2, 3)
+	LS1 ISU reject (min count: 10000)
+PM_ISU_REF_LS2: (counter: 0, 1, 2, 3)
+	LS2 ISU reject (min count: 10000)
+PM_ISU_REF_LS3: (counter: 0, 1, 2, 3)
+	LS3 ISU reject (min count: 10000)
+PM_ISU_REJECTS_ALL: (counter: 0, 1, 2, 3)
+	All isu rejects could be more than 1 per cycle (min count: 10000)
+PM_ISU_REJECT_RES_NA: (counter: 0, 1, 2, 3)
+	ISU reject due to resource not available (min count: 10000)
+PM_ISU_REJECT_SAR_BYPASS: (counter: 0, 1, 2, 3)
+	Reject because of SAR bypass (min count: 10000)
+PM_ISU_REJECT_SRC_NA: (counter: 0, 1, 2, 3)
+	ISU reject due to source not available (min count: 10000)
+PM_ISU_REJ_VS0: (counter: 0, 1, 2, 3)
+	VS0 ISU reject (min count: 10000)
+PM_ISU_REJ_VS1: (counter: 0, 1, 2, 3)
+	VS1 ISU reject (min count: 10000)
+PM_ISU_REJ_VSU: (counter: 0, 1, 2, 3)
+	ISU (min count: 10000)
+PM_ISYNC: (counter: 0, 1, 2, 3)
+	Isync count per thread (min count: 10000)
+PM_L1MISS_LAT_EXC_1024: (counter: 2)
+	Reload latency exceeded 1024 cyc (min count: 10000)
+PM_L1MISS_LAT_EXC_2048: (counter: 3)
+	Reload latency exceeded 2048 cyc (min count: 10000)
+PM_L1MISS_LAT_EXC_256: (counter: 0)
+	Reload latency exceeded 256 cyc (min count: 10000)
+PM_L1MISS_LAT_EXC_32: (counter: 1)
+	Reload latency exceeded 32 cyc (min count: 10000)
+PM_L1PF_L2MEMACC: (counter: 1)
+	valid when first beat of data comes in for an L1pref where data came from mem(or L4) (min 
+        count: 10000)
+PM_L1_DCACHE_RELOADED_ALL: (counter: 0)
+	L1 data cache reloaded for demand or prefetch . (min count: 10000)
+PM_L1_DEMAND_WRITE: (counter: 0, 1, 2, 3)
+	Instruction Demand sectors wriittent into IL1 (min count: 10000)
+PM_L1_ICACHE_RELOADED_ALL: (counter: 3)
+	Counts all Icache reloads includes demand, prefetchm prefetch turned into demand and demand 
+        turned into prefetch. (min count: 10000)
+PM_L1_ICACHE_RELOADED_PREF: (counter: 2)
+	Counts all Icache prefetch reloads ( includes demand turned into prefetch). (min count: 
+        10000)
+PM_L2_CASTOUT_MOD: (counter: 0)
+	L2 Castouts - Modified (M, Mu, Me) (min count: 10000)
+PM_L2_CASTOUT_SHR: (counter: 0)
+	L2 Castouts - Shared (T, Te, Si, S) (min count: 10000)
+PM_L2_CHIP_PUMP: (counter: 1)
+	RC requests that were local on chip pump attempts (min count: 10000)
+PM_L2_DC_INV: (counter: 1)
+	Dcache invalidates from L2 (min count: 10000)
+PM_L2_DISP_ALL_L2MISS: (counter: 3)
+	All successful Ld/St dispatches for this thread that were an L2miss. (min count: 10000)
+PM_L2_GROUP_PUMP: (counter: 3)
+	RC requests that were on Node Pump attempts (min count: 10000)
+PM_L2_GRP_GUESS_CORRECT: (counter: 1)
+	L2 guess grp and guess was correct (data intra-6chip AND ^on-chip) (min count: 10000)
+PM_L2_GRP_GUESS_WRONG: (counter: 1)
+	L2 guess grp and guess was not correct (ie data on-chip OR beyond-6chip) (min count: 
+        10000)
+PM_L2_IC_INV: (counter: 1)
+	Icache Invalidates from L2 (min count: 10000)
+PM_L2_INST: (counter: 2)
+	All successful I-side dispatches for this thread (excludes i_l2mru_tch reqs) (min count: 
+        10000)
+PM_L2_INST_MISS: (counter: 2)
+	All successful i-side dispatches that were an L2miss for this thread (excludes i_l2mru_tch 
+        reqs) (min count: 10000)
+PM_L2_LD: (counter: 0)
+	All successful D-side Load dispatches for this thread (min count: 10000)
+PM_L2_LD_DISP: (counter: 2)
+	All successful load dispatches (min count: 10000)
+PM_L2_LD_HIT: (counter: 2)
+	All successful load dispatches that were L2 hits (min count: 10000)
+PM_L2_LD_MISS: (counter: 1)
+	All successful D-Side Load dispatches that were an L2miss for this thread (min count: 
+        10000)
+PM_L2_LOC_GUESS_CORRECT: (counter: 0)
+	L2 guess loc and guess was correct (ie data local) (min count: 10000)
+PM_L2_LOC_GUESS_WRONG: (counter: 0)
+	L2 guess loc and guess was not correct (ie data not on chip) (min count: 10000)
+PM_L2_RCLD_DISP: (counter: 0)
+	L2 RC load dispatch attempt (min count: 10000)
+PM_L2_RCLD_DISP_FAIL_ADDR: (counter: 0)
+	L2 RC load dispatch attempt failed due to address collision with RC/CO/SN/SQ (min count: 
+        10000)
+PM_L2_RCLD_DISP_FAIL_OTHER: (counter: 1)
+	L2 RC load dispatch attempt failed due to other reasons (min count: 10000)
+PM_L2_RCST_DISP: (counter: 2)
+	L2 RC store dispatch attempt (min count: 10000)
+PM_L2_RCST_DISP_FAIL_ADDR: (counter: 2)
+	L2 RC store dispatch attempt failed due to address collision with RC/CO/SN/SQ (min count: 
+        10000)
+PM_L2_RCST_DISP_FAIL_OTHER: (counter: 3)
+	L2 RC store dispatch attempt failed due to other reasons (min count: 10000)
+PM_L2_RC_ST_DONE: (counter: 2)
+	RC did st to line that was Tx or Sx (min count: 10000)
+PM_L2_RTY_LD: (counter: 2)
+	RC retries on PB for any load from core (min count: 10000)
+PM_L2_RTY_ST: (counter: 2)
+	RC retries on PB for any store from core (min count: 10000)
+PM_L2_SN_M_RD_DONE: (counter: 3)
+	SNP dispatched for a read and was M (min count: 10000)
+PM_L2_SN_M_WR_DONE: (counter: 3)
+	SNP dispatched for a write and was M (min count: 10000)
+PM_L2_SN_SX_I_DONE: (counter: 2)
+	SNP dispatched and went from Sx or Tx to Ix (min count: 10000)
+PM_L2_ST: (counter: 0)
+	All successful D-side store dispatches for this thread (min count: 10000)
+PM_L2_ST_DISP: (counter: 3)
+	All successful store dispatches (min count: 10000)
+PM_L2_ST_HIT: (counter: 3)
+	All successful store dispatches that were L2Hits (min count: 10000)
+PM_L2_ST_MISS: (counter: 0)
+	All successful D-side store dispatches for this thread that were L2 Miss (min count: 
+        10000)
+PM_L2_SYS_GUESS_CORRECT: (counter: 2)
+	L2 guess sys and guess was correct (ie data beyond-6chip) (min count: 10000)
+PM_L2_SYS_GUESS_WRONG: (counter: 2)
+	L2 guess sys and guess was not correct (ie data ^beyond-6chip) (min count: 10000)
+PM_L2_SYS_PUMP: (counter: 2)
+	RC requests that were system pump attempts (min count: 10000)
+PM_L2_TM_REQ_ABORT: (counter: 0)
+	TM abort. (min count: 10000)
+PM_L2_TM_ST_ABORT_SISTER: (counter: 2)
+	TM marked store abort. (min count: 10000)
+PM_L3_CINJ: (counter: 2)
+	l3 ci of cache inject (min count: 10000)
+PM_L3_CI_HIT: (counter: 1)
+	L3 Castins Hit (total count (min count: 10000)
+PM_L3_CI_MISS: (counter: 1)
+	L3 castins miss (total count (min count: 10000)
+PM_L3_CI_USAGE: (counter: 0)
+	rotating sample of 16 CI or CO actives (min count: 10000)
+PM_L3_CO: (counter: 2)
+	l3 castout occuring ( does not include casthrough or log writes (cinj/dmaw) (min count: 
+        10000)
+PM_L3_CO0_ALLOC: (counter: 2)
+	0.0 (min count: 10000)
+PM_L3_CO0_BUSY: (counter: 2)
+	lifetime, sample of CO machine 0 valid (min count: 10000)
+PM_L3_CO_L31: (counter: 1)
+	L3 CO to L3.1 OR of port 0 and 1 ( lossy) (min count: 10000)
+PM_L3_CO_LCO: (counter: 2)
+	Total L3 castouts occurred on LCO (min count: 10000)
+PM_L3_CO_MEM: (counter: 1)
+	L3 CO to memory OR of port 0 and 1 ( lossy) (min count: 10000)
+PM_L3_CO_MEPF: (counter: 0)
+	L3 CO of line in Mep state ( includes casthrough (min count: 10000)
+PM_L3_GRP_GUESS_CORRECT: (counter: 0)
+	Initial scope=group and data from same group (near) (pred successful) (min count: 10000)
+PM_L3_GRP_GUESS_WRONG_HIGH: (counter: 2)
+	Initial scope=group but data from local node. Predition too high (min count: 10000)
+PM_L3_GRP_GUESS_WRONG_LOW: (counter: 2)
+	Initial scope=group but data from outside group (far or rem). Prediction too Low (min 
+        count: 10000)
+PM_L3_HIT: (counter: 0)
+	L3 Hits (min count: 10000)
+PM_L3_L2_CO_HIT: (counter: 2)
+	L2 castout hits (min count: 10000)
+PM_L3_L2_CO_MISS: (counter: 2)
+	L2 castout miss (min count: 10000)
+PM_L3_LAT_CI_HIT: (counter: 3)
+	L3 Lateral Castins Hit (min count: 10000)
+PM_L3_LAT_CI_MISS: (counter: 3)
+	L3 Lateral Castins Miss (min count: 10000)
+PM_L3_LD_HIT: (counter: 1)
+	L3 demand LD Hits (min count: 10000)
+PM_L3_LD_MISS: (counter: 1)
+	L3 demand LD Miss (min count: 10000)
+PM_L3_LD_PREF: (counter: 0)
+	L3 Load Prefetches. (min count: 10000)
+PM_L3_LOC_GUESS_CORRECT: (counter: 0)
+	initial scope=node/chip and data from local node (local) (pred successful) (min count: 
+        10000)
+PM_L3_LOC_GUESS_WRONG: (counter: 1)
+	Initial scope=node but data from out side local node (near or far or rem). Prediction too 
+        Low (min count: 10000)
+PM_L3_MISS: (counter: 0)
+	L3 Misses (min count: 10000)
+PM_L3_P0_CO_L31: (counter: 3)
+	l3 CO to L3.1 (lco) port 0 (min count: 10000)
+PM_L3_P0_CO_MEM: (counter: 2)
+	l3 CO to memory port 0 (min count: 10000)
+PM_L3_P0_CO_RTY: (counter: 1)
+	L3 CO received retry port 0 (min count: 10000)
+PM_L3_P0_GRP_PUMP: (counter: 1)
+	L3 pf sent with grp scope port 0 (min count: 10000)
+PM_L3_P0_LCO_DATA: (counter: 1)
+	lco sent with data port 0 (min count: 10000)
+PM_L3_P0_LCO_NO_DATA: (counter: 0)
+	dataless l3 lco sent port 0 (min count: 10000)
+PM_L3_P0_LCO_RTY: (counter: 3)
+	L3 LCO received retry port 0 (min count: 10000)
+PM_L3_P0_NODE_PUMP: (counter: 0)
+	L3 pf sent with nodal scope port 0 (min count: 10000)
+PM_L3_P0_PF_RTY: (counter: 0)
+	L3 PF received retry port 0 (min count: 10000)
+PM_L3_P0_SN_HIT: (counter: 2)
+	L3 snoop hit port 0 (min count: 10000)
+PM_L3_P0_SN_INV: (counter: 0)
+	Port0 snooper detects someone doing a store to a line thats Sx (min count: 10000)
+PM_L3_P0_SN_MISS: (counter: 3)
+	L3 snoop miss port 0 (min count: 10000)
+PM_L3_P0_SYS_PUMP: (counter: 2)
+	L3 pf sent with sys scope port 0 (min count: 10000)
+PM_L3_P1_CO_L31: (counter: 3)
+	l3 CO to L3.1 (lco) port 1 (min count: 10000)
+PM_L3_P1_CO_MEM: (counter: 2)
+	l3 CO to memory port 1 (min count: 10000)
+PM_L3_P1_CO_RTY: (counter: 1)
+	L3 CO received retry port 1 (min count: 10000)
+PM_L3_P1_GRP_PUMP: (counter: 1)
+	L3 pf sent with grp scope port 1 (min count: 10000)
+PM_L3_P1_LCO_DATA: (counter: 1)
+	lco sent with data port 1 (min count: 10000)
+PM_L3_P1_LCO_NO_DATA: (counter: 0)
+	dataless l3 lco sent port 1 (min count: 10000)
+PM_L3_P1_LCO_RTY: (counter: 3)
+	L3 LCO received retry port 1 (min count: 10000)
+PM_L3_P1_NODE_PUMP: (counter: 0)
+	L3 pf sent with nodal scope port 1 (min count: 10000)
+PM_L3_P1_PF_RTY: (counter: 0)
+	L3 PF received retry port 1 (min count: 10000)
+PM_L3_P1_SN_HIT: (counter: 2)
+	L3 snoop hit port 1 (min count: 10000)
+PM_L3_P1_SN_INV: (counter: 0)
+	Port1 snooper detects someone doing a store to a line thats Sx (min count: 10000)
+PM_L3_P1_SN_MISS: (counter: 3)
+	L3 snoop miss port 1 (min count: 10000)
+PM_L3_P1_SYS_PUMP: (counter: 2)
+	L3 pf sent with sys scope port 1 (min count: 10000)
+PM_L3_PF0_ALLOC: (counter: 3)
+	0.0 (min count: 10000)
+PM_L3_PF0_BUSY: (counter: 3)
+	lifetime, sample of PF machine 0 valid (min count: 10000)
+PM_L3_PF_HIT_L3: (counter: 1)
+	l3 pf hit in l3 (min count: 10000)
+PM_L3_PF_MISS_L3: (counter: 0)
+	L3 Prefetch missed in L3 (min count: 10000)
+PM_L3_PF_OFF_CHIP_CACHE: (counter: 2)
+	L3 Prefetch from Off chip cache (min count: 10000)
+PM_L3_PF_OFF_CHIP_MEM: (counter: 3)
+	L3 Prefetch from Off chip memory (min count: 10000)
+PM_L3_PF_ON_CHIP_CACHE: (counter: 2)
+	L3 Prefetch from On chip cache (min count: 10000)
+PM_L3_PF_ON_CHIP_MEM: (counter: 3)
+	L3 Prefetch from On chip memory (min count: 10000)
+PM_L3_PF_USAGE: (counter: 1)
+	rotating sample of 32 PF actives (min count: 10000)
+PM_L3_PREF_ALL: (counter: 3)
+	Total HW L3 prefetches(Load+store). (min count: 10000)
+PM_L3_RD0_ALLOC: (counter: 3)
+	0.0 (min count: 10000)
+PM_L3_RD0_BUSY: (counter: 3)
+	lifetime, sample of RD machine 0 valid (min count: 10000)
+PM_L3_RD_USAGE: (counter: 1)
+	rotating sample of 16 RD actives (min count: 10000)
+PM_L3_SN0_ALLOC: (counter: 2)
+	0.0 (min count: 10000)
+PM_L3_SN0_BUSY: (counter: 2)
+	lifetime, sample of snooper machine 0 valid (min count: 10000)
+PM_L3_SN_USAGE: (counter: 0)
+	rotating sample of 8 snoop valids (min count: 10000)
+PM_L3_ST_PREF: (counter: 1)
+	L3 store Prefetches. (min count: 10000)
+PM_L3_SW_PREF: (counter: 2)
+	Data stream touchto L3. (min count: 10000)
+PM_L3_SYS_GUESS_CORRECT: (counter: 1)
+	Initial scope=system and data from outside group (far or rem)(pred successful) (min count: 
+        10000)
+PM_L3_SYS_GUESS_WRONG: (counter: 3)
+	Initial scope=system but data from local or near. Predction too high (min count: 10000)
+PM_L3_TRANS_PF: (counter: 3)
+	L3 Transient prefetch (min count: 10000)
+PM_L3_WI0_ALLOC: (counter: 0)
+	0.0 (min count: 10000)
+PM_L3_WI0_BUSY: (counter: 0)
+	lifetime, sample of Write Inject machine 0 valid (min count: 10000)
+PM_L3_WI_USAGE: (counter: 0)
+	rotating sample of 8 WI actives (min count: 10000)
+PM_LARX_FIN: (counter: 2)
+	Larx finished . (min count: 10000)
+PM_LD_CMPL: (counter: 0)
+	count of Loads completed. (min count: 10000)
+PM_LD_L3MISS_PEND_CYC: (counter: 0)
+	Cycles L3 miss was pending for this thread. (min count: 10000)
+PM_LD_REF_L1: (counter: 0)
+	Load Ref count combined for all units. (min count: 10000)
+PM_LD_REF_L1_LSU0: (counter: 0, 1, 2, 3)
+	LS0 L1 D cache load references counted at finish, gated by rejectLSU0 L1 D cache load 
+        references (min count: 10000)
+PM_LD_REF_L1_LSU1: (counter: 0, 1, 2, 3)
+	LS1 L1 D cache load references counted at finish, gated by rejectLSU1 L1 D cache load 
+        references (min count: 10000)
+PM_LD_REF_L1_LSU2: (counter: 0, 1, 2, 3)
+	LS2 L1 D cache load references counted at finish, gated by reject42 (min count: 10000)
+PM_LD_REF_L1_LSU3: (counter: 0, 1, 2, 3)
+	LS3 L1 D cache load references counted at finish, gated by reject42 (min count: 10000)
+PM_LINK_STACK_INVALID_PTR: (counter: 0, 1, 2, 3)
+	A flush were LS ptr is invalid, results in a pop , A lot of interrupts between push and 
+        pops (min count: 10000)
+PM_LINK_STACK_WRONG_ADD_PRED: (counter: 0, 1, 2, 3)
+	Link stack predicts wrong address, because of link stack design limitation. (min count: 
+        10000)
+PM_LS0_ERAT_MISS_PREF: (counter: 0, 1, 2, 3)
+	LS0 Erat miss due to prefetch42 (min count: 10000)
+PM_LS0_L1_PREF: (counter: 0, 1, 2, 3)
+	LS0 L1 cache data prefetches42 (min count: 10000)
+PM_LS0_L1_SW_PREF: (counter: 0, 1, 2, 3)
+	Software L1 Prefetches, including SW Transient Prefetches42 (min count: 10000)
+PM_LS1_ERAT_MISS_PREF: (counter: 0, 1, 2, 3)
+	LS1 Erat miss due to prefetch42 (min count: 10000)
+PM_LS1_L1_PREF: (counter: 0, 1, 2, 3)
+	LS1 L1 cache data prefetches42 (min count: 10000)
+PM_LS1_L1_SW_PREF: (counter: 0, 1, 2, 3)
+	Software L1 Prefetches, including SW Transient Prefetches42 (min count: 10000)
+PM_LSU0_FLUSH_LRQ: (counter: 0, 1, 2, 3)
+	LS0 Flush: LRQLSU0 LRQ flushes (min count: 10000)
+PM_LSU0_FLUSH_SRQ: (counter: 0, 1, 2, 3)
+	LS0 Flush: SRQLSU0 SRQ lhs flushes (min count: 10000)
+PM_LSU0_FLUSH_ULD: (counter: 0, 1, 2, 3)
+	LS0 Flush: Unaligned LoadLSU0 unaligned load flushes (min count: 10000)
+PM_LSU0_FLUSH_UST: (counter: 0, 1, 2, 3)
+	LS0 Flush: Unaligned StoreLSU0 unaligned store flushes (min count: 10000)
+PM_LSU0_L1_CAM_CANCEL: (counter: 0, 1, 2, 3)
+	ls0 l1 tm cam cancel42 (min count: 10000)
+PM_LSU0_LARX_FIN: (counter: 0)
+	. (min count: 10000)
+PM_LSU0_LMQ_LHR_MERGE: (counter: 0, 1, 2, 3)
+	LS0 Load Merged with another cacheline request42 (min count: 10000)
+PM_LSU0_NCLD: (counter: 0, 1, 2, 3)
+	LS0 Non-cachable Loads counted at finishLSU0 non-cacheable loads (min count: 10000)
+PM_LSU0_PRIMARY_ERAT_HIT: (counter: 0, 1, 2, 3)
+	Primary ERAT hit42 (min count: 10000)
+PM_LSU0_REJECT: (counter: 0)
+	LSU0 reject . (min count: 10000)
+PM_LSU0_SRQ_STFWD: (counter: 0, 1, 2, 3)
+	LS0 SRQ forwarded data to a loadLSU0 SRQ store forwarded (min count: 10000)
+PM_LSU0_STORE_REJECT: (counter: 0, 1, 2, 3)
+	ls0 store reject42 (min count: 10000)
+PM_LSU0_TMA_REQ_L2: (counter: 0, 1, 2, 3)
+	addrs only req to L2 only on the first one,Indication that Load footprint is not 
+        expanding42 (min count: 10000)
+PM_LSU0_TM_L1_HIT: (counter: 0, 1, 2, 3)
+	Load tm hit in L142 (min count: 10000)
+PM_LSU0_TM_L1_MISS: (counter: 0, 1, 2, 3)
+	Load tm L1 miss42 (min count: 10000)
+PM_LSU1_FLUSH_LRQ: (counter: 0, 1, 2, 3)
+	LS1 Flush: LRQLSU1 LRQ flushes (min count: 10000)
+PM_LSU1_FLUSH_SRQ: (counter: 0, 1, 2, 3)
+	LS1 Flush: SRQLSU1 SRQ lhs flushes (min count: 10000)
+PM_LSU1_FLUSH_ULD: (counter: 0, 1, 2, 3)
+	LS 1 Flush: Unaligned LoadLSU1 unaligned load flushes (min count: 10000)
+PM_LSU1_FLUSH_UST: (counter: 0, 1, 2, 3)
+	LS1 Flush: Unaligned StoreLSU1 unaligned store flushes (min count: 10000)
+PM_LSU1_L1_CAM_CANCEL: (counter: 0, 1, 2, 3)
+	ls1 l1 tm cam cancel42 (min count: 10000)
+PM_LSU1_LARX_FIN: (counter: 1)
+	Larx finished in LSU pipe1. (min count: 10000)
+PM_LSU1_LMQ_LHR_MERGE: (counter: 0, 1, 2, 3)
+	LS1 Load Merge with another cacheline request42 (min count: 10000)
+PM_LSU1_NCLD: (counter: 0, 1, 2, 3)
+	LS1 Non-cachable Loads counted at finishLSU1 non-cacheable loads (min count: 10000)
+PM_LSU1_PRIMARY_ERAT_HIT: (counter: 0, 1, 2, 3)
+	Primary ERAT hit42 (min count: 10000)
+PM_LSU1_REJECT: (counter: 1)
+	LSU1 reject . (min count: 10000)
+PM_LSU1_SRQ_STFWD: (counter: 0, 1, 2, 3)
+	LS1 SRQ forwarded data to a loadLSU1 SRQ store forwarded (min count: 10000)
+PM_LSU1_STORE_REJECT: (counter: 0, 1, 2, 3)
+	ls1 store reject42 (min count: 10000)
+PM_LSU1_TMA_REQ_L2: (counter: 0, 1, 2, 3)
+	addrs only req to L2 only on the first one,Indication that Load footprint is not 
+        expanding42 (min count: 10000)
+PM_LSU1_TM_L1_HIT: (counter: 0, 1, 2, 3)
+	Load tm hit in L142 (min count: 10000)
+PM_LSU1_TM_L1_MISS: (counter: 0, 1, 2, 3)
+	Load tm L1 miss42 (min count: 10000)
+PM_LSU2_FLUSH_LRQ: (counter: 0, 1, 2, 3)
+	LS02Flush: LRQ42 (min count: 10000)
+PM_LSU2_FLUSH_SRQ: (counter: 0, 1, 2, 3)
+	LS2 Flush: SRQ42 (min count: 10000)
+PM_LSU2_FLUSH_ULD: (counter: 0, 1, 2, 3)
+	LS3 Flush: Unaligned Load42 (min count: 10000)
+PM_LSU2_L1_CAM_CANCEL: (counter: 0, 1, 2, 3)
+	ls2 l1 tm cam cancel42 (min count: 10000)
+PM_LSU2_LARX_FIN: (counter: 2)
+	Larx finished in LSU pipe2. (min count: 10000)
+PM_LSU2_LDF: (counter: 0, 1, 2, 3)
+	LS2 Scalar Loads42 (min count: 10000)
+PM_LSU2_LDX: (counter: 0, 1, 2, 3)
+	LS0 Vector Loads42 (min count: 10000)
+PM_LSU2_LMQ_LHR_MERGE: (counter: 0, 1, 2, 3)
+	LS0 Load Merged with another cacheline request42 (min count: 10000)
+PM_LSU2_PRIMARY_ERAT_HIT: (counter: 0, 1, 2, 3)
+	Primary ERAT hit42 (min count: 10000)
+PM_LSU2_REJECT: (counter: 2)
+	LSU2 reject . (min count: 10000)
+PM_LSU2_SRQ_STFWD: (counter: 0, 1, 2, 3)
+	LS2 SRQ forwarded data to a load42 (min count: 10000)
+PM_LSU2_TMA_REQ_L2: (counter: 0, 1, 2, 3)
+	addrs only req to L2 only on the first one,Indication that Load footprint is not 
+        expanding42 (min count: 10000)
+PM_LSU2_TM_L1_HIT: (counter: 0, 1, 2, 3)
+	Load tm hit in L142 (min count: 10000)
+PM_LSU2_TM_L1_MISS: (counter: 0, 1, 2, 3)
+	Load tm L1 miss42 (min count: 10000)
+PM_LSU3_FLUSH_LRQ: (counter: 0, 1, 2, 3)
+	LS3 Flush: LRQ42 (min count: 10000)
+PM_LSU3_FLUSH_SRQ: (counter: 0, 1, 2, 3)
+	LS13 Flush: SRQ42 (min count: 10000)
+PM_LSU3_FLUSH_ULD: (counter: 0, 1, 2, 3)
+	LS 14Flush: Unaligned Load42 (min count: 10000)
+PM_LSU3_L1_CAM_CANCEL: (counter: 0, 1, 2, 3)
+	ls3 l1 tm cam cancel42 (min count: 10000)
+PM_LSU3_LARX_FIN: (counter: 3)
+	Larx finished in LSU pipe3. (min count: 10000)
+PM_LSU3_LDF: (counter: 0, 1, 2, 3)
+	LS3 Scalar Loads 42 (min count: 10000)
+PM_LSU3_LDX: (counter: 0, 1, 2, 3)
+	LS1 Vector Loads42 (min count: 10000)
+PM_LSU3_LMQ_LHR_MERGE: (counter: 0, 1, 2, 3)
+	LS1 Load Merge with another cacheline request42 (min count: 10000)
+PM_LSU3_PRIMARY_ERAT_HIT: (counter: 0, 1, 2, 3)
+	Primary ERAT hit42 (min count: 10000)
+PM_LSU3_REJECT: (counter: 3)
+	LSU3 reject . (min count: 10000)
+PM_LSU3_SRQ_STFWD: (counter: 0, 1, 2, 3)
+	LS3 SRQ forwarded data to a load42 (min count: 10000)
+PM_LSU3_TMA_REQ_L2: (counter: 0, 1, 2, 3)
+	addrs only req to L2 only on the first one,Indication that Load footprint is not 
+        expanding42 (min count: 10000)
+PM_LSU3_TM_L1_HIT: (counter: 0, 1, 2, 3)
+	Load tm hit in L142 (min count: 10000)
+PM_LSU3_TM_L1_MISS: (counter: 0, 1, 2, 3)
+	Load tm L1 miss42 (min count: 10000)
+PM_LSU_ERAT_MISS_PREF: (counter: 0, 1, 2, 3)
+	LSU (min count: 10000)
+PM_LSU_FIN: (counter: 2)
+	LSU Finished an instruction (up to 2 per cycle). (min count: 10000)
+PM_LSU_FLUSH_UST: (counter: 0, 1, 2, 3)
+	LSU (min count: 10000)
+PM_LSU_FOUR_TABLEWALK_CYC: (counter: 0, 1, 2, 3)
+	Cycles when four tablewalks pending on this thread42 (min count: 10000)
+PM_LSU_FX_FIN: (counter: 0)
+	LSU Finished a FX operation (up to 2 per cycle. (min count: 10000)
+PM_LSU_L1_PREF: (counter: 0, 1, 2, 3)
+	LSU (min count: 10000)
+PM_LSU_L1_SW_PREF: (counter: 0, 1, 2, 3)
+	LSU (min count: 10000)
+PM_LSU_LDF: (counter: 0, 1, 2, 3)
+	LSU (min count: 10000)
+PM_LSU_LDX: (counter: 0, 1, 2, 3)
+	LSU (min count: 10000)
+PM_LSU_LMQ_FULL_CYC: (counter: 0, 1, 2, 3)
+	LMQ fullCycles LMQ full, (min count: 10000)
+PM_LSU_LMQ_S0_ALLOC: (counter: 0, 1, 2, 3)
+	0.0 (min count: 10000)
+PM_LSU_LMQ_S0_VALID: (counter: 0, 1, 2, 3)
+	Slot 0 of LMQ validLMQ slot 0 valid (min count: 10000)
+PM_LSU_LMQ_SRQ_EMPTY_ALL_CYC: (counter: 2)
+	ALL threads lsu empty (lmq and srq empty). Issue HW016541 (min count: 10000)
+PM_LSU_LMQ_SRQ_EMPTY_CYC: (counter: 1)
+	LSU empty (lmq and srq empty). (min count: 10000)
+PM_LSU_LRQ_S0_ALLOC: (counter: 0, 1, 2, 3)
+	0.0 (min count: 10000)
+PM_LSU_LRQ_S0_VALID: (counter: 0, 1, 2, 3)
+	Slot 0 of LRQ validLRQ slot 0 valid (min count: 10000)
+PM_LSU_LRQ_S43_ALLOC: (counter: 0, 1, 2, 3)
+	0.0 (min count: 10000)
+PM_LSU_LRQ_S43_VALID: (counter: 0, 1, 2, 3)
+	LRQ slot 43 was busy42 (min count: 10000)
+PM_LSU_MRK_DERAT_MISS: (counter: 2)
+	DERAT Reloaded (Miss). (min count: 10000)
+PM_LSU_NCLD: (counter: 0, 1, 2, 3)
+	LSU (min count: 10000)
+PM_LSU_NCST: (counter: 0, 1, 2, 3)
+	Non-cachable Stores sent to nest42 (min count: 10000)
+PM_LSU_REJECT: (counter: 0)
+	LSU Reject (up to 4 per cycle). (min count: 10000)
+PM_LSU_REJECT_ERAT_MISS: (counter: 1)
+	LSU Reject due to ERAT (up to 4 per cycles). (min count: 10000)
+PM_LSU_REJECT_LHS: (counter: 3)
+	LSU Reject due to LHS (up to 4 per cycle). (min count: 10000)
+PM_LSU_REJECT_LMQ_FULL: (counter: 0)
+	LSU reject due to LMQ full ( 4 per cycle). (min count: 10000)
+PM_LSU_SET_MPRED: (counter: 0, 1, 2, 3)
+	Line already in cache at reload time42 (min count: 10000)
+PM_LSU_SRQ_EMPTY_CYC: (counter: 3)
+	All threads srq empty. (min count: 10000)
+PM_LSU_SRQ_FULL_CYC: (counter: 0)
+	SRQ is Full. (min count: 10000)
+PM_LSU_SRQ_S0_ALLOC: (counter: 0, 1, 2, 3)
+	0.0 (min count: 10000)
+PM_LSU_SRQ_S0_VALID: (counter: 0, 1, 2, 3)
+	Slot 0 of SRQ validSRQ slot 0 valid (min count: 10000)
+PM_LSU_SRQ_S39_ALLOC: (counter: 0, 1, 2, 3)
+	0.0 (min count: 10000)
+PM_LSU_SRQ_S39_VALID: (counter: 0, 1, 2, 3)
+	SRQ slot 39 was busy42 (min count: 10000)
+PM_LSU_SRQ_SYNC: (counter: 0, 1, 2, 3)
+	0.0 (min count: 10000)
+PM_LSU_SRQ_SYNC_CYC: (counter: 0, 1, 2, 3)
+	A sync is in the SRQ (edge detect to count)SRQ sync duration (min count: 10000)
+PM_LSU_STORE_REJECT: (counter: 0, 1, 2, 3)
+	LSU (min count: 10000)
+PM_LSU_TWO_TABLEWALK_CYC: (counter: 0, 1, 2, 3)
+	Cycles when two tablewalks pending on this thread42 (min count: 10000)
+PM_LWSYNC: (counter: 0, 1, 2, 3)
+	threaded version, IC Misses where we got EA dir hit but no sector valids were on. ICBI took 
+        line out (min count: 10000)
+PM_LWSYNC_HELD: (counter: 0, 1, 2, 3)
+	LWSYNC held at dispatch (min count: 10000)
+PM_MEM_CO: (counter: 3)
+	Memory castouts from this lpar. (min count: 10000)
+PM_MEM_LOC_THRESH_IFU: (counter: 0)
+	Local Memory above threshold for IFU speculation control. (min count: 10000)
+PM_MEM_LOC_THRESH_LSU_HIGH: (counter: 3)
+	Local memory above threshold for LSU medium. (min count: 10000)
+PM_MEM_LOC_THRESH_LSU_MED: (counter: 0)
+	Local memory above theshold for data prefetch. (min count: 10000)
+PM_MEM_PREF: (counter: 1)
+	Memory prefetch for this lpar. (min count: 10000)
+PM_MEM_READ: (counter: 0)
+	Reads from Memory from this lpar (includes data/inst/xlate/l1prefetch/inst prefetch). (min 
+        count: 10000)
+PM_MEM_RWITM: (counter: 2)
+	Memory rwitm for this lpar. (min count: 10000)
+PM_MRK_BACK_BR_CMPL: (counter: 2)
+	Marked branch instruction completed with a target address less than current instruction 
+        address. (min count: 1000)
+PM_MRK_BRU_FIN: (counter: 1)
+	bru marked instr finish. (min count: 1000)
+PM_MRK_BR_CMPL: (counter: 0)
+	Branch Instruction completed. (min count: 1000)
+PM_MRK_CRU_FIN: (counter: 2)
+	IFU non-branch marked instruction finished. (min count: 1000)
+PM_MRK_DATA_FROM_DL2L3_MOD: (counter: 3)
+	The processor's data cache was reloaded with Modified (M) data from another chip's L2 or L3 
+        on a different Node or Group (Distant), as this chip due to a marked load. (min count: 
+        1000)
+PM_MRK_DATA_FROM_DL2L3_MOD_CYC: (counter: 1)
+	Duration in cycles to reload with Modified (M) data from another chip's L2 or L3 on a 
+        different Node or Group (Distant), as this chip due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_DL2L3_SHR: (counter: 2)
+	The processor's data cache was reloaded with Shared (S) data from another chip's L2 or L3 
+        on a different Node or Group (Distant), as this chip due to a marked load. (min count: 
+        1000)
+PM_MRK_DATA_FROM_DL2L3_SHR_CYC: (counter: 1)
+	Duration in cycles to reload with Shared (S) data from another chip's L2 or L3 on a 
+        different Node or Group (Distant), as this chip due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_DL4: (counter: 2)
+	The processor's data cache was reloaded from another chip's L4 on a different Node or Group 
+        (Distant) due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_DL4_CYC: (counter: 1)
+	Duration in cycles to reload from another chip's L4 on a different Node or Group (Distant) 
+        due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_DMEM: (counter: 3)
+	The processor's data cache was reloaded from another chip's memory on the same Node or 
+        Group (Distant) due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_DMEM_CYC: (counter: 1)
+	Duration in cycles to reload from another chip's memory on the same Node or Group (Distant) 
+        due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L2: (counter: 0)
+	The processor's data cache was reloaded from local core's L2 due to a marked load. (min 
+        count: 1000)
+PM_MRK_DATA_FROM_L21_MOD: (counter: 3)
+	The processor's data cache was reloaded with Modified (M) data from another core's L2 on 
+        the same chip due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L21_MOD_CYC: (counter: 1)
+	Duration in cycles to reload with Modified (M) data from another core's L2 on the same chip 
+        due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L21_SHR: (counter: 2)
+	The processor's data cache was reloaded with Shared (S) data from another core's L2 on the 
+        same chip due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L21_SHR_CYC: (counter: 1)
+	Duration in cycles to reload with Shared (S) data from another core's L2 on the same chip 
+        due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L2MISS_CYC: (counter: 3)
+	Duration in cycles to reload from a localtion other than the local core's L2 due to a 
+        marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L2_CYC: (counter: 3)
+	Duration in cycles to reload from local core's L2 due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L2_DISP_CONFLICT_LDHITST: (counter: 2)
+	The processor's data cache was reloaded from local core's L2 with load hit store conflict 
+        due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L2_DISP_CONFLICT_LDHITST_CYC: (counter: 1)
+	Duration in cycles to reload from local core's L2 with load hit store conflict due to a 
+        marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L2_DISP_CONFLICT_OTHER: (counter: 3)
+	The processor's data cache was reloaded from local core's L2 with dispatch conflict due to 
+        a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L2_DISP_CONFLICT_OTHER_CYC: (counter: 1)
+	Duration in cycles to reload from local core's L2 with dispatch conflict due to a marked 
+        load. (min count: 1000)
+PM_MRK_DATA_FROM_L2_MEPF: (counter: 1)
+	The processor's data cache was reloaded from local core's L2 hit without dispatch conflicts 
+        on Mepf state. due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L2_MEPF_CYC: (counter: 3)
+	Duration in cycles to reload from local core's L2 hit without dispatch conflicts on Mepf 
+        state. due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L2_NO_CONFLICT: (counter: 0)
+	The processor's data cache was reloaded from local core's L2 without conflict due to a 
+        marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L2_NO_CONFLICT_CYC: (counter: 3)
+	Duration in cycles to reload from local core's L2 without conflict due to a marked load. 
+        (min count: 1000)
+PM_MRK_DATA_FROM_L3: (counter: 3)
+	The processor's data cache was reloaded from local core's L3 due to a marked load. (min 
+        count: 1000)
+PM_MRK_DATA_FROM_L31_ECO_MOD: (counter: 3)
+	The processor's data cache was reloaded with Modified (M) data from another core's ECO L3 
+        on the same chip due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L31_ECO_MOD_CYC: (counter: 1)
+	Duration in cycles to reload with Modified (M) data from another core's ECO L3 on the same 
+        chip due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L31_ECO_SHR: (counter: 2)
+	The processor's data cache was reloaded with Shared (S) data from another core's ECO L3 on 
+        the same chip due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L31_ECO_SHR_CYC: (counter: 1)
+	Duration in cycles to reload with Shared (S) data from another core's ECO L3 on the same 
+        chip due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L31_MOD: (counter: 1)
+	The processor's data cache was reloaded with Modified (M) data from another core's L3 on 
+        the same chip due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L31_MOD_CYC: (counter: 3)
+	Duration in cycles to reload with Modified (M) data from another core's L3 on the same chip 
+        due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L31_SHR: (counter: 0)
+	The processor's data cache was reloaded with Shared (S) data from another core's L3 on the 
+        same chip due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L31_SHR_CYC: (counter: 3)
+	Duration in cycles to reload with Shared (S) data from another core's L3 on the same chip 
+        due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L3MISS_CYC: (counter: 1)
+	Duration in cycles to reload from a localtion other than the local core's L3 due to a 
+        marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L3_CYC: (counter: 1)
+	Duration in cycles to reload from local core's L3 due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L3_DISP_CONFLICT: (counter: 2)
+	The processor's data cache was reloaded from local core's L3 with dispatch conflict due to 
+        a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L3_DISP_CONFLICT_CYC: (counter: 1)
+	Duration in cycles to reload from local core's L3 with dispatch conflict due to a marked 
+        load. (min count: 1000)
+PM_MRK_DATA_FROM_L3_MEPF: (counter: 1)
+	The processor's data cache was reloaded from local core's L3 without dispatch conflicts hit 
+        on Mepf state. due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L3_MEPF_CYC: (counter: 3)
+	Duration in cycles to reload from local core's L3 without dispatch conflicts hit on Mepf 
+        state. due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L3_NO_CONFLICT: (counter: 0)
+	The processor's data cache was reloaded from local core's L3 without conflict due to a 
+        marked load. (min count: 1000)
+PM_MRK_DATA_FROM_L3_NO_CONFLICT_CYC: (counter: 3)
+	Duration in cycles to reload from local core's L3 without conflict due to a marked load. 
+        (min count: 1000)
+PM_MRK_DATA_FROM_LL4: (counter: 0)
+	The processor's data cache was reloaded from the local chip's L4 cache due to a marked 
+        load. (min count: 1000)
+PM_MRK_DATA_FROM_LL4_CYC: (counter: 3)
+	Duration in cycles to reload from the local chip's L4 cache due to a marked load. (min 
+        count: 1000)
+PM_MRK_DATA_FROM_LMEM: (counter: 1)
+	The processor's data cache was reloaded from the local chip's Memory due to a marked load. 
+        (min count: 1000)
+PM_MRK_DATA_FROM_LMEM_CYC: (counter: 3)
+	Duration in cycles to reload from the local chip's Memory due to a marked load. (min 
+        count: 1000)
+PM_MRK_DATA_FROM_MEMORY: (counter: 1)
+	The processor's data cache was reloaded from a memory location including L4 from local 
+        remote or distant due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_MEMORY_CYC: (counter: 3)
+	Duration in cycles to reload from a memory location including L4 from local remote or 
+        distant due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_OFF_CHIP_CACHE: (counter: 3)
+	The processor's data cache was reloaded either shared or modified data from another core's 
+        L2/L3 on a different chip (remote or distant) due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_OFF_CHIP_CACHE_CYC: (counter: 1)
+	Duration in cycles to reload either shared or modified data from another core's L2/L3 on a 
+        different chip (remote or distant) due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_ON_CHIP_CACHE: (counter: 0)
+	The processor's data cache was reloaded either shared or modified data from another core's 
+        L2/L3 on the same chip due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_ON_CHIP_CACHE_CYC: (counter: 3)
+	Duration in cycles to reload either shared or modified data from another core's L2/L3 on 
+        the same chip due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_RL2L3_MOD: (counter: 1)
+	The processor's data cache was reloaded with Modified (M) data from another chip's L2 or L3 
+        on the same Node or Group (Remote), as this chip due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_RL2L3_MOD_CYC: (counter: 3)
+	Duration in cycles to reload with Modified (M) data from another chip's L2 or L3 on the 
+        same Node or Group (Remote), as this chip due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_RL2L3_SHR: (counter: 0)
+	The processor's data cache was reloaded with Shared (S) data from another chip's L2 or L3 
+        on the same Node or Group (Remote), as this chip due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_RL2L3_SHR_CYC: (counter: 3)
+	Duration in cycles to reload with Shared (S) data from another chip's L2 or L3 on the same 
+        Node or Group (Remote), as this chip due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_RL4: (counter: 1)
+	The processor's data cache was reloaded from another chip's L4 on the same Node or Group ( 
+        Remote) due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_RL4_CYC: (counter: 3)
+	Duration in cycles to reload from another chip's L4 on the same Node or Group ( Remote) due 
+        to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_RMEM: (counter: 2)
+	The processor's data cache was reloaded from another chip's memory on the same Node or 
+        Group ( Remote) due to a marked load. (min count: 1000)
+PM_MRK_DATA_FROM_RMEM_CYC: (counter: 1)
+	Duration in cycles to reload from another chip's memory on the same Node or Group ( Remote) 
+        due to a marked load. (min count: 1000)
+PM_MRK_DCACHE_RELOAD_INTV: (counter: 3)
+	Combined Intervention event. (min count: 1000)
+PM_MRK_DERAT_MISS_16G: (counter: 3)
+	Marked Data ERAT Miss (Data TLB Access) page size 16G. (min count: 1000)
+PM_MRK_DERAT_MISS_16M: (counter: 2)
+	Marked Data ERAT Miss (Data TLB Access) page size 16M. (min count: 1000)
+PM_MRK_DERAT_MISS_4K: (counter: 0)
+	Marked Data ERAT Miss (Data TLB Access) page size 4K. (min count: 1000)
+PM_MRK_DERAT_MISS_64K: (counter: 1)
+	Marked Data ERAT Miss (Data TLB Access) page size 64K. (min count: 1000)
+PM_MRK_DFU_FIN: (counter: 1)
+	Decimal Unit marked Instruction Finish. (min count: 1000)
+PM_MRK_DPTEG_FROM_DL2L3_MOD: (counter: 3)
+	A Page Table Entry was loaded into the TLB with Modified (M) data from another chip's L2 or 
+        L3 on a different Node or Group (Distant), as this chip due to a marked data side request. 
+        (min count: 1000)
+PM_MRK_DPTEG_FROM_DL2L3_SHR: (counter: 2)
+	A Page Table Entry was loaded into the TLB with Shared (S) data from another chip's L2 or 
+        L3 on a different Node or Group (Distant), as this chip due to a marked data side request. 
+        (min count: 1000)
+PM_MRK_DPTEG_FROM_DL4: (counter: 2)
+	A Page Table Entry was loaded into the TLB from another chip's L4 on a different Node or 
+        Group (Distant) due to a marked data side request. (min count: 1000)
+PM_MRK_DPTEG_FROM_DMEM: (counter: 3)
+	A Page Table Entry was loaded into the TLB from another chip's memory on the same Node or 
+        Group (Distant) due to a marked data side request. (min count: 1000)
+PM_MRK_DPTEG_FROM_L2: (counter: 0)
+	A Page Table Entry was loaded into the TLB from local core's L2 due to a marked data side 
+        request. (min count: 1000)
+PM_MRK_DPTEG_FROM_L21_MOD: (counter: 3)
+	A Page Table Entry was loaded into the TLB with Modified (M) data from another core's L2 on 
+        the same chip due to a marked data side request. (min count: 1000)
+PM_MRK_DPTEG_FROM_L21_SHR: (counter: 2)
+	A Page Table Entry was loaded into the TLB with Shared (S) data from another core's L2 on 
+        the same chip due to a marked data side request. (min count: 1000)
+PM_MRK_DPTEG_FROM_L2MISS: (counter: 0)
+	A Page Table Entry was loaded into the TLB from a localtion other than the local core's L2 
+        due to a marked data side request. (min count: 1000)
+PM_MRK_DPTEG_FROM_L2_DISP_CONFLICT_LDHITST: (counter: 2)
+	A Page Table Entry was loaded into the TLB from local core's L2 with load hit store 
+        conflict due to a marked data side request. (min count: 1000)
+PM_MRK_DPTEG_FROM_L2_DISP_CONFLICT_OTHER: (counter: 3)
+	A Page Table Entry was loaded into the TLB from local core's L2 with dispatch conflict due 
+        to a marked data side request. (min count: 1000)
+PM_MRK_DPTEG_FROM_L2_MEPF: (counter: 1)
+	A Page Table Entry was loaded into the TLB from local core's L2 hit without dispatch 
+        conflicts on Mepf state. due to a marked data side request. (min count: 1000)
+PM_MRK_DPTEG_FROM_L2_NO_CONFLICT: (counter: 0)
+	A Page Table Entry was loaded into the TLB from local core's L2 without conflict due to a 
+        marked data side request. (min count: 1000)
+PM_MRK_DPTEG_FROM_L3: (counter: 3)
+	A Page Table Entry was loaded into the TLB from local core's L3 due to a marked data side 
+        request. (min count: 1000)
+PM_MRK_DPTEG_FROM_L31_ECO_MOD: (counter: 3)
+	A Page Table Entry was loaded into the TLB with Modified (M) data from another core's ECO 
+        L3 on the same chip due to a marked data side request. (min count: 1000)
+PM_MRK_DPTEG_FROM_L31_ECO_SHR: (counter: 2)
+	A Page Table Entry was loaded into the TLB with Shared (S) data from another core's ECO L3 
+        on the same chip due to a marked data side request. (min count: 1000)
+PM_MRK_DPTEG_FROM_L31_MOD: (counter: 1)
+	A Page Table Entry was loaded into the TLB with Modified (M) data from another core's L3 on 
+        the same chip due to a marked data side request. (min count: 1000)
+PM_MRK_DPTEG_FROM_L31_SHR: (counter: 0)
+	A Page Table Entry was loaded into the TLB with Shared (S) data from another core's L3 on 
+        the same chip due to a marked data side request. (min count: 1000)
+PM_MRK_DPTEG_FROM_L3MISS: (counter: 3)
+	A Page Table Entry was loaded into the TLB from a localtion other than the local core's L3 
+        due to a marked data side request. (min count: 1000)
+PM_MRK_DPTEG_FROM_L3_DISP_CONFLICT: (counter: 2)
+	A Page Table Entry was loaded into the TLB from local core's L3 with dispatch conflict due 
+        to a marked data side request. (min count: 1000)
+PM_MRK_DPTEG_FROM_L3_MEPF: (counter: 1)
+	A Page Table Entry was loaded into the TLB from local core's L3 without dispatch conflicts 
+        hit on Mepf state. due to a marked data side request. (min count: 1000)
+PM_MRK_DPTEG_FROM_L3_NO_CONFLICT: (counter: 0)
+	A Page Table Entry was loaded into the TLB from local core's L3 without conflict due to a 
+        marked data side request. (min count: 1000)
+PM_MRK_DPTEG_FROM_LL4: (counter: 0)
+	A Page Table Entry was loaded into the TLB from the local chip's L4 cache due to a marked 
+        data side request. (min count: 1000)
+PM_MRK_DPTEG_FROM_LMEM: (counter: 1)
+	A Page Table Entry was loaded into the TLB from the local chip's Memory due to a marked 
+        data side request. (min count: 1000)
+PM_MRK_DPTEG_FROM_MEMORY: (counter: 1)
+	A Page Table Entry was loaded into the TLB from a memory location including L4 from local 
+        remote or distant due to a marked data side request. (min count: 1000)
+PM_MRK_DPTEG_FROM_OFF_CHIP_CACHE: (counter: 3)
+	A Page Table Entry was loaded into the TLB either shared or modified data from another 
+        core's L2/L3 on a different chip (remote or distant) due to a marked data side request. 
+        (min count: 1000)
+PM_MRK_DPTEG_FROM_ON_CHIP_CACHE: (counter: 0)
+	A Page Table Entry was loaded into the TLB either shared or modified data from another 
+        core's L2/L3 on the same chip due to a marked data side request. (min count: 1000)
+PM_MRK_DPTEG_FROM_RL2L3_MOD: (counter: 1)
+	A Page Table Entry was loaded into the TLB with Modified (M) data from another chip's L2 or 
+        L3 on the same Node or Group (Remote), as this chip due to a marked data side request. 
+        (min count: 1000)
+PM_MRK_DPTEG_FROM_RL2L3_SHR: (counter: 0)
+	A Page Table Entry was loaded into the TLB with Shared (S) data from another chip's L2 or 
+        L3 on the same Node or Group (Remote), as this chip due to a marked data side request. 
+        (min count: 1000)
+PM_MRK_DPTEG_FROM_RL4: (counter: 1)
+	A Page Table Entry was loaded into the TLB from another chip's L4 on the same Node or Group 
+        ( Remote) due to a marked data side request. (min count: 1000)
+PM_MRK_DPTEG_FROM_RMEM: (counter: 2)
+	A Page Table Entry was loaded into the TLB from another chip's memory on the same Node or 
+        Group ( Remote) due to a marked data side request. (min count: 1000)
+PM_MRK_DTLB_MISS_16G: (counter: 0)
+	Marked Data TLB Miss page size 16G. (min count: 1000)
+PM_MRK_DTLB_MISS_16M: (counter: 3)
+	Marked Data TLB Miss page size 16M. (min count: 1000)
+PM_MRK_DTLB_MISS_4K: (counter: 1)
+	Marked Data TLB Miss page size 4k. (min count: 1000)
+PM_MRK_DTLB_MISS_64K: (counter: 2)
+	Marked Data TLB Miss page size 64K. (min count: 1000)
+PM_MRK_FAB_RSP_BKILL: (counter: 3)
+	Marked store had to do a bkill. (min count: 1000)
+PM_MRK_FAB_RSP_BKILL_CYC: (counter: 1)
+	cycles L2 RC took for a bkill. (min count: 1000)
+PM_MRK_FAB_RSP_CLAIM_RTY: (counter: 2)
+	Sampled store did a rwitm and got a rty. (min count: 1000)
+PM_MRK_FAB_RSP_DCLAIM: (counter: 2)
+	Marked store had to do a dclaim. (min count: 1000)
+PM_MRK_FAB_RSP_DCLAIM_CYC: (counter: 1)
+	cycles L2 RC took for a dclaim. (min count: 1000)
+PM_MRK_FAB_RSP_MATCH: (counter: 2)
+	ttype and cresp matched as specified in MMCR1. (min count: 1000)
+PM_MRK_FAB_RSP_MATCH_CYC: (counter: 3)
+	cresp/ttype match cycles. (min count: 1000)
+PM_MRK_FAB_RSP_RD_RTY: (counter: 3)
+	Sampled L2 reads retry count. (min count: 1000)
+PM_MRK_FAB_RSP_RD_T_INTV: (counter: 0)
+	Sampled Read got a T intervention. (min count: 1000)
+PM_MRK_FAB_RSP_RWITM_CYC: (counter: 3)
+	cycles L2 RC took for a rwitm. (min count: 1000)
+PM_MRK_FAB_RSP_RWITM_RTY: (counter: 1)
+	Sampled store did a rwitm and got a rty. (min count: 1000)
+PM_MRK_FILT_MATCH: (counter: 2)
+	Marked filter Match. (min count: 1000)
+PM_MRK_FIN_STALL_CYC: (counter: 0)
+	Marked instruction Finish Stall cycles (marked finish after NTC) (use edge detect to count 
+        #). (min count: 1000)
+PM_MRK_FXU_FIN: (counter: 1)
+	fxu marked instr finish. (min count: 1000)
+PM_MRK_GRP_CMPL: (counter: 3)
+	marked instruction finished (completed). (min count: 1000)
+PM_MRK_GRP_IC_MISS: (counter: 3)
+	Marked Group experienced I cache miss. (min count: 1000)
+PM_MRK_GRP_NTC: (counter: 2)
+	Marked group ntc cycles. (min count: 1000)
+PM_MRK_INST_DECODED: (counter: 1)
+	marked instruction decoded. Name from ISU? (min count: 1000)
+PM_MRK_INST_FIN: (counter: 2)
+	marked instr finish any unit . (min count: 1000)
+PM_MRK_INST_ISSUED: (counter: 0)
+	Marked instruction issued. (min count: 1000)
+PM_MRK_INST_TIMEO: (counter: 3)
+	marked Instruction finish timeout (instruction lost). (min count: 1000)
+PM_MRK_L2_RC_DISP: (counter: 1)
+	Marked Instruction RC dispatched in L2. (min count: 1000)
+PM_MRK_L2_RC_DONE: (counter: 2)
+	Marked RC done. (min count: 1000)
+PM_MRK_LARX_FIN: (counter: 3)
+	Larx finished . (min count: 1000)
+PM_MRK_LD_MISS_EXPOSED: (counter: 0)
+	Marked Load exposed Miss (use edge detect to count #) (min count: 1000)
+PM_MRK_LD_MISS_EXPOSED_CYC: (counter: 0)
+	Marked Load exposed Miss (use edge detect to count #). (min count: 1000)
+PM_MRK_LD_MISS_L1_CYC: (counter: 3)
+	Marked ld latency. (min count: 1000)
+PM_MRK_LSU_FIN: (counter: 3)
+	lsu marked instr finish. (min count: 1000)
+PM_MRK_LSU_FLUSH: (counter: 0, 1, 2, 3)
+	Flush: (marked) : All Cases42 (min count: 1000)
+PM_MRK_LSU_FLUSH_LRQ: (counter: 0, 1, 2, 3)
+	Flush: (marked) LRQMarked LRQ flushes (min count: 1000)
+PM_MRK_LSU_FLUSH_SRQ: (counter: 0, 1, 2, 3)
+	Flush: (marked) SRQMarked SRQ lhs flushes (min count: 1000)
+PM_MRK_LSU_FLUSH_ULD: (counter: 0, 1, 2, 3)
+	Flush: (marked) Unaligned LoadMarked unaligned load flushes (min count: 1000)
+PM_MRK_LSU_FLUSH_UST: (counter: 0, 1, 2, 3)
+	Flush: (marked) Unaligned StoreMarked unaligned store flushes (min count: 1000)
+PM_MRK_LSU_REJECT: (counter: 3)
+	LSU marked reject (up to 2 per cycle). (min count: 1000)
+PM_MRK_LSU_REJECT_ERAT_MISS: (counter: 2)
+	LSU marked reject due to ERAT (up to 2 per cycle). (min count: 1000)
+PM_MRK_NTF_FIN: (counter: 1)
+	Marked next to finish instruction finished. (min count: 1000)
+PM_MRK_RUN_CYC: (counter: 0)
+	Marked run cycles. (min count: 10000)
+PM_MRK_SRC_PREF_TRACK_EFF: (counter: 0)
+	Marked src pref track was effective. (min count: 1000)
+PM_MRK_SRC_PREF_TRACK_INEFF: (counter: 2)
+	Prefetch tracked was ineffective for marked src. (min count: 1000)
+PM_MRK_SRC_PREF_TRACK_MOD: (counter: 3)
+	Prefetch tracked was moderate for marked src. (min count: 1000)
+PM_MRK_SRC_PREF_TRACK_MOD_L2: (counter: 0)
+	Marked src Prefetch Tracked was moderate (source L2). (min count: 1000)
+PM_MRK_SRC_PREF_TRACK_MOD_L3: (counter: 2)
+	Prefetch tracked was moderate (L3 hit) for marked src. (min count: 1000)
+PM_MRK_STALL_CMPLU_CYC: (counter: 2)
+	Marked Group Completion Stall cycles (use edge detect to count #). (min count: 1000)
+PM_MRK_STCX_FAIL: (counter: 2)
+	marked stcx failed. (min count: 1000)
+PM_MRK_ST_CMPL_INT: (counter: 2)
+	marked store complete (data home) with intervention. (min count: 1000)
+PM_MRK_ST_DRAIN_TO_L2DISP_CYC: (counter: 2)
+	cycles to drain st from core to L2. (min count: 1000)
+PM_MRK_ST_FWD: (counter: 2)
+	Marked st forwards. (min count: 1000)
+PM_MRK_ST_L2DISP_TO_CMPL_CYC: (counter: 0)
+	cycles from L2 rc disp to l2 rc completion. (min count: 1000)
+PM_MRK_ST_NEST: (counter: 1)
+	Marked store sent to nest. (min count: 1000)
+PM_MRK_TGT_PREF_TRACK_EFF: (counter: 0)
+	Marked target pref track was effective. (min count: 1000)
+PM_MRK_TGT_PREF_TRACK_INEFF: (counter: 2)
+	Prefetch tracked was ineffective for marked target. (min count: 1000)
+PM_MRK_TGT_PREF_TRACK_MOD: (counter: 3)
+	Prefetch tracked was moderate for marked target. (min count: 1000)
+PM_MRK_TGT_PREF_TRACK_MOD_L2: (counter: 0)
+	Marked target Prefetch Tracked was moderate (source L2). (min count: 1000)
+PM_MRK_TGT_PREF_TRACK_MOD_L3: (counter: 2)
+	Prefetch tracked was moderate (L3 hit) for marked target. (min count: 1000)
+PM_MRK_VSU_FIN: (counter: 2)
+	vsu (fpu) marked instr finish. (min count: 1000)
+PM_MULT_MRK: (counter: 2)
+	mult marked instr. (min count: 10000)
+PM_NESTED_TEND: (counter: 0, 1, 2, 3)
+	Completion time nested tend (min count: 10000)
+PM_NEST_REF_CLK: (counter: 2)
+	Nest reference clocks. (min count: 10000)
+PM_NON_FAV_TBEGIN: (counter: 0, 1, 2, 3)
+	Dispatch time non favored tbegin (min count: 10000)
+PM_NON_TM_RST_SC: (counter: 1)
+	non tm snp rst tm sc (min count: 10000)
+PM_NTCG_ALL_FIN: (counter: 1)
+	Ccycles after all instructions have finished to group completed. (min count: 10000)
+PM_OUTER_TBEGIN: (counter: 0, 1, 2, 3)
+	Completion time outer tbegin (min count: 10000)
+PM_OUTER_TEND: (counter: 0, 1, 2, 3)
+	Completion time outer tend (min count: 10000)
+PM_PMC1_OVERFLOW: (counter: 1)
+	Overflow from counter 1. (min count: 10000)
+PM_PMC2_OVERFLOW: (counter: 2)
+	Overflow from counter 2. (min count: 10000)
+PM_PMC2_REWIND: (counter: 2)
+	PMC2 Rewind Event (did not match condition). (min count: 10000)
+PM_PMC2_SAVED: (counter: 0)
+	PMC2 Rewind Value saved (matched condition). (min count: 10000)
+PM_PMC3_OVERFLOW: (counter: 3)
+	Overflow from counter 3. (min count: 10000)
+PM_PMC4_OVERFLOW: (counter: 0)
+	Overflow from counter 4. (min count: 10000)
+PM_PMC4_REWIND: (counter: 0)
+	PMC4 Rewind Event (did not match condition). (min count: 10000)
+PM_PMC4_SAVED: (counter: 2)
+	PMC4 Rewind Value saved (matched condition). (min count: 10000)
+PM_PMC5_OVERFLOW: (counter: 0)
+	Overflow from counter 5. (min count: 10000)
+PM_PMC6_OVERFLOW: (counter: 2)
+	Overflow from counter 6. (min count: 10000)
+PM_PREF_TRACKED: (counter: 1)
+	Total number of Prefetch Operations that were tracked. (min count: 10000)
+PM_PREF_TRACK_EFF: (counter: 0)
+	Prefetch Tracked was effective. (min count: 10000)
+PM_PREF_TRACK_INEFF: (counter: 2)
+	Prefetch tracked was ineffective. (min count: 10000)
+PM_PREF_TRACK_MOD: (counter: 3)
+	Prefetch tracked was moderate. (min count: 10000)
+PM_PREF_TRACK_MOD_L2: (counter: 0)
+	Prefetch Tracked was moderate (source L2). (min count: 10000)
+PM_PREF_TRACK_MOD_L3: (counter: 2)
+	Prefetch tracked was moderate (L3). (min count: 10000)
+PM_PROBE_NOP_DISP: (counter: 3)
+	ProbeNops dispatched. (min count: 10000)
+PM_PTE_PREFETCH: (counter: 0, 1, 2, 3)
+	PTE prefetches42 (min count: 10000)
+PM_PUMP_CPRED: (counter: 0)
+	Pump prediction correct. Counts across all types of pumpsfor all data types excluding data 
+        prefetch (demand load,inst prefetch,inst fetch,xlate). (min count: 10000)
+PM_PUMP_MPRED: (counter: 3)
+	Pump Mis prediction Counts across all types of pumpsfor all data types excluding data 
+        prefetch (demand load,inst prefetch,inst fetch,xlate). (min count: 10000)
+PM_RC0_ALLOC: (counter: 0)
+	0.0 (min count: 10000)
+PM_RC0_BUSY: (counter: 0)
+	RC mach 0 Busy. Used by PMU to sample ave RC livetime(mach0 used as sample point) (min 
+        count: 10000)
+PM_RC_LIFETIME_EXC_1024: (counter: 2)
+	Reload latency exceeded 1024 cyc (min count: 10000)
+PM_RC_LIFETIME_EXC_2048: (counter: 3)
+	Threshold counter exceeded a value of 2048 (min count: 10000)
+PM_RC_LIFETIME_EXC_256: (counter: 0)
+	Threshold counter exceed a count of 256 (min count: 10000)
+PM_RC_LIFETIME_EXC_32: (counter: 1)
+	Reload latency exceeded 32 cyc (min count: 10000)
+PM_RC_USAGE: (counter: 2)
+	Continuous 16 cycle(2to1) window where this signals rotates thru sampling each L2 RC 
+        machine busy. PMU uses this wave to then do 16 cyc count to sample total number of machs 
+        running (min count: 10000)
+PM_RD_CLEARING_SC: (counter: 3)
+	rd clearing sc (min count: 10000)
+PM_RD_FORMING_SC: (counter: 3)
+	rd forming sc (min count: 10000)
+PM_RD_HIT_PF: (counter: 1)
+	rd machine hit l3 pf machine (min count: 10000)
+PM_REAL_SRQ_FULL: (counter: 1)
+	Out of real srq entries. (min count: 10000)
+PM_RUN_CYC_SMT2_MODE: (counter: 2)
+	Cycles run latch is set and core is in SMT2 mode. (min count: 10000)
+PM_RUN_CYC_SMT2_SHRD_MODE: (counter: 1)
+	Cycles run latch is set and core is in SMT2-shared mode. (min count: 10000)
+PM_RUN_CYC_SMT2_SPLIT_MODE: (counter: 0)
+	Cycles run latch is set and core is in SMT2-split mode. (min count: 100000)
+PM_RUN_CYC_SMT4_MODE: (counter: 1)
+	Cycles run latch is set and core is in SMT4 mode. (min count: 10000)
+PM_RUN_CYC_SMT8_MODE: (counter: 3)
+	Cycles run latch is set and core is in SMT8 mode. (min count: 100000)
+PM_RUN_CYC_ST_MODE: (counter: 0)
+	Cycles run latch is set and core is in ST mode. (min count: 100000)
+PM_RUN_SPURR: (counter: 0)
+	Run SPURR. (min count: 10000)
+PM_SEC_ERAT_HIT: (counter: 0, 1, 2, 3)
+	secondary ERAT Hit42 (min count: 10000)
+PM_SHL_CREATED: (counter: 0, 1, 2, 3)
+	Store-Hit-Load Table Entry Created (min count: 10000)
+PM_SHL_ST_CONVERT: (counter: 0, 1, 2, 3)
+	Store-Hit-Load Table Read Hit with entry Enabled (min count: 10000)
+PM_SHL_ST_DISABLE: (counter: 0, 1, 2, 3)
+	Store-Hit-Load Table Read Hit with entry Disabled (entry was disabled due to the entry 
+        shown to not prevent the flush) (min count: 10000)
+PM_SN0_ALLOC: (counter: 1)
+	0.0 (min count: 10000)
+PM_SN0_BUSY: (counter: 1)
+	SN mach 0 Busy. Used by PMU to sample ave RC livetime(mach0 used as sample point) (min 
+        count: 10000)
+PM_SNOOP_TLBIE: (counter: 0, 1, 2, 3)
+	TLBIE snoopSnoop TLBIE (min count: 10000)
+PM_SNP_TM_HIT_M: (counter: 2)
+	snp tm st hit m mu (min count: 10000)
+PM_SNP_TM_HIT_T: (counter: 2)
+	snp tm_st_hit t tn te (min count: 10000)
+PM_SN_USAGE: (counter: 3)
+	Continuous 16 cycle(2to1) window where this signals rotates thru sampling each L2 SN 
+        machine busy. PMU uses this wave to then do 16 cyc count to sample total number of machs 
+        running (min count: 10000)
+PM_STALL_END_GCT_EMPTY: (counter: 0)
+	Count ended because GCT went empty. (min count: 10000)
+PM_STCX_FAIL: (counter: 0)
+	stcx failed . (min count: 10000)
+PM_STCX_LSU: (counter: 0, 1, 2, 3)
+	STCX executed reported at sent to nest42 (min count: 10000)
+PM_ST_CAUSED_FAIL: (counter: 0)
+	Non TM St caused any thread to fail (min count: 10000)
+PM_ST_CMPL: (counter: 1)
+	Store completion count. (min count: 10000)
+PM_ST_FWD: (counter: 1)
+	Store forwards that finished. (min count: 10000)
+PM_SUSPENDED: (counter: 0, 1, 2, 3)
+	Counter OFF. (min count: 10000)
+PM_SWAP_CANCEL: (counter: 0, 1, 2, 3)
+	SWAP cancel , rtag not available (min count: 10000)
+PM_SWAP_CANCEL_GPR: (counter: 0, 1, 2, 3)
+	SWAP cancel , rtag not available for gpr (min count: 10000)
+PM_SWAP_COMPLETE: (counter: 0, 1, 2, 3)
+	swap cast in completed (min count: 10000)
+PM_SWAP_COMPLETE_GPR: (counter: 0, 1, 2, 3)
+	swap cast in completed fpr gpr (min count: 10000)
+PM_SYNC_MRK_BR_LINK: (counter: 0)
+	Marked Branch and link branch that can cause a synchronous interrupt. (min count: 10000)
+PM_SYNC_MRK_BR_MPRED: (counter: 0)
+	Marked Branch mispredict that can cause a synchronous interrupt. (min count: 10000)
+PM_SYNC_MRK_FX_DIVIDE: (counter: 0)
+	Marked fixed point divide that can cause a synchronous interrupt. (min count: 10000)
+PM_SYNC_MRK_L2HIT: (counter: 0)
+	Marked L2 Hits that can throw a synchronous interrupt. (min count: 10000)
+PM_SYNC_MRK_L2MISS: (counter: 0)
+	Marked L2 Miss that can throw a synchronous interrupt. (min count: 10000)
+PM_SYNC_MRK_L3MISS: (counter: 0)
+	Marked L3 misses that can throw a synchronous interrupt. (min count: 10000)
+PM_SYNC_MRK_PROBE_NOP: (counter: 0)
+	Marked probeNops which can cause synchronous interrupts. (min count: 10000)
+PM_SYS_PUMP_CPRED: (counter: 2)
+	Initial and Final Pump Scope and data sourced across this scope was system pump for all 
+        data types excluding data prefetch (demand load,inst prefetch,inst fetch,xlate). (min 
+        count: 10000)
+PM_SYS_PUMP_MPRED: (counter: 2)
+	Final Pump Scope(system) to get data sourced, ended up larger than Initial Pump 
+        Scope(Chip/Group) OR Final Pump Scope(system) got data from source that was at smaller 
+        scope(Chip/group) Final pump was system pump and initial pump was chip or group or (min 
+        count: 10000)
+PM_SYS_PUMP_MPRED_RTY: (counter: 3)
+	Final Pump Scope(system) to get data sourced, ended up larger than Initial Pump Scope (Chip 
+        or Group) for all data types excluding data prefetch (demand load,inst prefetch,inst 
+        fetch,xlate). (min count: 10000)
+PM_TABLEWALK_CYC: (counter: 0)
+	Tablewalk Active. (min count: 10000)
+PM_TABLEWALK_CYC_PREF: (counter: 0, 1, 2, 3)
+	tablewalk qualified for pte prefetches42 (min count: 10000)
+PM_TABORT_TRECLAIM: (counter: 0, 1, 2, 3)
+	Completion time tabortnoncd, tabortcd, treclaim (min count: 10000)
+PM_TEND_PEND_CYC: (counter: 0, 1, 2, 3)
+	TEND latency per thread42 (min count: 10000)
+PM_THRD_ALL_RUN_CYC: (counter: 1)
+	All Threads in Run_cycles (was both threads in run_cycles). (min count: 100000)
+PM_THRD_GRP_CMPL_BOTH_CYC: (counter: 0)
+	Two threads finished same cycle (gated by run latch). (min count: 10000)
+PM_THRD_PRIO_0_1_CYC: (counter: 0, 1, 2, 3)
+	Cycles thread running at priority level 0 or 1 (min count: 1000)
+PM_THRD_PRIO_2_3_CYC: (counter: 0, 1, 2, 3)
+	Cycles thread running at priority level 2 or 3 (min count: 1000)
+PM_THRD_PRIO_4_5_CYC: (counter: 0, 1, 2, 3)
+	Cycles thread running at priority level 4 or 5 (min count: 1000)
+PM_THRD_PRIO_6_7_CYC: (counter: 0, 1, 2, 3)
+	Cycles thread running at priority level 6 or 7 (min count: 1000)
+PM_THRD_REBAL_CYC: (counter: 0, 1, 2, 3)
+	cycles rebalance was active (min count: 10000)
+PM_THRESH_NOT_MET: (counter: 3)
+	Threshold counter did not meet threshold. (min count: 10000)
+PM_TLBIE_FIN: (counter: 2)
+	tlbie finished. (min count: 10000)
+PM_TLB_MISS: (counter: 1)
+	TLB Miss (I + D). (min count: 10000)
+PM_TM_BEGIN_ALL: (counter: 0, 1, 2, 3)
+	Tm any tbegin (min count: 10000)
+PM_TM_CAM_OVERFLOW: (counter: 0)
+	l3 tm cam overflow during L2 co of SC (min count: 10000)
+PM_TM_CAP_OVERFLOW: (counter: 3)
+	TM Footprint Capactiy Overflow (min count: 10000)
+PM_TM_END_ALL: (counter: 0, 1, 2, 3)
+	Tm any tend (min count: 10000)
+PM_TM_FAIL_CONF_NON_TM: (counter: 0, 1, 2, 3)
+	TEXAS fail reason @ completion (min count: 10000)
+PM_TM_FAIL_CON_TM: (counter: 0, 1, 2, 3)
+	TEXAS fail reason @ completion (min count: 10000)
+PM_TM_FAIL_DISALLOW: (counter: 0, 1, 2, 3)
+	TM fail disallow42 (min count: 10000)
+PM_TM_FAIL_FOOTPRINT_OVERFLOW: (counter: 0, 1, 2, 3)
+	TEXAS fail reason @ completion (min count: 10000)
+PM_TM_FAIL_NON_TX_CONFLICT: (counter: 0, 1, 2, 3)
+	Non transactional conflict from LSU whtver gets repoted to texas42 (min count: 10000)
+PM_TM_FAIL_SELF: (counter: 0, 1, 2, 3)
+	TEXAS fail reason @ completion (min count: 10000)
+PM_TM_FAIL_TLBIE: (counter: 0, 1, 2, 3)
+	TLBIE hit bloom filter42 (min count: 10000)
+PM_TM_FAIL_TX_CONFLICT: (counter: 0, 1, 2, 3)
+	Transactional conflict from LSU, whatever gets reported to texas 42 (min count: 10000)
+PM_TM_FAV_CAUSED_FAIL: (counter: 1)
+	TM Load (fav) caused another thread to fail (min count: 10000)
+PM_TM_LD_CAUSED_FAIL: (counter: 0)
+	Non TM Ld caused any thread to fail (min count: 10000)
+PM_TM_LD_CONF: (counter: 1)
+	TM Load (fav or non-fav) ran into conflict (failed) (min count: 10000)
+PM_TM_RST_SC: (counter: 1)
+	tm snp rst tm sc (min count: 10000)
+PM_TM_SC_CO: (counter: 0)
+	l3 castout tm Sc line (min count: 10000)
+PM_TM_ST_CAUSED_FAIL: (counter: 2)
+	TM Store (fav or non-fav) caused another thread to fail (min count: 10000)
+PM_TM_ST_CONF: (counter: 2)
+	TM Store (fav or non-fav) ran into conflict (failed) (min count: 10000)
+PM_TM_TBEGIN: (counter: 0, 1, 2, 3)
+	Tm nested tbegin (min count: 10000)
+PM_TM_TRANS_RUN_CYC: (counter: 0)
+	run cycles in transactional state. (min count: 10000)
+PM_TM_TRANS_RUN_INST: (counter: 2)
+	Instructions completed in transactional state. (min count: 10000)
+PM_TM_TRESUME: (counter: 0, 1, 2, 3)
+	Tm resume (min count: 10000)
+PM_TM_TSUSPEND: (counter: 0, 1, 2, 3)
+	Tm suspend (min count: 10000)
+PM_TM_TX_PASS_RUN_CYC: (counter: 1)
+	run cycles spent in successful transactions. (min count: 10000)
+PM_TM_TX_PASS_RUN_INST: (counter: 3)
+	run instructions spent in successful transactions. (min count: 10000)
+PM_UP_PREF_L3: (counter: 0, 1, 2, 3)
+	Micropartition prefetch42 (min count: 10000)
+PM_UP_PREF_POINTER: (counter: 0, 1, 2, 3)
+	Micrpartition pointer prefetches42 (min count: 10000)
+PM_VSU0_16FLOP: (counter: 0, 1, 2, 3)
+	Sixteen flops operation (SP vector versions of fdiv,fsqrt) (min count: 10000)
+PM_VSU0_1FLOP: (counter: 0, 1, 2, 3)
+	one flop (fadd, fmul, fsub, fcmp, fsel, fabs, fnabs, fres, fsqrte, fneg) operation 
+        finishedDecode into 1,2,4 FLOP according to instr IOP, multiplied by #vector elements 
+        according to route( eg x1, x2, x4) Only if instr sends finish to ISU (min count: 10000)
+PM_VSU0_2FLOP: (counter: 0, 1, 2, 3)
+	two flops operation (scalar fmadd, fnmadd, fmsub, fnmsub and DP vector versions of single 
+        flop instructions) (min count: 10000)
+PM_VSU0_4FLOP: (counter: 0, 1, 2, 3)
+	four flops operation (scalar fdiv, fsqrt, DP vector version of fmadd, fnmadd, fmsub, 
+        fnmsub, SP vector versions of single flop instructions) (min count: 10000)
+PM_VSU0_8FLOP: (counter: 0, 1, 2, 3)
+	eight flops operation (DP vector versions of fdiv,fsqrt and SP vector versions of 
+        fmadd,fnmadd,fmsub,fnmsub) (min count: 10000)
+PM_VSU0_COMPLEX_ISSUED: (counter: 0, 1, 2, 3)
+	Complex VMX instruction issued (min count: 10000)
+PM_VSU0_CY_ISSUED: (counter: 0, 1, 2, 3)
+	Cryptographic instruction RFC02196 Issued (min count: 10000)
+PM_VSU0_DD_ISSUED: (counter: 0, 1, 2, 3)
+	64BIT Decimal Issued (min count: 10000)
+PM_VSU0_DP_2FLOP: (counter: 0, 1, 2, 3)
+	DP vector version of fmul, fsub, fcmp, fsel, fabs, fnabs, fres ,fsqrte, fneg (min count: 
+        10000)
+PM_VSU0_DP_FMA: (counter: 0, 1, 2, 3)
+	DP vector version of fmadd,fnmadd,fmsub,fnmsub (min count: 10000)
+PM_VSU0_DP_FSQRT_FDIV: (counter: 0, 1, 2, 3)
+	DP vector versions of fdiv,fsqrt (min count: 10000)
+PM_VSU0_DQ_ISSUED: (counter: 0, 1, 2, 3)
+	128BIT Decimal Issued (min count: 10000)
+PM_VSU0_EX_ISSUED: (counter: 0, 1, 2, 3)
+	Direct move 32/64b VRFtoGPR RFC02206 Issued (min count: 10000)
+PM_VSU0_FIN: (counter: 0, 1, 2, 3)
+	VSU0 Finished an instruction (min count: 10000)
+PM_VSU0_FMA: (counter: 0, 1, 2, 3)
+	two flops operation (fmadd, fnmadd, fmsub, fnmsub) Scalar instructions only! (min count: 
+        10000)
+PM_VSU0_FPSCR: (counter: 0, 1, 2, 3)
+	Move to/from FPSCR type instruction issued on Pipe 0 (min count: 10000)
+PM_VSU0_FSQRT_FDIV: (counter: 0, 1, 2, 3)
+	four flops operation (fdiv,fsqrt) Scalar Instructions only! (min count: 10000)
+PM_VSU0_PERMUTE_ISSUED: (counter: 0, 1, 2, 3)
+	Permute VMX Instruction Issued (min count: 10000)
+PM_VSU0_SCALAR_DP_ISSUED: (counter: 0, 1, 2, 3)
+	Double Precision scalar instruction issued on Pipe0 (min count: 10000)
+PM_VSU0_SIMPLE_ISSUED: (counter: 0, 1, 2, 3)
+	Simple VMX instruction issued (min count: 10000)
+PM_VSU0_SINGLE: (counter: 0, 1, 2, 3)
+	FPU single precision (min count: 10000)
+PM_VSU0_SQ: (counter: 0, 1, 2, 3)
+	Store Vector Issued (min count: 10000)
+PM_VSU0_STF: (counter: 0, 1, 2, 3)
+	FPU store (SP or DP) issued on Pipe0 (min count: 10000)
+PM_VSU0_VECTOR_DP_ISSUED: (counter: 0, 1, 2, 3)
+	Double Precision vector instruction issued on Pipe0 (min count: 10000)
+PM_VSU0_VECTOR_SP_ISSUED: (counter: 0, 1, 2, 3)
+	Single Precision vector instruction issued (executed) (min count: 10000)
+PM_VSU1_16FLOP: (counter: 0, 1, 2, 3)
+	Sixteen flops operation (SP vector versions of fdiv,fsqrt) (min count: 10000)
+PM_VSU1_1FLOP: (counter: 0, 1, 2, 3)
+	one flop (fadd, fmul, fsub, fcmp, fsel, fabs, fnabs, fres, fsqrte, fneg) operation finished
+         (min count: 10000)
+PM_VSU1_2FLOP: (counter: 0, 1, 2, 3)
+	two flops operation (scalar fmadd, fnmadd, fmsub, fnmsub and DP vector versions of single 
+        flop instructions) (min count: 10000)
+PM_VSU1_4FLOP: (counter: 0, 1, 2, 3)
+	four flops operation (scalar fdiv, fsqrt, DP vector version of fmadd, fnmadd, fmsub, 
+        fnmsub, SP vector versions of single flop instructions) (min count: 10000)
+PM_VSU1_8FLOP: (counter: 0, 1, 2, 3)
+	eight flops operation (DP vector versions of fdiv,fsqrt and SP vector versions of 
+        fmadd,fnmadd,fmsub,fnmsub) (min count: 10000)
+PM_VSU1_COMPLEX_ISSUED: (counter: 0, 1, 2, 3)
+	Complex VMX instruction issued (min count: 10000)
+PM_VSU1_CY_ISSUED: (counter: 0, 1, 2, 3)
+	Cryptographic instruction RFC02196 Issued (min count: 10000)
+PM_VSU1_DD_ISSUED: (counter: 0, 1, 2, 3)
+	64BIT Decimal Issued (min count: 10000)
+PM_VSU1_DP_2FLOP: (counter: 0, 1, 2, 3)
+	DP vector version of fmul, fsub, fcmp, fsel, fabs, fnabs, fres ,fsqrte, fneg (min count: 
+        10000)
+PM_VSU1_DP_FMA: (counter: 0, 1, 2, 3)
+	DP vector version of fmadd,fnmadd,fmsub,fnmsub (min count: 10000)
+PM_VSU1_DP_FSQRT_FDIV: (counter: 0, 1, 2, 3)
+	DP vector versions of fdiv,fsqrt (min count: 10000)
+PM_VSU1_DQ_ISSUED: (counter: 0, 1, 2, 3)
+	128BIT Decimal Issued (min count: 10000)
+PM_VSU1_EX_ISSUED: (counter: 0, 1, 2, 3)
+	Direct move 32/64b VRFtoGPR RFC02206 Issued (min count: 10000)
+PM_VSU1_FIN: (counter: 0, 1, 2, 3)
+	VSU1 Finished an instruction (min count: 10000)
+PM_VSU1_FMA: (counter: 0, 1, 2, 3)
+	two flops operation (fmadd, fnmadd, fmsub, fnmsub) Scalar instructions only! (min count: 
+        10000)
+PM_VSU1_FPSCR: (counter: 0, 1, 2, 3)
+	Move to/from FPSCR type instruction issued on Pipe 0 (min count: 10000)
+PM_VSU1_FSQRT_FDIV: (counter: 0, 1, 2, 3)
+	four flops operation (fdiv,fsqrt) Scalar Instructions only! (min count: 10000)
+PM_VSU1_PERMUTE_ISSUED: (counter: 0, 1, 2, 3)
+	Permute VMX Instruction Issued (min count: 10000)
+PM_VSU1_SCALAR_DP_ISSUED: (counter: 0, 1, 2, 3)
+	Double Precision scalar instruction issued on Pipe1 (min count: 10000)
+PM_VSU1_SIMPLE_ISSUED: (counter: 0, 1, 2, 3)
+	Simple VMX instruction issued (min count: 10000)
+PM_VSU1_SINGLE: (counter: 0, 1, 2, 3)
+	FPU single precision (min count: 10000)
+PM_VSU1_SQ: (counter: 0, 1, 2, 3)
+	Store Vector Issued (min count: 10000)
+PM_VSU1_STF: (counter: 0, 1, 2, 3)
+	FPU store (SP or DP) issued on Pipe1 (min count: 10000)
+PM_VSU1_VECTOR_DP_ISSUED: (counter: 0, 1, 2, 3)
+	Double Precision vector instruction issued on Pipe1 (min count: 10000)
+PM_VSU1_VECTOR_SP_ISSUED: (counter: 0, 1, 2, 3)
+	Single Precision vector instruction issued (executed) (min count: 10000)
