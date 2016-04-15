@@ -259,7 +259,6 @@ int ark_enq_cmd(int cmd, _ARK *_arkp, uint64_t klen, void *key,
     }
     if (val_buf != NULL)
     {
-      puts("Retrieved directly from memory");
       if ((voff + vlen) <= res)
       {
         memcpy(val, val_buf + voff, vlen);
