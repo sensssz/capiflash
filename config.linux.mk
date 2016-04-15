@@ -136,7 +136,7 @@ GITREVISION:=$(shell git rev-list HEAD | wc -l)-$(shell git rev-parse --short HE
 CUSTOMFLAGS += -DGITREVISION='"${GITREVISION}"'
 
 CFLAGS += ${COMMONFLAGS} \
-	 -Wall ${CUSTOMFLAGS}  ${ARCHFLAGS} \
+	 -Wall -Wno-unused-variable ${CUSTOMFLAGS}  ${ARCHFLAGS} \
 	-R '$$ADV_TOOLCHAIN_PATH/lib64:$$ORIGIN/../lib:$$ORIGIN:/lib:/usr/lib:/opt/ibm/capikv/lib' \
 	${INCFLAGS}
 #if ALLOW_WARNINGS is NOT defined, we assume we are compiling production code
