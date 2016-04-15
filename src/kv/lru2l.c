@@ -151,8 +151,13 @@ static void flist_put(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, u
   } else {
     // It's an update. We just need to move the node to the front.
     fnode_t *node = (fnode_t *) pair->ref;
-    DL_DELETE(lru->first, node);
-    DL_PREPEND(lru->first, node);
+    if (lru->len > 1) {
+      if (node == lru->last) {
+        lru->last = node->prev;
+      }
+      DL_DELETE(lru->first, node);
+      DL_PREPEND(lru->first, node);
+    }
   }
   pthread_mutex_unlock(&lru->mutex);
 }
