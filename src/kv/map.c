@@ -14,6 +14,7 @@
 static inline void wipe_pair(map_t *map, uint64_t pos);
 static inline void delete_key(map_t *map, uint64_t pos);
 static inline uint64_t map_pos(map_t *map, uint8_t *key, uint64_t klen);
+static void print(map_t *map);
 
 map_t *map_new(uint64_t len) {
   map_t *map = (map_t *) am_malloc(sizeof(map_t) + sizeof(kv_t) * len);
@@ -54,8 +55,8 @@ bool map_put(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vle
 }
 
 void map_del(map_t *map, uint8_t *key, uint64_t klen) {
+  print(map);
   uint64_t pos = map_pos(map, key, klen);
-  puts("Deleting key");
   if (map->kvs[pos].key == NULL) {
     uint64_t index = 0;
     for (; index < map->cap; ++index) {
@@ -83,6 +84,7 @@ void map_del(map_t *map, uint8_t *key, uint64_t klen) {
     }
   }
   --(map->size);
+  print(map);
 }
 
 void map_clr(map_t *map) {
@@ -158,4 +160,15 @@ static inline uint64_t map_pos(map_t *map, uint8_t *key, uint64_t klen) {
   uint64_t hash = hash_hash(key, klen);
   uint64_t pos = hash % map->cap;
   return pos;
+}
+
+static void print(map_t *map) {
+  uint64_t  index = 0;
+  for (; index < map->cap; ++index) {
+    if (map->kvs[index].klen == 0) {
+      printf("%" PRId64 "\t----\n", index);
+    } else {
+      printf("%" PRId64 "\t%" PRId64 "\n", index, map->kvs[index].off);
+    }
+  }
 }
