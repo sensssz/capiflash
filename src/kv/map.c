@@ -14,7 +14,7 @@
 static inline void wipe_pair(map_t *map, uint64_t pos);
 static inline void delete_key(map_t *map, uint64_t pos);
 static inline uint64_t map_pos(map_t *map, uint8_t *key, uint64_t klen);
-static void print(map_t *map);
+//static void print(map_t *map);
 
 map_t *map_new(uint64_t len) {
   map_t *map = (map_t *) am_malloc(sizeof(map_t) + sizeof(kv_t) * len);
@@ -171,13 +171,13 @@ static inline uint64_t map_pos(map_t *map, uint8_t *key, uint64_t klen) {
   return pos;
 }
 
-static void print(map_t *map) {
-  uint64_t  index = 0;
-  for (; index < map->cap; ++index) {
-    if (map->kvs[index].klen == 0) {
-      printf("%" PRIu64 "\t----\t----\n", index);
-    } else {
-      printf("%" PRIu64 "\t%" PRIu64 "\t%" PRIu64 "\n", index, map_pos(map, map->kvs[index].key, map->kvs[index].klen), map->kvs[index].off);
-    }
-  }
-}
+//static void print(map_t *map) {
+//  uint64_t  index = 0;
+//  for (; index < map->cap; ++index) {
+//    if (map->kvs[index].klen == 0) {
+//      printf("%" PRIu64 "\t----\t----\n", index);
+//    } else {
+//      printf("%" PRIu64 "\t%" PRIu64 "\t%" PRIu64 "\n", index, map_pos(map, map->kvs[index].key, map->kvs[index].klen), map->kvs[index].off);
+//    }
+//  }
+//}
