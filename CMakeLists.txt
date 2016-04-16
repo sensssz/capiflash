@@ -416,7 +416,7 @@ set(SOURCE_FILES
     src/test/transport_test.c
     src/test/transport_test.h
     src/test/unit_test-kv.C
-    src/test/xlate.c src/kv/heavy_hitter.c src/kv/heavy_hitter.h src/kv/list.h src/kv/lru2l.c src/kv/lru2l.h src/kv/map.c src/kv/map.h)
+    src/test/xlate.c src/kv/heavy_hitter.c src/kv/heavy_hitter.h src/kv/list.h src/kv/lru2l.c src/kv/lru2l.h src/kv/map.c src/kv/map.h src/kv/lru.c src/kv/lru.h)
 
 include_directories(src/include)
 include_directories(src/kv)

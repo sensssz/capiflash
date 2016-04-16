@@ -253,7 +253,9 @@ static void slist_access(slist_t *slist, uint8_t *key, uint64_t klen) {
 
 static void flist_validate(flist_t *lru) {
 #ifdef DEBUG
-  assert(lru->len == lru->hot_cache->size);
+  if (lru->len != lru->hot_cache->size) {
+    printf("%" PRIu64 ", %" PRIu64 "\n", lru->len, lru->hot_cache);
+  }
   if (lru->len == 0) {
     assert(lru->first == NULL && lru->last == NULL);
     return;
