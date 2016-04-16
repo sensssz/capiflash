@@ -15,6 +15,7 @@ static inline void wipe_pair(map_t *map, uint64_t pos);
 static inline void delete_key(map_t *map, uint64_t pos);
 static inline uint64_t map_pos(map_t *map, uint8_t *key, uint64_t klen);
 //static void print(map_t *map);
+static void validate(map_t *map);
 
 map_t *map_new(uint64_t len) {
   map_t *map = (map_t *) am_malloc(sizeof(map_t) + sizeof(kv_t) * len);
@@ -55,6 +56,7 @@ bool map_put(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vle
 }
 
 void map_del(map_t *map, uint8_t *key, uint64_t klen) {
+  validate(map);
 //  puts("======================================================");
 //  print(map);
   uint64_t pos = map_pos(map, key, klen);
@@ -89,6 +91,7 @@ void map_del(map_t *map, uint8_t *key, uint64_t klen) {
   }
   --(map->size);
 //  print(map);
+  validate(map);
 }
 
 void map_clr(map_t *map) {
@@ -100,6 +103,7 @@ void map_clr(map_t *map) {
 }
 
 kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen, bool set_off) {
+  validate(map);
   uint64_t pos = map_pos(map, key, klen);
   uint64_t off = 0;
   bool found = false;
@@ -115,10 +119,12 @@ kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen, bool set_off) {
   if (set_off && !found) {
     map->kvs[pos].off = off;
   }
+  validate(map);
   return map->kvs + pos;
 }
 
 bool map_put_pair(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen, kv_t **pair_out) {
+  validate(map);
   kv_t *pair = map_get_pair(map, key, klen, true);
   if (pair_out != NULL) {
     *pair_out = pair;
@@ -130,6 +136,7 @@ bool map_put_pair(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_
     }
     pair->vlen = vlen;
     memcpy(pair->val, val, vlen);
+    validate(map);
     return false;
   } else {
     pair->klen = klen;
@@ -139,6 +146,7 @@ bool map_put_pair(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_
     memcpy(pair->key, key, klen);
     memcpy(pair->val, val, vlen);
     ++(map->size);
+    validate(map);
     return true;
   }
 }
@@ -181,3 +189,20 @@ static inline uint64_t map_pos(map_t *map, uint8_t *key, uint64_t klen) {
 //    }
 //  }
 //}
+
+static void validate(map_t *map) {
+  uint64_t num_pairs = 0;
+  uint64_t index = 0;
+  for (; index < map->cap; ++index) {
+    kv_t *pair = map->kvs + index;
+    if (pair->klen > 0) {
+      uint64_t hashed_pos = map_pos(map, pair->key, pair->klen);
+      if (index < hashed_pos) {
+        assert(pair->off == (index + map->cap - hashed_pos));
+      } else {
+        assert(pair->off == (index - hashed_pos));
+      }
+      ++num_pairs;
+    }
+  }
+}
