@@ -15,7 +15,7 @@ static inline void wipe_pair(map_t *map, uint64_t pos);
 static inline void delete_key(map_t *map, uint64_t pos);
 static inline uint64_t map_pos(map_t *map, uint8_t *key, uint64_t klen);
 //static void print(map_t *map);
-static void validate(map_t *map);
+static inline void validate(map_t *map);
 
 map_t *map_new(uint64_t len) {
   map_t *map = (map_t *) am_malloc(sizeof(map_t) + sizeof(kv_t) * len);
@@ -60,16 +60,6 @@ void map_del(map_t *map, uint8_t *key, uint64_t klen) {
 //  puts("======================================================");
 //  print(map);
   uint64_t pos = map_pos(map, key, klen);
-  if (map->kvs[pos].key == NULL) {
-    printf("Key length is %" PRIu64 ", is hashed to pos %" PRIu64 " but not found\n", klen, pos);
-    uint64_t index = 0;
-    for (; index < map->cap; ++index) {
-      if (map->kvs[index].key != NULL &&
-          memcmp(map->kvs[index].key, key, klen) == 0) {
-        printf("Key found at position %" PRIu64 " while hashed to position %" PRIu64 "\n", index, pos);
-      }
-    }
-  }
   while (map->kvs[pos].klen != klen ||
          memcmp(key, map->kvs[pos].key, klen) != 0) {
     pos = INC_CAP(pos);
