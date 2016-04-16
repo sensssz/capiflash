@@ -9,7 +9,7 @@
 #include "list.h"
 #include "lru2l.h"
 
-#define FLRU_CAP 100
+#define FLRU_CAP 10
 #define SLRU_CAP 10
 
 typedef struct _first_l_list  flist_t;

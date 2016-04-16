@@ -55,6 +55,7 @@ bool map_put(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vle
 }
 
 void map_del(map_t *map, uint8_t *key, uint64_t klen) {
+  puts("======================================================");
   print(map);
   uint64_t pos = map_pos(map, key, klen);
   if (map->kvs[pos].key == NULL) {
@@ -166,9 +167,9 @@ static void print(map_t *map) {
   uint64_t  index = 0;
   for (; index < map->cap; ++index) {
     if (map->kvs[index].klen == 0) {
-      printf("%" PRId64 "\t----\n", index);
+      printf("%" PRId64 "\t----\t----\n", index);
     } else {
-      printf("%" PRId64 "\t%" PRId64 "\n", index, map->kvs[index].off);
+      printf("%" PRId64 "\t%" PRId64 "\t%" PRId64 "\n", index, hash_hash(map->kvs[index].key, map->kvs[index].klen), map->kvs[index].off);
     }
   }
 }
