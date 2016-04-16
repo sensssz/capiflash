@@ -112,6 +112,8 @@ static void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, 
   }
   copy_value(val, vlen, pair);
   fnode_t *node = pair->ref;
+  assert(lru->first);
+  assert(node);
   DL_DELETE(lru->first, node);
   DL_PREPEND(lru->first, node);
   flist_validate(lru);
@@ -250,7 +252,7 @@ static void flist_validate(flist_t *lru) {
   DL_FOREACH(lru->first, node) {
     assert(node->pair->key != NULL && node->pair->klen > 0);
     assert(node->pair->val != NULL && node->pair->vlen > 0);
-    assert(node == node->pair->ref);
+    assert(node == node->pair->ref && node != NULL);
   }
 #endif
 }
