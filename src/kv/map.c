@@ -71,6 +71,7 @@ void map_del(map_t *map, uint8_t *key, uint64_t klen) {
   while (memcmp(key, map->kvs[pos].key, klen) != 0) {
     pos = INC_CAP(pos);
   }
+  printf("\nDeleting key at position %" PRIu64 "\n\n");
   delete_key(map, pos);
   uint64_t index = INC_CAP(pos);
   uint64_t off = 1;
