@@ -75,7 +75,7 @@ void map_del(map_t *map, uint8_t *key, uint64_t klen) {
   uint64_t index = INC_CAP(pos);
   uint64_t off = 1;
   for (; map->kvs[index].klen > 0; index = INC_CAP(index), ++off) {
-    if (map->kvs[index].off > off) {
+    if (map->kvs[index].off >= off) {
       map->kvs[pos] = map->kvs[index];
       map->kvs[pos].off -= off;
       wipe_pair(map, index);
