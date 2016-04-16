@@ -9,6 +9,7 @@
 #include "list.h"
 #include "lru2l.h"
 
+#define DEBUG
 #define FLRU_CAP 10
 #define SLRU_CAP 10
 
@@ -179,7 +180,11 @@ static void flist_del(lru2l_t *lru, uint8_t *key, uint64_t klen) {
       if (node == lru->last) {
         lru->last = node->prev;
       }
-      DL_DELETE(lru->first, node);
+      if (node != lru->first) {
+        DL_DELETE(lru->first, node);
+      } else {
+        lru->first = NULL;
+      }
       am_free(node);
       puts("Delete key from map");
       map_del(lru->hot_cache, key, klen);
