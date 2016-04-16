@@ -13,8 +13,6 @@
 #define SLRU_CAP 10
 
 typedef struct _first_l_list  flist_t;
-typedef struct _first_l_node  fnode_t;
-typedef struct _second_l_list slist_t;
 typedef struct _second_l_node snode_t;
 
 static flist_t *flist_new();
@@ -36,13 +34,6 @@ struct _first_l_list {
   map_t    *hot_cache;
   map_t    *likely_cache;
   pthread_mutex_t mutex;
-};
-
-struct _first_l_node {
-  kv_t     *pair;
-  fnode_t  *prev;
-  fnode_t  *next;
-  slist_t  *likely_keys;
 };
 
 struct _second_l_list {
@@ -116,7 +107,7 @@ static void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, 
     return;
   }
   copy_value(val, vlen, pair);
-  fnode_t *node = (fnode_t *) pair->ref;
+  fnode_t *node = pair->ref;
   DL_DELETE(lru->first, node);
   DL_PREPEND(lru->first, node);
   pthread_mutex_unlock(&lru->mutex);
@@ -125,7 +116,7 @@ static void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, 
 static void flist_access(lru2l_t *lru, uint8_t *prev_key, uint64_t prev_klen, uint8_t *key, uint64_t klen) {
   kv_t *pair = map_get_pair(lru->hot_cache, prev_key, prev_klen);
   if (pair->key != NULL) {
-    fnode_t *node = (fnode_t *) pair->ref;
+    fnode_t *node = pair->ref;
     slist_access(node->likely_keys, key, klen);
   }
 }
@@ -162,7 +153,7 @@ static void flist_put(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, u
     }
   } else {
     // It's an update. We just need to move the node to the front.
-    fnode_t *node = (fnode_t *) pair->ref;
+    fnode_t *node = pair->ref;
     if (lru->len > 1) {
       if (node == lru->last) {
         lru->last = node->prev;
@@ -178,7 +169,7 @@ static void flist_del(lru2l_t *lru, uint8_t *key, uint64_t klen) {
   pthread_mutex_lock(&lru->mutex);
   kv_t *pair = map_get_pair(lru->hot_cache, key, klen);
   if (pair->klen > 0) {
-    fnode_t *node = (fnode_t *) pair->ref;
+    fnode_t *node = pair->ref;
     if (node == lru->last) {
       lru->last = node->prev;
     }

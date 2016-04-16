@@ -12,6 +12,15 @@
 
 typedef struct _kv_t          kv_t;
 typedef struct _map_t         map_t;
+typedef struct _first_l_node  fnode_t;
+typedef struct _second_l_list slist_t;
+
+struct _first_l_node {
+  kv_t     *pair;
+  fnode_t  *prev;
+  fnode_t  *next;
+  slist_t  *likely_keys;
+};
 
 struct _kv_t {
   uint64_t  vlen;
@@ -19,7 +28,7 @@ struct _kv_t {
   uint64_t  klen;
   uint8_t  *key;
   uint64_t  off;
-  void     *ref;
+  fnode_t  *ref;
 };
 
 struct _map_t {

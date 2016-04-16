@@ -81,6 +81,7 @@ void map_del(map_t *map, uint8_t *key, uint64_t klen) {
     if (map->kvs[index].off >= off) {
       map->kvs[pos] = map->kvs[index];
       map->kvs[pos].off -= off;
+      map->kvs[pos].ref->pair = map->kvs + pos;
       wipe_pair(map, index);
       map->kvs[index].off = 0;
       off = 0;
