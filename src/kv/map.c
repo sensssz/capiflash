@@ -191,6 +191,7 @@ static inline uint64_t map_pos(map_t *map, uint8_t *key, uint64_t klen) {
 //}
 
 static void validate(map_t *map) {
+#ifdef DEBUG
   uint64_t num_pairs = 0;
   uint64_t index = 0;
   for (; index < map->cap; ++index) {
@@ -205,4 +206,5 @@ static void validate(map_t *map) {
       ++num_pairs;
     }
   }
+#endif
 }

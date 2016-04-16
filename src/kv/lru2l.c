@@ -9,6 +9,8 @@
 #include "list.h"
 #include "lru2l.h"
 
+#define DEBUG
+
 #define FLRU_CAP 10
 #define SLRU_CAP 10
 
@@ -21,6 +23,7 @@ static void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, 
 static void flist_access(lru2l_t *lru, uint8_t *prev_key, uint64_t prev_klen, uint8_t *key, uint64_t klen);
 static void flist_put(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen);
 static void flist_del(flist_t *lru, uint8_t *key, uint64_t klen);
+static void flist_validate(flist_t *lru);
 
 static slist_t *slist_new(uint64_t cap);
 static void slist_free(slist_t *slist);
@@ -101,6 +104,7 @@ static void flist_free(flist_t *flist) {
 
 static void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, uint64_t *vlen) {
   pthread_mutex_lock(&lru->mutex);
+  flist_validate(lru);
   kv_t *pair = map_get_pair(lru->hot_cache, key, klen, false);
   if (pair->key == NULL) {
     pthread_mutex_unlock(&lru->mutex);
@@ -110,6 +114,7 @@ static void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, 
   fnode_t *node = pair->ref;
   DL_DELETE(lru->first, node);
   DL_PREPEND(lru->first, node);
+  flist_validate(lru);
   pthread_mutex_unlock(&lru->mutex);
 }
 
@@ -123,6 +128,7 @@ static void flist_access(lru2l_t *lru, uint8_t *prev_key, uint64_t prev_klen, ui
 
 static void flist_put(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen) {
   pthread_mutex_lock(&lru->mutex);
+  flist_validate(lru);
   kv_t *pair = NULL;
   if (map_put_pair(lru->hot_cache, key, klen, val, vlen, &pair)) {
     // It's an insert. Need to check if we need to evict an item
@@ -137,7 +143,6 @@ static void flist_put(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, u
       fnode_t *last = lru->last;
       lru->last = last->prev;
       lru->last->next = NULL;
-      assert(last->pair->key != NULL);
       map_del(lru->hot_cache, last->pair->key, last->pair->klen);
       am_free(last);
     } else {
@@ -157,11 +162,13 @@ static void flist_put(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, u
       DL_PREPEND(lru->first, node);
     }
   }
+  flist_validate(lru);
   pthread_mutex_unlock(&lru->mutex);
 }
 
 static void flist_del(lru2l_t *lru, uint8_t *key, uint64_t klen) {
   pthread_mutex_lock(&lru->mutex);
+  flist_validate(lru);
   kv_t *pair = map_get_pair(lru->hot_cache, key, klen, false);
   if (pair->klen > 0) {
     fnode_t *node = pair->ref;
@@ -173,6 +180,7 @@ static void flist_del(lru2l_t *lru, uint8_t *key, uint64_t klen) {
     map_del(lru->hot_cache, key, klen);
     --(lru->len);
   }
+  flist_validate(lru);
   pthread_mutex_unlock(&lru->mutex);
 }
 
@@ -228,4 +236,21 @@ static void slist_access(slist_t *slist, uint8_t *key, uint64_t klen) {
       DL_PREPEND(slist->first, node);
     }
   }
+}
+
+static void flist_validate(flist_t *lru) {
+#ifdef DEBUG
+  if (lru->len == 0) {
+    assert(lru->first == NULL && lru->last == NULL);
+    return;
+  } else if (lru->len == 1) {
+    assert(lru->first == lru->last && lru->first->next == NULL);
+  }
+  fnode_t *node;
+  DL_FOREACH(lru->first, node) {
+    assert(node->pair->key != NULL && node->pair->klen > 0);
+    assert(node->pair->val != NULL && node->pair->vlen > 0);
+    assert(node == node->pair->ref);
+  }
+#endif
 }
