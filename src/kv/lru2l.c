@@ -151,6 +151,7 @@ static void flist_put(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, u
       fnode_t *last = lru->last;
       lru->last = last->prev;
       lru->last->next = NULL;
+      assert(last->pair->key != NULL);
       map_del(lru->hot_cache, last->pair->key, last->pair->klen);
       am_free(last);
     } else {
