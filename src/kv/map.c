@@ -103,15 +103,17 @@ void map_clr(map_t *map) {
 kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen, bool set_off) {
   uint64_t pos = map_pos(map, key, klen);
   uint64_t off = 0;
+  bool found = false;
   while (map->kvs[pos].klen > 0) {
     if (map->kvs[pos].klen == klen ||
         memcmp(key, map->kvs[pos].key, klen) == 0) {
+      found = true;
       break;
     }
     pos = INC_CAP(pos);
     ++off;
   }
-  if (set_off) {
+  if (set_off && !found) {
     map->kvs[pos].off = off;
   }
   return map->kvs + pos;
