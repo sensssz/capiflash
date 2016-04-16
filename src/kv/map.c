@@ -14,7 +14,7 @@
 static inline void wipe_pair(map_t *map, uint64_t pos);
 static inline void delete_key(map_t *map, uint64_t pos);
 static inline uint64_t map_pos(map_t *map, uint8_t *key, uint64_t klen);
-//static void print(map_t *map);
+static void print(map_t *map);
 static inline void validate(map_t *map);
 
 map_t *map_new(uint64_t len) {
@@ -64,11 +64,16 @@ void map_del(map_t *map, uint8_t *key, uint64_t klen) {
          memcmp(key, map->kvs[pos].key, klen) != 0) {
     pos = INC_CAP(pos);
   }
-//  printf("\nDeleting key at position %" PRIu64 "\n\n", pos);
+  printf("\nDeleting key at position %" PRIu64 "\n", pos);
   delete_key(map, pos);
   uint64_t index = INC_CAP(pos);
   uint64_t off = 1;
-  for (; map->kvs[index].klen > 0; index = INC_CAP(index), ++off) {
+  uint64_t count = 0;
+  for (; map->kvs[index].klen > 0; index = INC_CAP(index), ++off, ++count) {
+    if (count > map->cap) {
+      print(map);
+      break;
+    }
     if (map->kvs[index].off >= off) {
       map->kvs[pos] = map->kvs[index];
       map->kvs[pos].off -= off;
@@ -169,16 +174,16 @@ static inline uint64_t map_pos(map_t *map, uint8_t *key, uint64_t klen) {
   return pos;
 }
 
-//static void print(map_t *map) {
-//  uint64_t  index = 0;
-//  for (; index < map->cap; ++index) {
-//    if (map->kvs[index].klen == 0) {
-//      printf("%" PRIu64 "\t----\t----\n", index);
-//    } else {
-//      printf("%" PRIu64 "\t%" PRIu64 "\t%" PRIu64 "\n", index, map_pos(map, map->kvs[index].key, map->kvs[index].klen), map->kvs[index].off);
-//    }
-//  }
-//}
+static void print(map_t *map) {
+  uint64_t  index = 0;
+  for (; index < map->cap; ++index) {
+    if (map->kvs[index].klen == 0) {
+      printf("%" PRIu64 "\t----\t----\n", index);
+    } else {
+      printf("%" PRIu64 "\t%" PRIu64 "\t%" PRIu64 "\n", index, map_pos(map, map->kvs[index].key, map->kvs[index].klen), map->kvs[index].off);
+    }
+  }
+}
 
 static void validate(map_t *map) {
 #ifdef DEBUG
