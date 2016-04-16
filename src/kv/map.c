@@ -55,8 +55,8 @@ bool map_put(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vle
 }
 
 void map_del(map_t *map, uint8_t *key, uint64_t klen) {
-  puts("======================================================");
-  print(map);
+//  puts("======================================================");
+//  print(map);
   uint64_t pos = map_pos(map, key, klen);
   if (map->kvs[pos].key == NULL) {
     printf("Key length is %" PRIu64 ", is hashed to pos %" PRIu64 " but not found\n", klen, pos);
@@ -68,12 +68,11 @@ void map_del(map_t *map, uint8_t *key, uint64_t klen) {
       }
     }
   }
-  assert(map->kvs[pos].key != NULL);
   while (map->kvs[pos].klen != klen ||
          memcmp(key, map->kvs[pos].key, klen) != 0) {
     pos = INC_CAP(pos);
   }
-  printf("\nDeleting key at position %" PRIu64 "\n\n", pos);
+//  printf("\nDeleting key at position %" PRIu64 "\n\n", pos);
   delete_key(map, pos);
   uint64_t index = INC_CAP(pos);
   uint64_t off = 1;
@@ -89,7 +88,7 @@ void map_del(map_t *map, uint8_t *key, uint64_t klen) {
     }
   }
   --(map->size);
-  print(map);
+//  print(map);
 }
 
 void map_clr(map_t *map) {
