@@ -112,10 +112,10 @@ static void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, 
   }
   copy_value(val, vlen, pair);
   fnode_t *node = pair->ref;
-  assert(lru->first);
-  assert(node);
-  DL_DELETE(lru->first, node);
-  DL_PREPEND(lru->first, node);
+  if (node != lru->first) {
+    DL_DELETE(lru->first, node);
+    DL_PREPEND(lru->first, node);
+  }
   flist_validate(lru);
   pthread_mutex_unlock(&lru->mutex);
 }
@@ -160,8 +160,10 @@ static void flist_put(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, u
       if (node == lru->last) {
         lru->last = node->prev;
       }
-      DL_DELETE(lru->first, node);
-      DL_PREPEND(lru->first, node);
+      if (lru->first != node) {
+        DL_DELETE(lru->first, node);
+        DL_PREPEND(lru->first, node);
+      }
     }
   }
   flist_validate(lru);
