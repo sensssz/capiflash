@@ -46,7 +46,7 @@ bool map_put(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vle
 void map_del(map_t *map, uint8_t *key, uint64_t klen);
 void map_clr(map_t *map);
 // Map internal functions
-kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen);
+kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen, bool set_off);
 bool map_put_pair(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen, kv_t **pair_out);
 inline void copy_value(uint8_t **val, uint64_t *vlen, const kv_t *pair);
 

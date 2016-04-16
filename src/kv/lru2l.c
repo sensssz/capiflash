@@ -101,7 +101,7 @@ static void flist_free(flist_t *flist) {
 
 static void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, uint64_t *vlen) {
   pthread_mutex_lock(&lru->mutex);
-  kv_t *pair = map_get_pair(lru->hot_cache, key, klen);
+  kv_t *pair = map_get_pair(lru->hot_cache, key, klen, false);
   if (pair->key == NULL) {
     pthread_mutex_unlock(&lru->mutex);
     return;
@@ -114,7 +114,7 @@ static void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, 
 }
 
 static void flist_access(lru2l_t *lru, uint8_t *prev_key, uint64_t prev_klen, uint8_t *key, uint64_t klen) {
-  kv_t *pair = map_get_pair(lru->hot_cache, prev_key, prev_klen);
+  kv_t *pair = map_get_pair(lru->hot_cache, prev_key, prev_klen, false);
   if (pair->key != NULL) {
     fnode_t *node = pair->ref;
     slist_access(node->likely_keys, key, klen);
@@ -124,11 +124,6 @@ static void flist_access(lru2l_t *lru, uint8_t *prev_key, uint64_t prev_klen, ui
 static void flist_put(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen) {
   pthread_mutex_lock(&lru->mutex);
   kv_t *pair = NULL;
-//  if (lru->len == lru->cap &&
-//      map_get_pair(lru->hot_cache, key, klen)->klen == 0) {
-//    pthread_mutex_unlock(&lru->mutex);
-//    return;
-//  }
   if (map_put_pair(lru->hot_cache, key, klen, val, vlen, &pair)) {
     // It's an insert. Need to check if we need to evict an item
     fnode_t *node = (fnode_t *) am_malloc(sizeof (fnode_t));
@@ -167,7 +162,7 @@ static void flist_put(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, u
 
 static void flist_del(lru2l_t *lru, uint8_t *key, uint64_t klen) {
   pthread_mutex_lock(&lru->mutex);
-  kv_t *pair = map_get_pair(lru->hot_cache, key, klen);
+  kv_t *pair = map_get_pair(lru->hot_cache, key, klen, false);
   if (pair->klen > 0) {
     fnode_t *node = pair->ref;
     if (node == lru->last) {

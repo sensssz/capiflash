@@ -41,7 +41,7 @@ void map_free(map_t *map) {
 }
 
 void map_get(map_t *map, uint8_t *key, uint64_t klen, uint8_t **val, uint64_t *vlen) {
-  kv_t *pair = map_get_pair(map, key, klen);
+  kv_t *pair = map_get_pair(map, key, klen, false);
   if (pair->key != NULL) {
     copy_value(val, vlen, pair);
   } else {
@@ -100,7 +100,7 @@ void map_clr(map_t *map) {
   map->size = 0;
 }
 
-kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen) {
+kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen, bool set_off) {
   uint64_t pos = map_pos(map, key, klen);
   uint64_t off = 0;
   while (map->kvs[pos].klen > 0) {
@@ -111,12 +111,14 @@ kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen) {
     pos = INC_CAP(pos);
     ++off;
   }
-  map->kvs[pos].off = off;
+  if (set_off) {
+    map->kvs[pos].off = off;
+  }
   return map->kvs + pos;
 }
 
 bool map_put_pair(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen, kv_t **pair_out) {
-  kv_t *pair = map_get_pair(map, key, klen);
+  kv_t *pair = map_get_pair(map, key, klen, true);
   if (pair_out != NULL) {
     *pair_out = pair;
   }
