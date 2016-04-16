@@ -171,16 +171,19 @@ static void flist_put(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, u
 static void flist_del(lru2l_t *lru, uint8_t *key, uint64_t klen) {
   pthread_mutex_lock(&lru->mutex);
   flist_validate(lru);
-  kv_t *pair = map_get_pair(lru->hot_cache, key, klen, false);
-  if (pair->klen > 0) {
-    fnode_t *node = pair->ref;
-    if (node == lru->last) {
-      lru->last = node->prev;
+  if (lru->len > 0) {
+    kv_t *pair = map_get_pair(lru->hot_cache, key, klen, false);
+    if (pair->klen > 0) {
+      fnode_t *node = pair->ref;
+      if (node == lru->last) {
+        lru->last = node->prev;
+      }
+      DL_DELETE(lru->first, node);
+      am_free(node);
+      map_del(lru->hot_cache, key, klen);
+      --(lru->len);
+      puts("Deletion done.");
     }
-    DL_DELETE(lru->first, node);
-    am_free(node);
-    map_del(lru->hot_cache, key, klen);
-    --(lru->len);
   }
   flist_validate(lru);
   pthread_mutex_unlock(&lru->mutex);
