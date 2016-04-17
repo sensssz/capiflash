@@ -39,9 +39,6 @@ extern "C"
 #include <stdio.h>
 #include <assert.h>
 #include <errno.h>
-#include <cinttypes>
-#include <lru2l.h>
-#include <ark.h>
 }
 
 /*******************************************************************************
