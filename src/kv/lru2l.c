@@ -108,6 +108,7 @@ static void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, 
     *vlen = 0;
     return;
   }
+  puts("Checking cache");
   kv_t *pair = map_get_pair(lru->hot_cache, key, klen, false);
   if (pair->key == NULL) {
     *val = NULL;
