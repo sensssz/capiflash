@@ -63,10 +63,6 @@ void lru_get(lru2l_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, uint64_t 
   flist_get(lru, key, klen, val, vlen);
 }
 
-uint64_t lru_size(lru2l_t *lru) {
-  return lru->len;
-}
-
 void lru_access(lru2l_t *lru, uint8_t *prev_key, uint64_t prev_klen, uint8_t *key, uint64_t klen) {
   flist_access(lru, prev_key, prev_klen, key, klen);
 }
