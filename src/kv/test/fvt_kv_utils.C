@@ -30,7 +30,6 @@
  * \ingroup
  ******************************************************************************/
 #include <gtest/gtest.h>
-#include <ark.h>
 
 extern "C"
 {
@@ -214,7 +213,6 @@ void fvt_kv_utils_SGD_LOOP(ARK     *ark,
         puts("delete all key/value pairs from the db");
         /* delete all key/value pairs from the db */
         fvt_kv_utils_del(ark, db, LEN);
-        _ARK *_ark = (_ARK *) ark;
 
         puts("query all key/value pairs from the db");
         /* query all key/value pairs from the db */
