@@ -8,7 +8,6 @@
 #include "am.h"
 #include "hash.h"
 #include "map.h"
-#define DEBUG
 
 #define INC_CAP(val) (((val) + 1) % (map->cap))
 
@@ -61,15 +60,10 @@ void map_del(map_t *map, uint8_t *key, uint64_t klen) {
 //  puts("======================================================");
 //  print(map);
   uint64_t pos = map_pos(map, key, klen);
-  while (map->kvs[pos].klen > 0 &&
-         (map->kvs[pos].klen != klen ||
-          memcmp(key, map->kvs[pos].key, klen) != 0)) {
+  while (map->kvs[pos].klen != klen ||
+          memcmp(key, map->kvs[pos].key, klen) != 0) {
     pos = INC_CAP(pos);
   }
-//  printf("\nDeleting key at position %" PRIu64 "\n", pos);
-//  if (map->kvs[pos].klen == 0) {
-//    return;
-//  }
   delete_key(map, pos);
   uint64_t index = INC_CAP(pos);
   uint64_t off = 1;
