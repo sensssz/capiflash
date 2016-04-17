@@ -115,6 +115,7 @@ static void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, 
     pthread_mutex_unlock(&lru->mutex);
     return;
   }
+  puts("Cache hit");
   copy_value(val, vlen, pair);
   fnode_t *node = pair->ref;
   if (node != lru->first) {
