@@ -183,7 +183,6 @@ static void flist_del(lru2l_t *lru, uint8_t *key, uint64_t klen) {
   if (lru->len > 0) {
     kv_t *pair = map_get_pair(lru->hot_cache, key, klen, false);
     if (pair->klen > 0 && pair->key != NULL) {
-      puts("Delete key.");
       fnode_t *node = pair->ref;
       if (node == lru->last) {
         lru->last = node->prev;
@@ -194,11 +193,8 @@ static void flist_del(lru2l_t *lru, uint8_t *key, uint64_t klen) {
         lru->first = NULL;
       }
       am_free(node);
-      puts("Delete key from map");
       map_del(lru->hot_cache, key, klen);
-      puts("Key deleted from map");
       --(lru->len);
-      puts("Deletion done.");
     }
   }
   flist_validate(lru);
@@ -274,7 +270,7 @@ static void flist_validate(flist_t *lru) {
   fnode_t *node;
   DL_FOREACH(lru->first, node) {
     assert(node->pair->key != NULL && node->pair->klen > 0);
-    assert(node->pair->val != NULL && node->pair->vlen > 0);
+//    assert(node->pair->val != NULL && node->pair->vlen > 0);
     assert(node == node->pair->ref && node != NULL);
   }
 #endif
