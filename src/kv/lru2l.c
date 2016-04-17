@@ -9,6 +9,7 @@
 #include "list.h"
 #include "lru2l.h"
 
+#define DEBUG
 #define FLRU_CAP 10
 #define SLRU_CAP 10
 
@@ -106,9 +107,9 @@ static void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, 
   if (lru->len == 0) {
     *val = NULL;
     *vlen = 0;
+    pthread_mutex_unlock(&lru->mutex);
     return;
   }
-  puts("Checking cache");
   kv_t *pair = map_get_pair(lru->hot_cache, key, klen, false);
   if (pair->key == NULL) {
     *val = NULL;
@@ -116,7 +117,6 @@ static void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, 
     pthread_mutex_unlock(&lru->mutex);
     return;
   }
-  puts("Cache hit");
   copy_value(val, vlen, pair);
   fnode_t *node = pair->ref;
   if (node != lru->first) {
@@ -182,7 +182,8 @@ static void flist_del(lru2l_t *lru, uint8_t *key, uint64_t klen) {
   flist_validate(lru);
   if (lru->len > 0) {
     kv_t *pair = map_get_pair(lru->hot_cache, key, klen, false);
-    if (pair->klen > 0) {
+    if (pair->klen > 0 && pair->key != NULL) {
+      puts("Delete key.");
       fnode_t *node = pair->ref;
       if (node == lru->last) {
         lru->last = node->prev;
@@ -193,8 +194,11 @@ static void flist_del(lru2l_t *lru, uint8_t *key, uint64_t klen) {
         lru->first = NULL;
       }
       am_free(node);
+      puts("Delete key from map");
       map_del(lru->hot_cache, key, klen);
+      puts("Key deleted from map");
       --(lru->len);
+      puts("Deletion done.");
     }
   }
   flist_validate(lru);

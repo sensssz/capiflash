@@ -36,8 +36,6 @@ extern "C"
 #include <fvt_kv.h>
 #include <fvt_kv_utils.h>
 #include <kv_utils_db.h>
-#include <stdio.h>
-#include <assert.h>
 #include <errno.h>
 }
 
@@ -202,23 +200,18 @@ void fvt_kv_utils_SGD_LOOP(ARK     *ark,
         db = (kv_t*)db_create(LEN, klen, vlen);
         ASSERT_TRUE(db != NULL);
 
-        puts("Load all key/value pairs from the db into the ark");
         /* load all key/value pairs from the db into the ark */
         fvt_kv_utils_load(ark, db, LEN);
 
-        puts("query all key/value pairs from the db");
         /* query all key/value pairs from the db */
         fvt_kv_utils_query(ark, db, vlen, LEN);
 
-        puts("delete all key/value pairs from the db");
         /* delete all key/value pairs from the db */
         fvt_kv_utils_del(ark, db, LEN);
 
-        puts("query all key/value pairs from the db");
         /* query all key/value pairs from the db */
         fvt_kv_utils_query_empty(ark, db, vlen, LEN);
 
-        puts("Destroy db");
         kv_db_destroy(db, LEN);
 
         cur = time(0);
