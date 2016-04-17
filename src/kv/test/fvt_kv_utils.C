@@ -213,8 +213,8 @@ void fvt_kv_utils_SGD_LOOP(ARK     *ark,
         puts("delete all key/value pairs from the db");
         /* delete all key/value pairs from the db */
         fvt_kv_utils_del(ark, db, LEN);
-        assert(ark->lru->len == 0);
-        assert(ark->lru->hot_cache->size == 0);
+        assert((_ARK *) (ark)->lru->len == 0);
+        assert(((_ARK *) ark)->lru->hot_cache->size == 0);
 
         puts("query all key/value pairs from the db");
         /* query all key/value pairs from the db */
