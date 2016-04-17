@@ -39,6 +39,9 @@ extern "C"
 #include <stdio.h>
 #include <assert.h>
 #include <errno.h>
+#include <cinttypes>
+#include <lru2l.h>
+#include <ark.h>
 }
 
 /*******************************************************************************
@@ -213,6 +216,7 @@ void fvt_kv_utils_SGD_LOOP(ARK     *ark,
         puts("delete all key/value pairs from the db");
         /* delete all key/value pairs from the db */
         fvt_kv_utils_del(ark, db, LEN);
+        printf("LRU size: %" PRIu64 "\n", lru_size(((_ARK *) ark)->lru));
 
         puts("query all key/value pairs from the db");
         /* query all key/value pairs from the db */
