@@ -200,18 +200,25 @@ void fvt_kv_utils_SGD_LOOP(ARK     *ark,
         db = (kv_t*)db_create(LEN, klen, vlen);
         ASSERT_TRUE(db != NULL);
 
+        puts("Load all key/value pairs from the db into the ark");
         /* load all key/value pairs from the db into the ark */
         fvt_kv_utils_load(ark, db, LEN);
 
+        puts("query all key/value pairs from the db");
         /* query all key/value pairs from the db */
         fvt_kv_utils_query(ark, db, vlen, LEN);
 
+        puts("delete all key/value pairs from the db");
         /* delete all key/value pairs from the db */
         fvt_kv_utils_del(ark, db, LEN);
+        assert(ark->lru->len == 0);
+        assert(ark->lru->hot_cache->size == 0);
 
+        puts("query all key/value pairs from the db");
         /* query all key/value pairs from the db */
         fvt_kv_utils_query_empty(ark, db, vlen, LEN);
 
+        puts("Destroy db");
         kv_db_destroy(db, LEN);
 
         cur = time(0);

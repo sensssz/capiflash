@@ -325,7 +325,7 @@ void ark_set_finish(_ARK *_arkp, int tid, tcb_t *tcbp)
   }
   tcbp->state = ARK_CMD_DONE;
 //  hit_list_put(_arkp->hit_list, rcbp->key, rcbp->klen, rcbp->val, rcbp->vlen);
-//  lru_put(_arkp->lru, rcbp->key, rcbp->klen, rcbp->val, rcbp->vlen);
+  lru_put(_arkp->lru, rcbp->key, rcbp->klen, rcbp->val, rcbp->vlen);
 
   return;
 }
