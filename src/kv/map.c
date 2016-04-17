@@ -67,9 +67,9 @@ void map_del(map_t *map, uint8_t *key, uint64_t klen) {
     pos = INC_CAP(pos);
   }
 //  printf("\nDeleting key at position %" PRIu64 "\n", pos);
-  if (map->kvs[pos].klen == 0) {
-    return;
-  }
+//  if (map->kvs[pos].klen == 0) {
+//    return;
+//  }
   delete_key(map, pos);
   uint64_t index = INC_CAP(pos);
   uint64_t off = 1;
@@ -103,7 +103,7 @@ kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen, bool set_off) {
   uint64_t off = 0;
   bool found = false;
   while (map->kvs[pos].klen > 0) {
-    if (map->kvs[pos].klen == klen ||
+    if (map->kvs[pos].klen == klen &&
         memcmp(key, map->kvs[pos].key, klen) == 0) {
       found = true;
       break;

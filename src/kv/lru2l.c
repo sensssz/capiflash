@@ -174,7 +174,7 @@ static void flist_del(lru2l_t *lru, uint8_t *key, uint64_t klen) {
   flist_validate(lru);
   if (lru->len > 0) {
     kv_t *pair = map_get_pair(lru->hot_cache, key, klen, false);
-    if (pair->klen > 0) {
+    if (pair->klen > 0 && pair->key != NULL) {
       puts("Delete key.");
       fnode_t *node = pair->ref;
       if (node == lru->last) {
