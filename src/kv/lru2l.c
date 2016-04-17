@@ -10,7 +10,7 @@
 #include "lru2l.h"
 
 #define DEBUG
-#define FLRU_CAP 10
+#define FLRU_CAP 1000
 #define SLRU_CAP 10
 
 typedef struct _first_l_list  flist_t;
