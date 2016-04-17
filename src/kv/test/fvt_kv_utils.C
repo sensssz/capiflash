@@ -36,6 +36,8 @@ extern "C"
 #include <fvt_kv.h>
 #include <fvt_kv_utils.h>
 #include <kv_utils_db.h>
+#include <stdio.h>
+#include <assert.h>
 #include <errno.h>
 }
 
