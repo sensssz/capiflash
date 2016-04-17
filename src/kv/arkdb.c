@@ -1102,7 +1102,7 @@ vbuflen %"PRIu64", vbuf %p, rval %p",
   }
   else
   {
-//    lru_get(_arkp->lru, key, klen, &val_buf, &vlen);
+    lru_get(_arkp->lru, key, klen, &val_buf, &vlen);
     if (val_buf != NULL) {
       if ((voff + vbuflen) <= vlen)
       {

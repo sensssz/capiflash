@@ -103,8 +103,15 @@ static void flist_free(flist_t *flist) {
 static void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, uint64_t *vlen) {
   pthread_mutex_lock(&lru->mutex);
   flist_validate(lru);
+  if (lru->len == 0) {
+    *val = NULL;
+    *vlen = 0;
+    return;
+  }
   kv_t *pair = map_get_pair(lru->hot_cache, key, klen, false);
   if (pair->key == NULL) {
+    *val = NULL;
+    *vlen = 0;
     pthread_mutex_unlock(&lru->mutex);
     return;
   }
