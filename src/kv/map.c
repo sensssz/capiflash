@@ -8,6 +8,7 @@
 #include "am.h"
 #include "hash.h"
 #include "map.h"
+#define DEBUG
 
 #define INC_CAP(val) (((val) + 1) % (map->cap))
 
