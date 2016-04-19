@@ -1148,6 +1148,7 @@ int ark_del(ARK *ark, uint64_t klen, void *key, int64_t *rval) {
   int errcode = 0;
   int tag = 0;
   int64_t res = 0;
+  int64_t get_res = 0;
   _ARK *_arkp = (_ARK *)ark;
 
   if ((_arkp == NULL) ||
@@ -1180,6 +1181,7 @@ int ark_del(ARK *ark, uint64_t klen, void *key, int64_t *rval) {
         }
 
         *rval = res;
+        assert(ark_get(ark, klen, key, 0, NULL, 0, &get_res) == ENOENT);
       }
     }
   }
