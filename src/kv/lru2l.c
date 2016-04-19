@@ -21,7 +21,7 @@ static void flist_free(flist_t *flist);
 static void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, uint64_t *vlen);
 static void flist_access(lru2l_t *lru, uint8_t *prev_key, uint64_t prev_klen, uint8_t *key, uint64_t klen);
 static void flist_put(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen);
-static bool flist_del(flist_t *lru, uint8_t *key, uint64_t klen);
+static void flist_del(flist_t *lru, uint8_t *key, uint64_t klen);
 static inline void flist_validate(flist_t *lru);
 
 static slist_t *slist_new(uint64_t cap);
@@ -72,8 +72,8 @@ void lru_put(lru2l_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t v
   flist_put(lru, key, klen, val, vlen);
 }
 
-bool lru_del(lru2l_t *lru, uint8_t *key, uint64_t klen) {
-  return flist_del(lru, key, klen);
+void lru_del(lru2l_t *lru, uint8_t *key, uint64_t klen) {
+  flist_del(lru, key, klen);
 }
 
 static flist_t *flist_new() {
@@ -177,7 +177,7 @@ static void flist_put(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t *val, u
   pthread_mutex_unlock(&lru->mutex);
 }
 
-static bool flist_del(lru2l_t *lru, uint8_t *key, uint64_t klen) {
+static void flist_del(lru2l_t *lru, uint8_t *key, uint64_t klen) {
   pthread_mutex_lock(&lru->mutex);
   flist_validate(lru);
   if (lru->len > 0) {

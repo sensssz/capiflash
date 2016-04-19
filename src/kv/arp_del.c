@@ -236,6 +236,8 @@ void ark_del_finish(_ARK *_arkp, int32_t tid, tcb_t *tcbp)
 {
   rcb_t  *rcbp  = &(_arkp->rcbs[tcbp->rtag]);
   scb_t  *scbp  = &(_arkp->poolthreads[tid]);
+  uint8_t *val_buf = NULL;
+  uint64_t vlen = 0;
 
   scbp->poolstats.kv_cnt--;
 
@@ -244,7 +246,9 @@ void ark_del_finish(_ARK *_arkp, int32_t tid, tcb_t *tcbp)
   HASH_SET(_arkp->ht, rcbp->pos, HASH_MAKE(1, tcbp->ttag, tcbp->nblk));
 
   tcbp->state = ARK_CMD_DONE;
-  assert(lru_del(_arkp->lru, rcbp->key, rcbp->klen));
+  lru_del(_arkp->lru, rcbp->key, rcbp->klen);
+  lru_get(_arkp->lru, rcbp->key, rcbp->klen, &val_buf, &vlen);
+  assert(val_buf == NULL);
   return;
 }
 
