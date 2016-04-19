@@ -8,12 +8,9 @@
 #include "am.h"
 #include "hash.h"
 #include "map.h"
-#define DEBUG
+#include "list.h"
 
-#define INC_CAP(val) (((val) + 1) % (map->cap))
-
-static inline void wipe_pair(map_t *map, uint64_t pos);
-static inline void delete_key(map_t *map, uint64_t pos);
+static inline void delete_list(map_t *map, uint64_t pos);
 static inline uint64_t map_pos(map_t *map, uint8_t *key, uint64_t klen);
 //static void print(map_t *map);
 static inline void validate(map_t *map);
@@ -34,7 +31,7 @@ void map_free(map_t *map) {
   uint64_t index = 0;
   if (map) {
     for (; index < map->cap; ++index) {
-      delete_key(map, index);
+      delete_list(map, index);
     }
     am_free(map);
   } else {
@@ -43,8 +40,8 @@ void map_free(map_t *map) {
 }
 
 void map_get(map_t *map, uint8_t *key, uint64_t klen, uint8_t **val, uint64_t *vlen) {
-  kv_t *pair = map_get_pair(map, key, klen, false);
-  if (pair->key != NULL) {
+  kv_t *pair = map_get_pair(map, key, klen);
+  if (pair != NULL) {
     copy_value(val, vlen, pair);
   } else {
     *vlen = 0;
@@ -58,73 +55,43 @@ bool map_put(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vle
 
 void map_del(map_t *map, uint8_t *key, uint64_t klen) {
   validate(map);
-//  puts("======================================================");
-//  print(map);
   uint64_t pos = map_pos(map, key, klen);
-  while (map->kvs[pos].klen > 0 &&
-         (map->kvs[pos].klen != klen ||
-          memcmp(key, map->kvs[pos].key, klen) != 0)) {
-    pos = INC_CAP(pos);
-  }
-//  printf("\nDeleting key at position %" PRIu64 "\n", pos);
-//  if (map->kvs[pos].klen == 0) {
-//    return;
-//  }
-  delete_key(map, pos);
-  uint64_t index = INC_CAP(pos);
-  uint64_t off = 1;
-  for (; map->kvs[index].klen > 0; index = INC_CAP(index), ++off) {
-    if (map->kvs[index].off >= off) {
-      map->kvs[pos] = map->kvs[index];
-      map->kvs[pos].off -= off;
-      map->kvs[pos].ref->pair = map->kvs + pos;
-      wipe_pair(map, index);
-      map->kvs[index].off = 0;
-      off = 0;
-      pos = index;
-    }
-  }
+  kv_t *node = map_get_pair(map, key, klen);
+  DL_DELETE(map->kvs[pos], node);
   --(map->size);
-//  print(map);
   validate(map);
 }
 
 void map_clr(map_t *map) {
   uint64_t index = 0;
   for (; index < map->cap; ++index) {
-    delete_key(map, index);
+    delete_list(map, index);
   }
   map->size = 0;
 }
 
-kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen, bool set_off) {
+kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen) {
   validate(map);
   uint64_t pos = map_pos(map, key, klen);
-  uint64_t off = 0;
-  bool found = false;
-  while (map->kvs[pos].klen > 0) {
-    if (map->kvs[pos].klen == klen &&
-        memcmp(key, map->kvs[pos].key, klen) == 0) {
-      found = true;
+  kv_t *node = map->kvs[pos];
+  while (node) {
+    if (node->klen == klen &&
+        memcpy(node->key, key, klen) == 0) {
       break;
     }
-    pos = INC_CAP(pos);
-    ++off;
-  }
-  if (set_off && !found) {
-    map->kvs[pos].off = off;
+    node = node->next;
   }
   validate(map);
-  return map->kvs + pos;
+  return node;
 }
 
 bool map_put_pair(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen, kv_t **pair_out) {
   validate(map);
-  kv_t *pair = map_get_pair(map, key, klen, true);
+  kv_t *pair = map_get_pair(map, key, klen);
   if (pair_out != NULL) {
     *pair_out = pair;
   }
-  if (pair->key != NULL) {
+  if (pair != NULL) {
     if (pair->vlen < vlen) {
       am_free(pair->val);
       pair->val = (uint8_t *) am_malloc(vlen);
@@ -134,12 +101,15 @@ bool map_put_pair(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_
     validate(map);
     return false;
   } else {
+    uint64_t pos = map_pos(map, key, klen);
+    pair = (kv_t *) am_malloc(sizeof(kv_t));
     pair->klen = klen;
     pair->vlen = vlen;
     pair->key = (uint8_t *) am_malloc(klen);
     pair->val = (uint8_t *) am_malloc(vlen);
     memcpy(pair->key, key, klen);
     memcpy(pair->val, val, vlen);
+    DL_PREPEND(map->kvs[pos], pair);
     ++(map->size);
     validate(map);
     return true;
@@ -154,18 +124,14 @@ inline void copy_value(uint8_t **val, uint64_t *vlen, const kv_t *pair) {
   }
 }
 
-static inline void wipe_pair(map_t *map, uint64_t pos) {
-  map->kvs[pos].key = map->kvs[pos].val = NULL;
-  map->kvs[pos].klen = map->kvs[pos].vlen = 0;
-}
-
-static inline void delete_key(map_t *map, uint64_t pos) {
-  if (map->kvs[pos].klen > 0) {
-    am_free(map->kvs[pos].key);
-    am_free(map->kvs[pos].val);
-    wipe_pair(map, pos);
-    map->kvs[pos].off = 0;
+static inline void delete_list(map_t *map, uint64_t pos) {
+  kv_t *node = map->kvs[pos];
+  while (node != NULL) {
+    kv_t *victim = node;
+    node = node->next;
+    am_free(victim);
   }
+  map->kvs[pos] = NULL;
 }
 
 static inline uint64_t map_pos(map_t *map, uint8_t *key, uint64_t klen) {
@@ -193,11 +159,6 @@ static void validate(map_t *map) {
     kv_t *pair = map->kvs + index;
     if (pair->klen > 0) {
       uint64_t hashed_pos = map_pos(map, pair->key, pair->klen);
-      if (index < hashed_pos) {
-        assert(pair->off == (index + map->cap - hashed_pos));
-      } else {
-        assert(pair->off == (index - hashed_pos));
-      }
       ++num_pairs;
     }
   }

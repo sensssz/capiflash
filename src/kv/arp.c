@@ -255,7 +255,7 @@ int ark_enq_cmd(int cmd, _ARK *_arkp, uint64_t klen, void *key,
 
 //    hit_list_get(_arkp->hit_list, key, klen, &val_buf, &res);
     if (cmd == K_GET) {
-//      lru_get(_arkp->lru, key, klen, &val_buf, &res);
+      lru_get(_arkp->lru, key, klen, &val_buf, &res);
     }
     if (val_buf != NULL)
     {

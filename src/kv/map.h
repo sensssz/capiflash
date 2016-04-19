@@ -27,14 +27,15 @@ struct _kv_t {
   uint8_t  *val;
   uint64_t  klen;
   uint8_t  *key;
-  uint64_t  off;
   fnode_t  *ref;
+  kv_t     *prev;
+  kv_t     *next;
 };
 
 struct _map_t {
   uint64_t  cap;
   uint64_t  size;
-  kv_t      kvs[];
+  kv_t     *kvs[];
 };
 
 // Map interface
@@ -46,7 +47,7 @@ bool map_put(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vle
 void map_del(map_t *map, uint8_t *key, uint64_t klen);
 void map_clr(map_t *map);
 // Map internal functions
-kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen, bool set_off);
+kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen);
 bool map_put_pair(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen, kv_t **pair_out);
 inline void copy_value(uint8_t **val, uint64_t *vlen, const kv_t *pair);
 

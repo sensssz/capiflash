@@ -110,8 +110,8 @@ static void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, 
     pthread_mutex_unlock(&lru->mutex);
     return;
   }
-  kv_t *pair = map_get_pair(lru->hot_cache, key, klen, false);
-  if (pair->key == NULL) {
+  kv_t *pair = map_get_pair(lru->hot_cache, key, klen);
+  if (pair == NULL) {
     *val = NULL;
     *vlen = 0;
     pthread_mutex_unlock(&lru->mutex);
@@ -128,8 +128,8 @@ static void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, 
 }
 
 static void flist_access(lru2l_t *lru, uint8_t *prev_key, uint64_t prev_klen, uint8_t *key, uint64_t klen) {
-  kv_t *pair = map_get_pair(lru->hot_cache, prev_key, prev_klen, false);
-  if (pair->key != NULL) {
+  kv_t *pair = map_get_pair(lru->hot_cache, prev_key, prev_klen);
+  if (pair != NULL) {
     fnode_t *node = pair->ref;
     slist_access(node->likely_keys, key, klen);
   }
@@ -181,8 +181,8 @@ static void flist_del(lru2l_t *lru, uint8_t *key, uint64_t klen) {
   pthread_mutex_lock(&lru->mutex);
   flist_validate(lru);
   if (lru->len > 0) {
-    kv_t *pair = map_get_pair(lru->hot_cache, key, klen, false);
-    if (pair->klen > 0 && pair->key != NULL) {
+    kv_t *pair = map_get_pair(lru->hot_cache, key, klen);
+    if (pair != NULL) {
       fnode_t *node = pair->ref;
       if (node == lru->last) {
         lru->last = node->prev;

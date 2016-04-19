@@ -107,7 +107,7 @@ void map_free(map_t *map) {
   uint64_t index = 0;
   if (map) {
     for (; index < map->cap; ++index) {
-      delete_key(map, index);
+      delete_list(map, index);
     }
     am_free(map);
   } else {
@@ -175,7 +175,7 @@ void map_del(map_t *map, uint8_t *key, uint64_t klen) {
   while (memcmp(key, map->kvs[pos].key, klen) != 0) {
     pos = (pos + 1) % map->cap;
   }
-  delete_key(map, pos);
+  delete_list(map, pos);
   uint64_t index = pos + 1;
   while (map->kvs[index].klen > 0) {
     uint64_t k_pos = map_pos(map, map->kvs[index].key, map->kvs[index].klen);
@@ -193,7 +193,7 @@ void map_del(map_t *map, uint8_t *key, uint64_t klen) {
 void map_clr(map_t *map) {
   uint64_t index = 0;
   for (; index < map->cap; ++index) {
-    delete_key(map, index);
+    delete_list(map, index);
   }
   map->size = 0;
 }
