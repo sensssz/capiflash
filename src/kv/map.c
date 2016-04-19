@@ -57,6 +57,7 @@ void map_del(map_t *map, uint8_t *key, uint64_t klen) {
   validate(map);
   uint64_t pos = map_pos(map, key, klen);
   kv_t *node = map_get_pair(map, key, klen);
+  assert(node);
   DL_DELETE(map->kvs[pos], node);
   --(map->size);
   validate(map);
@@ -76,7 +77,7 @@ kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen) {
   kv_t *node = map->kvs[pos];
   while (node) {
     if (node->klen == klen &&
-        memcpy(node->key, key, klen) == 0) {
+        memcmp(node->key, key, klen) == 0) {
       break;
     }
     node = node->next;
