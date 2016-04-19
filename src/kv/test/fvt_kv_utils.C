@@ -164,9 +164,6 @@ void fvt_kv_utils_del(ARK *ark, kv_t *db, uint32_t LEN)
 {
     uint32_t i   = 0;
     int64_t  res = 0;
-    uint8_t *gvalue = NULL;
-
-    gvalue=(uint8_t*)malloc(266);
 
     ASSERT_TRUE(NULL != ark);
     ASSERT_TRUE(NULL != db);
