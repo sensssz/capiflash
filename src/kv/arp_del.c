@@ -247,8 +247,6 @@ void ark_del_finish(_ARK *_arkp, int32_t tid, tcb_t *tcbp)
 
   tcbp->state = ARK_CMD_DONE;
   lru_del(_arkp->lru, rcbp->key, rcbp->klen);
-  lru_get(_arkp->lru, rcbp->key, rcbp->klen, &val_buf, &vlen);
-  assert(val_buf == NULL);
   return;
 }
 
