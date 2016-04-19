@@ -173,6 +173,7 @@ void fvt_kv_utils_del(ARK *ark, kv_t *db, uint32_t LEN)
     {
         EXPECT_EQ(0, ark_del(ark, db[i].klen, db[i].key, &res));
         EXPECT_EQ(db[i].vlen, res);
+        EXPECT_EQ(ENOENT, ark_exists(ark, db[i].klen, db[i].key, &res));
     }
 }
 
@@ -208,6 +209,7 @@ void fvt_kv_utils_SGD_LOOP(ARK     *ark,
 
         /* delete all key/value pairs from the db */
         fvt_kv_utils_del(ark, db, LEN);
+        puts("All kv deleted\nQuery empty");
 
         /* query all key/value pairs from the db */
         fvt_kv_utils_query_empty(ark, db, vlen, LEN);
