@@ -104,6 +104,7 @@ bool map_put_pair(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_
     pair->vlen = vlen;
     pair->key = (uint8_t *) am_malloc(klen);
     pair->val = (uint8_t *) am_malloc(vlen);
+    pair->prev = pair->next = NULL;
     memcpy(pair->key, key, klen);
     memcpy(pair->val, val, vlen);
     DL_PREPEND(map->kvs[pos], pair);
