@@ -88,9 +88,7 @@ kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen) {
 bool map_put_pair(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_t vlen, kv_t **pair_out) {
   validate(map);
   kv_t *pair = map_get_pair(map, key, klen);
-  if (pair_out != NULL) {
-    *pair_out = pair;
-  }
+  bool insert = false;
   if (pair != NULL) {
     if (pair->vlen < vlen) {
       am_free(pair->val);
@@ -99,7 +97,6 @@ bool map_put_pair(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_
     pair->vlen = vlen;
     memcpy(pair->val, val, vlen);
     validate(map);
-    return false;
   } else {
     uint64_t pos = map_pos(map, key, klen);
     pair = (kv_t *) am_malloc(sizeof(kv_t));
@@ -112,8 +109,12 @@ bool map_put_pair(map_t *map, uint8_t *key, uint64_t klen, uint8_t *val, uint64_
     DL_PREPEND(map->kvs[pos], pair);
     ++(map->size);
     validate(map);
-    return true;
+    insert = true;
   }
+  if (pair_out != NULL) {
+    *pair_out = pair;
+  }
+  return insert;
 }
 
 inline void copy_value(uint8_t **val, uint64_t *vlen, const kv_t *pair) {
