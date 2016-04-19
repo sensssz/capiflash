@@ -194,6 +194,7 @@ static void flist_del(lru2l_t *lru, uint8_t *key, uint64_t klen) {
       am_free(node);
       map_del(lru->hot_cache, key, klen);
       --(lru->len);
+      puts("kv deleted");
     }
   }
   flist_validate(lru);
