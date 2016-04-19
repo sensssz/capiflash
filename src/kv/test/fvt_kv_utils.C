@@ -204,8 +204,10 @@ void fvt_kv_utils_SGD_LOOP(ARK     *ark,
         /* load all key/value pairs from the db into the ark */
         fvt_kv_utils_load(ark, db, LEN);
 
+        puts("Querying");
         /* query all key/value pairs from the db */
         fvt_kv_utils_query(ark, db, vlen, LEN);
+        puts("All queries done\nDeleting all kv");
 
         /* delete all key/value pairs from the db */
         fvt_kv_utils_del(ark, db, LEN);
