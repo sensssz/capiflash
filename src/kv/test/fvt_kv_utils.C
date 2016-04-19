@@ -176,14 +176,6 @@ void fvt_kv_utils_del(ARK *ark, kv_t *db, uint32_t LEN)
     {
         EXPECT_EQ(0, ark_del(ark, db[i].klen, db[i].key, &res));
         EXPECT_EQ(db[i].vlen, res);
-        EXPECT_EQ(ENOENT, ark_get(ark,
-                                  db[i].klen,
-                                  db[i].key,
-                                  db[i].vlen,
-                                  gvalue,
-                                  0,
-                                  &res));
-        EXPECT_EQ(ENOENT, ark_exists(ark, db[i].klen, db[i].key, &res));
     }
 }
 
