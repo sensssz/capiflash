@@ -75,14 +75,17 @@ kv_t *map_get_pair(map_t *map, uint8_t *key, uint64_t klen) {
   validate(map);
   uint64_t pos = map_pos(map, key, klen);
   kv_t *node = map->kvs[pos];
+  uint64_t index = 0;
   while (node) {
     if (node->klen == klen &&
         memcmp(node->key, key, klen) == 0) {
       break;
     }
     node = node->next;
+    ++index;
   }
   validate(map);
+  printf("Found at position %" PRIu64 ", index %" PRIu64 "\n", pos, index);
   return node;
 }
 
