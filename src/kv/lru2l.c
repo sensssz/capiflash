@@ -104,6 +104,7 @@ static void flist_get(flist_t *lru, uint8_t *key, uint64_t klen, uint8_t **val, 
   pthread_mutex_lock(&lru->mutex);
   flist_validate(lru);
   if (lru->len == 0) {
+    puts("Cache size is 0");
     *val = NULL;
     *vlen = 0;
     pthread_mutex_unlock(&lru->mutex);
