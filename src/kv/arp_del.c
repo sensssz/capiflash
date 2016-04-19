@@ -244,7 +244,7 @@ void ark_del_finish(_ARK *_arkp, int32_t tid, tcb_t *tcbp)
   HASH_SET(_arkp->ht, rcbp->pos, HASH_MAKE(1, tcbp->ttag, tcbp->nblk));
 
   tcbp->state = ARK_CMD_DONE;
-  lru_del(_arkp->lru, rcbp->key, rcbp->klen);
+  assert(lru_del(_arkp->lru, rcbp->key, rcbp->klen));
   return;
 }
 
