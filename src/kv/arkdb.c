@@ -1088,6 +1088,7 @@ int ark_get(ARK *ark, uint64_t klen, void *key,
   uint8_t *val_buf = NULL;
   uint64_t vlen = 0;
   int64_t res = 0;
+  int64_t exi_res = 0;
   _ARK *_arkp = (_ARK *)ark;
 
   if ((_arkp == NULL) ||
@@ -1114,6 +1115,8 @@ vbuflen %"PRIu64", vbuf %p, rval %p",
       }
       am_free(val_buf);
       *rval = vlen;
+      ark_exists(ark, klen, key, &exi_res);
+      assert(exi_res != ENOENT);
     }
     else {
       *rval = -1;

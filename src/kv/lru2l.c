@@ -9,7 +9,6 @@
 #include "list.h"
 #include "lru2l.h"
 
-#define DEBUG
 #define FLRU_CAP 1000
 #define SLRU_CAP 10
 
