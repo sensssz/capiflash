@@ -1116,7 +1116,7 @@ vbuflen %"PRIu64", vbuf %p, rval %p",
       am_free(val_buf);
       *rval = vlen;
       ark_exists(ark, klen, key, &exi_res);
-      assert(exi_res != ENOENT);
+      assert(exi_res == klen / 8);
     }
     else {
       *rval = -1;
